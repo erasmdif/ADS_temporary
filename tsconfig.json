@@ -1,0 +1,33 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "strictNullChecks": true,
+    "allowJs": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "paths": {
+      "@user/*": [
+        "./src/ads/*"
+      ],
+      "@components/*": [
+        "./src/ads/components/*"
+      ],
+      "@layouts/*": [
+        "./src/ads/layouts/*"
+      ],
+      "@content/*": [
+        "./src/ads/content/*"
+      ]
+    }
+  },
+  "include": [
+    "src/ads/**/*",
+    ".astro/types.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

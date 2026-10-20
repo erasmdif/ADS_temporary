@@ -1,0 +1,185 @@
+---
+title: Gallery Component
+description: Responsive image galleries with PhotoSwipe lightbox functionality – live examples included.
+order: 31
+category: components
+---
+
+import { Gallery } from '@lad-sapienza/scms-core/components/Gallery';
+import Example from '@components/Example.astro';
+import TableOfContents from '@lad-sapienza/scms-core/components/TableOfContents/TableOfContents.astro';
+
+The **Gallery** component displays images in a responsive grid layout with [PhotoSwipe](https://photoswipe.com/) lightbox functionality. It works the same way in `.astro` files and MDX content — no `import.meta.glob` needed in your own page or content file.
+
+<TableOfContents title="On this page" />
+
+---
+
+## Key Features
+
+- 📸 **PhotoSwipe Integration** — full-screen lightbox with zoom, pan, and swipe gestures
+- 🔄 **Auto-loading** — automatically discovers images in a `gallery/` subfolder
+- 🔗 **Shared galleries** — reference one set of images by name from any page
+- 📝 **Custom Captions** — via `captions.json` or auto-generated from filenames
+- 🎨 **Responsive Grid** — configurable columns that adapt to screen size
+- ⌨️ **Keyboard Navigation** — arrow keys, ESC, and full accessibility support
+
+---
+
+## Live Examples
+
+<Example title="Default usage — colocated auto-loading">
+  <Fragment slot="intro">
+    With no props, `<Gallery />` loads images from a `gallery/` folder next to the current page or content file, and captions from a `captions.json` in that same folder if present.
+
+    This demo loads from `./gallery/*.jpg` and `./gallery/captions.json`, both colocated with this doc page. (This page's own file is `docs/components/gallery/index.mdx` — so the demo images end up at `docs/components/gallery/gallery/`. The doubled "gallery" is a coincidence of this page documenting the Gallery component itself; a normal article wouldn't have this.)
+  </Fragment>
+
+  <Fragment slot="code">
+    ```mdx
+    import { Gallery } from '@lad-sapienza/scms-core/components/Gallery';
+
+    <Gallery />
+    ```
+  </Fragment>
+
+  <Gallery />
+</Example>
+
+<details style={{ marginTop: '1rem' }}>
+  <summary><strong>📄 View captions.json structure</strong></summary>
+  <p>Place this file in your <code>gallery/</code> folder to provide custom captions:</p>
+
+```json
+{
+  "photo1.jpg": "A short caption for this image",
+  "photo2.jpg": "Another caption"
+}
+```
+
+  <p><em>Tip: keys can be filenames with or without extensions, and can use a different image resolution than the actual file — fuzzy matching strips resolution suffixes. Missing captions fall back to auto-generated ones from the filename. A malformed captions.json is ignored (with a console warning) rather than breaking the build.</em></p>
+</details>
+
+<p style={{ marginTop: '2rem' }}><small>Images by <a href="https://pixabay.com/users/freephotocc-2275370/" target="_blank" rel="noopener">Pixabay</a></small></p>
+
+---
+
+<Example title="With reverse sorting">
+  <Fragment slot="intro">
+    Images are sorted alphabetically by filename by default. Use `reverseSorting` to reverse this:
+  </Fragment>
+
+  <Fragment slot="code">
+    ```jsx
+    <Gallery reverseSorting={true} />
+    ```
+  </Fragment>
+
+  <Gallery reverseSorting={true} />
+</Example>
+
+---
+
+<Example title="Custom column configuration">
+  <Fragment slot="intro">
+    Control the responsive grid by specifying minimum item width and maximum columns. The grid adapts between these values based on screen width:
+  </Fragment>
+
+  <Fragment slot="code">
+    ```jsx
+    <Gallery columns={{ min: 200, max: 3 }} />
+    ```
+  </Fragment>
+
+  <Gallery columns={{ min: 200, max: 3 }} />
+</Example>
+
+---
+
+<Example title="Shared gallery, referenced by name">
+  <Fragment slot="intro">
+    A gallery that isn't tied to one specific page — put it under `src/galleries/<name>/` and reference it with the `name` prop from anywhere in the site. Useful for a set of images reused across multiple articles.
+
+    This demo loads from `src/galleries/docs-demo/`.
+  </Fragment>
+
+  <Fragment slot="code">
+    ```jsx
+    <Gallery name="docs-demo" />
+    ```
+  </Fragment>
+
+  <Gallery name="docs-demo" />
+</Example>
+
+---
+
+<Example title="Explicit images (escape hatch)">
+  <Fragment slot="intro">
+    For images that don't live in a local `gallery/` folder at all — remote URLs, a Directus-backed data source, a custom order computed at build time — pass an already-built `GalleryImage[]` array directly via `images`. This takes precedence over both auto-loading and `name`, and is the one case with no live demo here since it's meant for data this docs site doesn't have (e.g. a remote API).
+  </Fragment>
+
+  <Fragment slot="code">
+    ```jsx
+    <Gallery
+      images={[
+        { src: '/photos/img1.jpg', thumb: '/photos/img1.jpg', width: 1200, height: 800, alt: 'Description', caption: 'My custom caption' },
+      ]}
+    />
+    ```
+  </Fragment>
+</Example>
+
+---
+
+## Folder Structure
+
+Colocated (next to a page or content file):
+
+```
+my-post/
+  index.mdx              ← or index.md, or a flat my-post.mdx
+  gallery/
+    photo1.jpg
+    photo2.jpg
+    captions.json         ← optional
+```
+
+Shared (referenced by name from any page):
+
+```
+src/galleries/
+  scavi-2024/
+    photo1.jpg
+    photo2.jpg
+    captions.json         ← optional
+```
+
+**Known limitation:** colocated auto-loading matches the current page's URL against the folder path on disk. If a content collection entry overrides its slug, or the site is deployed under a non-root `base`, that match can silently fail to find the folder. Use the `name` prop (shared galleries) or the explicit `images` prop as a workaround in that case.
+
+---
+
+## Props API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `name` | `string` | — | Load a shared gallery from `src/galleries/<name>/` |
+| `images` | `GalleryImage[]` | — | Explicit images — takes precedence over `name` and auto-loading |
+| `reverseSorting` | `boolean` | `false` | Reverse the default alphabetical sort |
+| `columns` | `{ min?: number, max?: number }` | `{ min: 200, max: 1 }` | `min` = minimum item width in px; `max` = maximum column count |
+| `className` | `string` | — | Additional CSS classes |
+
+With no `images` and no `name`, the component auto-loads from a `gallery/` folder colocated with the current page/content file.
+
+### GalleryImage Type
+
+```typescript
+interface GalleryImage {
+  src: string;       // Full-size image URL
+  thumb: string;     // Thumbnail URL
+  width: number;
+  height: number;
+  alt: string;
+  caption?: string;
+}
+```

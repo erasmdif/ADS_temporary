@@ -1,0 +1,9 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const url = (path: string) => base + path;
+---
+<footer class="bib-footer">
+  <div><a class="bib-footer-brand" href={url('/')}>ADS</a><span>Fonti e storiografia della Sabina</span></div>
+  <nav aria-label="Collegamenti del footer"><a href={url('/') + '#il-progetto'}>Il progetto</a><a href={url('/crediti/')}>Crediti</a><a href="mailto:julian.bogdani@uniroma1.it">Contatti</a></nav>
+  <p>Realizzato con <a href="https://github.com/lad-sapienza/sCMS">sCMS</a> · <a href="https://lad.saras.uniroma1.it">LAD — Sapienza</a> · <a href="mailto:julian.bogdani@uniroma1.it">Julian Bogdani</a> · <a href="mailto:erasmo.difonso@libero.it">Erasmo di Fonso</a></p>
+</footer>

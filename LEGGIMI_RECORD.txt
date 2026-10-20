@@ -1,0 +1,45 @@
+ADS — Aggiornamento pagine record v1
+
+INSTALLAZIONE DRAG & DROP
+Applicare al progetto aggiornato con tutte le patch precedenti, inclusa Credits v3.
+Copiare src e public nella radice del progetto, unire le cartelle e sovrascrivere i file richiesti.
+Riavviare con:
+  npm run dev -- --force
+Non occorre npm ci. .env, configurazione, dipendenze e schema Directus non cambiano.
+
+PAGINE
+- /fonte/?tb=fonte&id=ID: documento completo, regesto/note espandibili, metadati disponibili, luoghi con tutti i ruoli, studi associati, copia citazione ed export JSON/CSV.
+- /luogo/?tb=luogo&id=ID: mappa OSM con coordinate Directus, descrizione, attributi, conteggi per ruolo, fonti ordinate e bibliografia ricavata dalle fonti.
+- /riferimento/?tb=bibliografia&id=ID: riferimento moderno, metadati, fonti associate, luoghi indiretti con percorsi verificabili, citazione copiabile ed export JSON/CSV.
+- I vecchi URL /bibliografia/?id=ID aprono il nuovo record; /bibliografia/ conserva il repertorio.
+I parametri table=... sono accettati come alternativa a tb=....
+
+LUOGHI CON MOLTE FONTI
+La vista estesa si attiva automaticamente da 50 fonti DISTINTE, prima dei filtri.
+Soglia modificabile nel file custom src/ads/services/record-model.js (EXTENDED_PLACE_THRESHOLD).
+Nessun nome di luogo è fissato nel codice: vengono inclusi automaticamente tutti i dossier che superano la soglia.
+La vista conserva la panoramica e offre sezioni Panoramica, Fonti e Bibliografia, ricerca locale, filtri di relazione/tipologia/periodo e presenza di bibliografia, ordinamento stabile, 25 risultati per pagina di default (10/25/50), esportazione di tutti i risultati filtrati.
+L'istogramma conta ciascuna fonte nel secolo dell'anno iniziale dell'intervallo registrato; le fonti senza anni strutturati sono conteggiate separatamente. Il filtro per periodo considera invece la sovrapposizione dell'intero intervallo.
+La bibliografia è separata dai filtri delle fonti e rimane l'intero dossier; oltre 12 voci ha ricerca e paginazione.
+
+RELAZIONI E DATI
+Tutte le informazioni scientifiche vengono da Directus attraverso il servizio già esistente. Nessun CSV o dato demo dei draft è usato a runtime.
+I conteggi di fonti, luoghi e riferimenti sono distinti per ID. Le relazioni multiple restano visibili; i conteggi per ruolo possono sovrapporsi.
+La bibliografia del luogo è deduplicata per ID del riferimento e indica la fonte che giustifica ogni rimando, con tipo di legame e pagine della relazione.
+I luoghi di uno studio sono ricavati dalle fonti associate e mostrano i passaggi intermedi. Non vengono dedotti dai titoli, dalle note o dal testo luogo_conservazione.
+I campi opzionali vuoti vengono omessi; per regesti, descrizioni, coordinate e liste mancanti compare uno stato esplicito.
+Nessuna immagine archivistica o ricostruzione decorativa viene presentata come documentazione.
+Le mappe usano OSM, attribuzione e coordinate reali quando disponibili; nessuna coordinata di ripiego viene assegnata.
+Il pulsante Apri nell'Atlante apre il dossier del luogo tramite ?luogo=ID.
+Gli export JSON sono aciclici: campi del record e associazioni con ID, ruoli e pagine.
+Copia citazione usa gli appunti; se il browser li blocca, apre una finestra con testo selezionabile.
+
+FILE
+Solo file sotto src/ads e public/ads-records. Nessuna modifica ai file originali src/components, src/layouts, src/pages o src/styles di sCMS.
+Navbar condivisa conservata; footer del progetto applicato alle nuove pagine record.
+
+VERIFICHE
+Controlli Astro senza errori; build statica 12 pagine.
+Relazioni: duplicati, ruoli multipli, percorsi indiretti, ordinamento, intervalli e date mancanti, export senza ricorsione e CSV.
+Browser: viste ordinarie/estese, filtri, paginazione, tab da tastiera, esportazioni, copia alternativa, navigazione fra record, vecchi permalink, record/ID errati e dati mancanti, Atlante e repertorio, larghezze 1440/768/390/320.
+Test sui dati Directus già disponibili nel workspace, senza accesso autenticato al database live. Coordinate e tessere simulate soltanto nel test della mappa: non incluse nella patch né usate dall'applicazione.

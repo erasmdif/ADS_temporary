@@ -1,0 +1,112 @@
+---
+import { getCollection, render } from 'astro:content';
+import { type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { LOCALES, localizeCollection } from '../../../utils/i18n';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const localized = localizeCollection(posts, 'blog', LOCALES);
+
+  return localized.map(({ locale, slug, entry, isFallback }) => ({
+    params: { locale, slug },
+    props: { post: entry, isFallback },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  isFallback: boolean;
+}
+
+const { locale } = Astro.params;
+const { post, isFallback } = Astro.props;
+const { Content } = await render(post);
+
+const dateLocale = locale === 'it' ? 'it-IT' : 'en-US';
+const formattedDate = post.data.date.toLocaleDateString(dateLocale, {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+const copy: Record<string, { back: string; backAll: string; by: string }> = {
+  en: { back: '← Back to Blog', backAll: '← Back to all posts', by: 'By' },
+  it: { back: '← Torna al blog', backAll: '← Torna a tutti gli articoli', by: 'Di' },
+};
+const t = copy[locale];
+const fallbackNotice: Record<string, string> = {
+  en: "This post isn't translated yet — showing the English version.",
+  it: "Questo articolo non è ancora tradotto — viene mostrata la versione inglese.",
+};
+---
+
+<BaseLayout locale={locale} title={post.data.title} description={post.data.description}>
+  <main class="container py-5">
+    <article>
+      <!-- Blog post header -->
+      <div class="mb-5 border-bottom pb-4">
+        <div class="mb-3 text-end">
+          <a
+            href={`/${locale}/blog`}
+            class="btn btn-outline-primary text-decoration-none"
+          >
+            {t.back}
+          </a>
+        </div>
+
+        {isFallback && (
+          <div class="alert alert-warning small" role="status">
+            {fallbackNotice[locale]}
+          </div>
+        )}
+
+        <h1 class="mb-4">{post.data.title}</h1>
+
+        <p class="lead text-muted">
+          {post.data.description}
+        </p>
+
+        <div class="mt-4 d-flex flex-wrap align-items-center gap-3 small text-muted">
+          <time datetime={post.data.date.toISOString()}>
+            {formattedDate}
+          </time>
+
+          {post.data.author && (
+            <>
+              <span>·</span>
+              <span>{t.by} {post.data.author}</span>
+            </>
+          )}
+        </div>
+
+        {post.data.tags && post.data.tags.length > 0 && (
+          <div class="mt-3 d-flex flex-wrap gap-2">
+            {post.data.tags.map((tag) => (
+              <span class="badge bg-primary-subtle text-primary-emphasis">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Blog post content -->
+      <div class="markdown-content my-5">
+        <Content />
+      </div>
+
+      <!-- Back to blog link -->
+      <div class="mt-5 border-top pt-4">
+        <a
+          href={`/${locale}/blog`}
+          class="btn btn-link text-primary text-decoration-none p-0"
+        >
+          {t.backAll}
+        </a>
+      </div>
+    </article>
+  </main>
+</BaseLayout>

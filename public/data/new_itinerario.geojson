@@ -1,0 +1,114 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "nome_itinerario": "Itinerario dei santuari farfensi",
+        "breve_descrizione": "L'itinerario riunisce alcuni dei più importanti santuari Cristiani appartenuti, nel medioevo, all'abbazia benedettina di S. Maria di Farfa (1), luoghi di culto di antica fondazione e frequentazione per il cui controllo l'abbazia si batté...",
+        "note": null
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [12.718768587880362, 42.22155401801356],
+          [12.72652629360772, 42.20879287768392],
+          [12.647254686599496, 42.201898946067786],
+          [12.718458897944835, 42.215928706654445],
+          [12.699231669337138, 42.19195045673436],
+          [12.742922955011153, 42.32756916632712]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nome_itinerario": "Itinerario dei santuari farfensi",
+        "breve_descrizione": "L'itinerario riunisce alcuni dei più importanti santuari Cristiani...",
+        "note": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.718768587880362,
+          42.22155401801356
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nome_itinerario": "Itinerario dei santuari farfensi",
+        "breve_descrizione": "L'itinerario riunisce alcuni dei più importanti santuari Cristiani...",
+        "note": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.718458897944835,
+          42.215928706654445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nome_itinerario": "Itinerario dei santuari farfensi",
+        "breve_descrizione": "L'itinerario riunisce alcuni dei più importanti santuari Cristiani...",
+        "note": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.647254686599496,
+          42.201898946067786
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nome_itinerario": "Itinerario dei santuari farfensi",
+        "breve_descrizione": "L'itinerario riunisce alcuni dei più importanti santuari Cristiani...",
+        "note": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.72652629360772,
+          42.20879287768392
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nome_itinerario": "Itinerario dei santuari farfensi",
+        "breve_descrizione": "L'itinerario riunisce alcuni dei più importanti santuari Cristiani...",
+        "note": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.699231669337138,
+          42.19195045673436
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nome_itinerario": "Itinerario dei santuari farfensi",
+        "breve_descrizione": "L'itinerario riunisce alcuni dei più importanti santuari Cristiani...",
+        "note": null
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.742922955011153,
+          42.32756916632712
+        ]
+      }
+    }
+  ]
+}

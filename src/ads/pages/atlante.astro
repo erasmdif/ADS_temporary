@@ -1,0 +1,7 @@
+---
+import AdsLayout from '../layouts/AdsLayout.astro';
+import DashboardMap from '../components/DashboardMap.jsx';
+---
+<AdsLayout title="Atlante" description="Atlante interattivo delle fonti: luoghi, documenti e relazioni" atlas>
+  <DashboardMap client:only="react"><p slot="fallback" role="status">Caricamento dell’atlante…</p></DashboardMap>
+</AdsLayout>

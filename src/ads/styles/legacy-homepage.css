@@ -1,0 +1,120 @@
+/* Stile generale per la riga */
+.row-settore-home {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 40px;
+  justify-content: center;
+}
+
+/* Colonna generica */
+.col {
+  flex: 1 1 45%; /* Più stretto per dare più altezza */
+  max-width: 45%;
+}
+
+/* Pulsanti */
+.settore-box {
+  height: 400px; /* Aumentata l'altezza */
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.settore-box:hover {
+  transform: scale(1.05);
+}
+
+/* Link intero contenitore */
+.settore-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  z-index: 2;
+}
+
+.settore-content {
+  z-index: 3;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Testo */
+.settore-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(240, 240, 240, 0.8);
+  border-radius: 12px;
+  text-align: left;
+  font-size: 1rem;
+}
+
+/* Sfondo per i pulsanti */
+.settore-luoghi::before, 
+.settore-personaggi::before, 
+.settore-risorse::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+/* Immagini di sfondo aggiornate */
+.settore-luoghi::before {
+  background-image: url('https://www.ideararemaps.com/wp-content/uploads/2017/08/Sabina-giubilo-maggi.jpeg');
+}
+
+.settore-personaggi::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b6/Lawrence_Alma-Tadema_%281836-1912%29_-_Sunday_Morning_-_N03527_-_National_Gallery.jpg');
+}
+
+.settore-risorse::before {
+  background-image: url('http://badigit.comune.bologna.it/mostre/pergamena/mostra%20virtuale/pergamena%20ridotte/PERGAMENTA%20CONFORTINO_ridotta.JPG');
+}
+
+.settore-pubblicazioni::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://live.staticflickr.com/683/22555208593_9d37a9abea_b.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+/* Responsive per schermi più piccoli */
+@media (max-width: 768px) {
+  .col {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .settore-box {
+    height: 300px; /* Riduzione dell'altezza su mobile */
+  }
+}

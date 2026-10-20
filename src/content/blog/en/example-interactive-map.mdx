@@ -1,0 +1,20 @@
+---
+title: 'Example: An Interactive Map in a Blog Post'
+description: 'A short example showing the Map component embedded in regular content.'
+date: 2026-01-25
+author: 'Example Author'
+tags: ['example', 'maps']
+---
+
+import { Map } from '@lad-sapienza/scms-core/components/Map';
+
+This is an example post — it exists to show what the `Map` component looks like embedded in content, not to teach its full API. For that, see the [Map documentation](/en/docs/components/map).
+
+<Map
+  client:only="react"
+  height="400px"
+  center="41.9,12.5,11"
+  baseLayers={['EsriSatellite', 'GoogleTerrain']}
+/>
+
+Replace this post with your own content.

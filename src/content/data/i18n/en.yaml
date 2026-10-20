@@ -1,0 +1,6 @@
+# English is this site's default locale, and @lad-sapienza/scms-core's
+# built-in dictionary defaults are already English — so there's nothing to
+# override here yet. Kept as an empty file (rather than omitted) so
+# getEntry('i18n', 'en') resolves cleanly instead of logging a "not found"
+# note on every page build.
+{}

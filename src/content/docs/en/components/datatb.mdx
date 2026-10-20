@@ -1,0 +1,368 @@
+---
+title: DataTb Component
+description: Interactive data tables with sorting, filtering, pagination and multiple data-source support – live examples included.
+order: 30
+category: components
+---
+
+import DataTb from '@lad-sapienza/scms-core/components/DataTb/DataTbMdx';
+import AdvancedTable from '@components/AdvancedTable';
+import CsvSourceDemo from '@components/CsvSourceDemo';
+import Example from '@components/Example.astro';
+import TableOfContents from '@lad-sapienza/scms-core/components/TableOfContents/TableOfContents.astro';
+
+The `DataTb` component provides a powerful, flexible way to display tabular data from various sources with built-in sorting, filtering, and pagination. Built on React and [TanStack Table](https://tanstack.com/table).
+
+<TableOfContents title="On this page" />
+
+---
+
+## Live Examples
+
+<Example title="Minimal example" codeWidth='full'>
+  <Fragment slot="intro">
+    Load data from a CSV file with automatic column detection:
+  </Fragment>
+
+  <Fragment slot="code">
+    ```jsx
+    <DataTb 
+      csv="/data/ksa.csv"
+      searchable 
+      pagination 
+      client:load 
+    />
+    ```
+  </Fragment>
+
+  <DataTb 
+    csv="/data/ksa.csv"
+    searchable 
+    pagination 
+    client:load 
+  />
+</Example>
+
+---
+
+<Example title="CSV with Custom Columns" codeWidth='full'>
+  <Fragment slot="intro">
+    Same data with customized column display and formatting:
+  </Fragment>
+  <Fragment slot="code">
+    ```jsx
+    <DataTb 
+      csv="/data/ksa.csv"
+      columns={[
+        { key: 'Item_Label', header: 'Site ID', sortable: true, width: '15%' },
+        { key: 'Name', header: 'Name', sortable: true },
+        { key: 'Site_Name', header: 'Site Name' },
+        { key: 'Survey_Year', header: 'Survey Year', format: 'number' },
+        { key: 'Subregion', header: 'Subregion' }
+      ]}
+      searchable
+      pagination={{ pageSize: 5, showPageSize: true }}
+      initialSort={{ columnKey: 'Item_Label', direction: 'asc' }}
+      client:load
+    />
+    ```
+  </Fragment>
+
+  <DataTb 
+    csv="/data/ksa.csv"
+    columns={[
+      { key: 'Item_Label', header: 'Site ID', sortable: true, width: '15%' },
+      { key: 'Name', header: 'Name', sortable: true },
+      { key: 'Site_Name', header: 'Site Name' },
+      { key: 'Survey_Year', header: 'Survey Year', format: 'number' },
+      { key: 'Subregion', header: 'Subregion' }
+    ]}
+    searchable
+    pagination={{ pageSize: 5, showPageSize: true }}
+    initialSort={{ columnKey: 'Item_Label', direction: 'asc' }}
+    client:load
+  />
+</Example>
+
+---
+
+<Example title="Inline JSON Data" codeWidth='full'>
+  <Fragment slot="intro">
+    Display data directly from JSON:
+  </Fragment>
+
+  <Fragment slot="code">
+    ```jsx
+    export const jsonData = [
+      { language: 'JavaScript', year: 1995, creator: 'Brendan Eich' },
+      { language: 'Python', year: 1991, creator: 'Guido van Rossum' },
+      { language: 'Java', year: 1995, creator: 'James Gosling' },
+      { language: 'TypeScript', year: 2012, creator: 'Anders Hejlsberg' },
+      { language: 'Rust', year: 2010, creator: 'Graydon Hoare' }
+    ];
+
+    <DataTb 
+      json={jsonData}
+      searchable
+      pagination={false}
+      client:load
+    />
+    ```
+  </Fragment>
+
+export const jsonData = [
+  { language: 'JavaScript', year: 1995, creator: 'Brendan Eich' },
+  { language: 'Python', year: 1991, creator: 'Guido van Rossum' },
+  { language: 'Java', year: 1995, creator: 'James Gosling' },
+  { language: 'TypeScript', year: 2012, creator: 'Anders Hejlsberg' },
+  { language: 'Rust', year: 2010, creator: 'Graydon Hoare' }
+];
+
+  <DataTb 
+    json={jsonData}
+    searchable
+    pagination={false}
+    client:load
+  />
+</Example>
+
+---
+
+<Example title="API with Transformer" codeWidth='full'>
+  <Fragment slot="intro">
+    Fetch data from a public API and transform it:
+  </Fragment>
+
+  <Fragment slot="code">
+    ```jsx
+    <DataTb 
+      api="https://jsonplaceholder.typicode.com/todos"
+      columns={[
+        { key: 'title', header: 'Title', sortable: true },
+        { key: 'userId', header: 'User ID' },
+        { key: 'completed', header: 'Status', labels: { 'true': '✅ Done', 'false': '⏳ Pending' } }
+      ]}
+      searchable
+      pagination={{ pageSize: 10 }}
+      client:load
+    />
+    ```
+  </Fragment>
+
+  <DataTb 
+    api="https://jsonplaceholder.typicode.com/todos"
+    columns={[
+      { key: 'title', header: 'Title', sortable: true },
+      { key: 'userId', header: 'User ID' },
+      { key: 'completed', header: 'Status', labels: { 'true': '✅ Done', 'false': '⏳ Pending' } }
+    ]}
+    searchable
+    pagination={{ pageSize: 10 }}
+    client:load
+  />
+</Example>
+
+---
+
+<Example title="Directus Integration" codeWidth='full'>
+  <Fragment slot="intro">
+    Load data from a Directus collection using the simplified interface.
+
+    _Note: This example requires `PUBLIC_DIRECTUS_URL` and `PUBLIC_DIRECTUS_TOKEN` environment variables in your `.env` file_
+  </Fragment>
+  <Fragment slot="code">
+    ```jsx
+    <DataTb 
+      directus={{
+        table: "scms_ksa",
+        queryString: "limit=-1&offset=0",
+      }}
+      searchable 
+      pagination 
+      client:load 
+    />
+    ```
+  </Fragment>
+
+  <DataTb 
+    directus={{
+      table: "scms_ksa",
+      queryString: "limit=-1&offset=0",
+    }}
+    searchable 
+    pagination 
+    client:load 
+  />
+</Example>
+
+---
+
+<Example title="Complex Transformations (The Wrapper Pattern)">
+  <Fragment slot="intro">
+    **Question:** "Can I use functions for complex transformations?"
+
+    **Answer:** Not directly inside MDX props (due to serialization limits), but **YES** by using a Wrapper Component.
+
+    Create a React component (`AdvancedTable.tsx`) that defines your columns with functions, and import it here.
+  </Fragment>
+
+  <Fragment slot="code" codeWidth='full'>
+    ```tsx
+    // AdvancedTable.tsx
+    export default function AdvancedTable() {
+      const columns = [
+        { 
+          key: 'priority', 
+          render: (val) => <span className={...}>{val}</span> 
+        },
+        {
+          key: 'action',
+          render: (_, row) => <button onClick={() => alert(row.title)}>Click Me</button>
+        }
+      ];
+      return <DataTb columns={columns} ... />
+    }
+    ```
+
+    ```jsx
+    // YourPage.mdx
+    import AdvancedTable from '@components/AdvancedTable';
+
+    <AdvancedTable client:load />
+    ```
+  </Fragment>
+
+  <AdvancedTable client:load />
+</Example>
+
+---
+
+<Example title="Headless Source Components" codeWidth='full'>
+  <Fragment slot="intro">
+    `CsvSource`, `JsonSource`, `DirectusSource`, and `ApiSource` are also exported from `@lad-sapienza/scms-core/components/DataTb` as standalone, headless data-loaders — they render nothing and instead call `onDataLoad` / `onLoadingChange` / `onError` props, so you can drive **your own** custom UI (not a table at all) with the same fetching logic `DataTb` uses internally. They are not children of `<DataTb>` — it has no children/composition API.
+  </Fragment>
+
+  <Fragment slot="code" codeWidth='full'>
+    ```tsx
+    // CsvSourceDemo.tsx
+    import { useState } from 'react';
+    import { CsvSource } from '@lad-sapienza/scms-core/components/DataTb';
+    import type { DataRow } from '@lad-sapienza/scms-core/components/DataTb/types';
+
+    export default function CsvSourceDemo() {
+      const [rows, setRows] = useState<DataRow[]>([]);
+      const [loading, setLoading] = useState(true);
+      const [error, setError] = useState<string | null>(null);
+
+      return (
+        <div>
+          <CsvSource
+            url="/data/ksa.csv"
+            onDataLoad={(data) => setRows(data.slice(0, 5))}
+            onLoadingChange={setLoading}
+            onError={(err) => setError(err.message)}
+          />
+
+          {loading && <p>Loading…</p>}
+          {error && <p>{error}</p>}
+          {!loading && !error && (
+            <ul>
+              {rows.map((row, i) => <li key={i}>{row.Site_Name}</li>)}
+            </ul>
+          )}
+        </div>
+      );
+    }
+    ```
+
+    ```jsx
+    // YourPage.mdx
+    import CsvSourceDemo from '@components/CsvSourceDemo';
+
+    <CsvSourceDemo client:load />
+    ```
+  </Fragment>
+
+  <CsvSourceDemo client:load />
+</Example>
+
+---
+
+## Props API
+
+### DataTbProps
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `csv` | `string` | — | URL to a CSV file |
+| `json` | `any[] \| string` | — | Inline array or URL to JSON |
+| `api` | `string` | — | API endpoint URL (returns array) |
+| `directus` | `DirectusShorthand` | — | Directus collection shorthand |
+| `source` | `SourceConfig` | — | Advanced source configuration |
+| `columns` | `ColumnConfig[]` | auto-detected | Column definitions |
+| `searchable` | `boolean` | `false` | Show global search box |
+| `pagination` | `boolean \| PaginationConfig` | `true` | Enable pagination |
+| `sortable` | `boolean` | `true` | Enable column sorting |
+| `initialSort` | `{ columnKey, direction }` | — | Default sort state |
+| `truncateContent` | `boolean` | `true` | Truncate long cell values |
+| `truncateMaxWidth` | `string` | `'20rem'` | CSS max-width for truncated cells |
+| `contentSize` | `'sm' \| 'md'` | `'sm'` | Table body font size |
+| `loadingMessage` | `string` | — | Custom loading text |
+| `emptyMessage` | `string` | — | Custom empty-state text |
+| `errorMessage` | `string` | — | Custom error text |
+
+### ColumnConfig
+
+```typescript
+interface ColumnConfig {
+  key: string;               // Data property key
+  header: string;            // Display header
+  sortable?: boolean;
+  format?: 'date' | 'number' | 'currency' | 'percent';
+  labels?: Record<string, string>;   // Value mapping, e.g. { "true": "Yes" }
+  width?: string;            // CSS width
+  render?: (value: any, row: DataRow) => React.ReactNode;
+}
+```
+
+### PaginationConfig
+
+```typescript
+interface PaginationConfig {
+  pageSize?: number;         // Default: 10
+  showPageSize?: boolean;    // Show page-size selector
+  pageSizeOptions?: number[];
+}
+```
+
+### SourceConfig (advanced)
+
+```typescript
+type SourceConfig =
+  | { type: 'csv';  url: string; delimiter?: string; skipRows?: number; }
+  | { type: 'json'; data?: any[]; url?: string; }
+  | { type: 'api';  url: string; method?: 'GET'|'POST'; headers?: Record<string,string>; transformer?: (data: any) => any[]; }
+  | { type: 'directus'; config: { url: string; token: string; }; collection: string; filter?: ...; fields?: ...; limit?: number; }
+  | { type: 'geojson'; url?: string; data?: any; }
+  | { type: 'vector'; url?: string; }
+```
+
+### DirectusShorthand
+
+```typescript
+interface DirectusShorthand {
+  table: string;
+  queryString?: string;   // e.g. "filter[status][_eq]=published&limit=10"
+  url?: string;           // defaults to PUBLIC_DIRECTUS_URL env var
+  token?: string;         // defaults to PUBLIC_DIRECTUS_TOKEN env var
+}
+```
+
+---
+
+## Accessibility
+
+- Full keyboard navigation for sorting and pagination
+- Proper ARIA labels and table semantics
+- Clear focus indicators and logical tab order
+- Accessible loading and error state announcements

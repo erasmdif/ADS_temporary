@@ -1,0 +1,339 @@
+---
+title: "Bibliografia"
+date: "2023-10-01"
+slug: "bibliografia"
+description: "Scopri i nostri itinerari"
+menu_position: 5
+---
+
+import { useState, useEffect, useRef } from "react"
+import { Row, Col, Button, Card, Badge, Form, InputGroup } from "react-bootstrap"
+import { ChevronLeft, ChevronRight } from "react-bootstrap-icons"
+import getDataFromSource from "../../services/getDataFromSource"
+import { Link } from "gatsby"
+
+export default function BibliografiaPage() {
+  const [data, setData] = useState([])
+  const [activeArgomento, setActiveArgomento] = useState(null)
+  const [searchFilters, setSearchFilters] = useState({
+    autore: '',
+    anno: '',
+    luogo: ''
+  })
+  const [currentPage, setCurrentPage] = useState(0)
+  const cardsRef = useRef(null)
+
+  const FILTRI_ARGOMENTO = [
+    "Agiografia",
+    "Storia",
+    "Storia dell'arte",
+    "Archeologia",
+    "Paleografia",
+    "Altro"
+  ]
+
+  const ITEMS_PER_PAGE = 6 // 2 righe da 3 cards
+
+  const getColorForTip = (tip) => {
+    if (!tip) return "#aab8c2"
+    if (tip.includes("perg")) return "#5a8bbf"
+    if (tip.includes("manoscri")) return "#3d7da0"
+    if (tip.includes("registro")) return "#8aa3b3"
+    return "#aab8c2"
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getDataFromSource({
+        directus: {
+          table: "bibliografia",
+          queryString: "fields=*,fonti_menzionate.fonte_id.*&limit=-1"
+        }
+      })
+      setData(result)
+    }
+    fetchData()
+  }, [])
+
+  // Conta quanti record per ciascun filtro
+  const argomentoCounter = data.reduce((acc, row) => {
+    let cat = row.argomento
+    if (!FILTRI_ARGOMENTO.includes(cat)) cat = "Altro"
+    acc[cat] = (acc[cat] || 0) + 1
+    return acc
+  }, {})
+
+  // Filtra i dati
+  const filteredData = data.filter(row => {
+    // Filtro per argomento
+    if (activeArgomento) {
+      if (activeArgomento === "Altro" && !FILTRI_ARGOMENTO.slice(0, -1).includes(row.argomento)) {
+        // passa
+      } else if (!(row.argomento === activeArgomento || 
+                (activeArgomento === "Paleografia" && row.argomento?.includes("Paleografia")))) {
+        return false
+      }
+    }
+
+    // Filtri di ricerca
+    if (searchFilters.autore && !row.autore?.toLowerCase().includes(searchFilters.autore.toLowerCase())) {
+      return false
+    }
+    if (searchFilters.anno && !row.dettagli_edizione?.includes(searchFilters.anno)) {
+      return false
+    }
+    if (searchFilters.luogo && !row.luogo?.toLowerCase().includes(searchFilters.luogo.toLowerCase())) {
+      return false
+    }
+
+    return true
+  })
+
+  const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE)
+  const paginatedData = filteredData.slice(
+    currentPage * ITEMS_PER_PAGE,
+    (currentPage + 1) * ITEMS_PER_PAGE
+  )
+
+  const handlePrevPage = () => {
+    setCurrentPage(prev => Math.max(prev - 1, 0))
+    scrollToCards()
+  }
+
+  const handleNextPage = () => {
+    setCurrentPage(prev => Math.min(prev + 1, totalPages - 1))
+    scrollToCards()
+  }
+
+  const scrollToCards = () => {
+    cardsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+  }
+
+  const handleSearchChange = (e) => {
+    const { name, value } = e.target
+    setSearchFilters(prev => ({
+      ...prev,
+      [name]: value
+    }))
+    setCurrentPage(0)
+  }
+
+  return (
+    <div className="container py-4">
+      <h1 className="text-center mb-4 display-5 fw-bold" style={{color: '#3d7da0'}}>Bibliografia</h1>
+      
+      {/* Sezione Filtri - Contenitore con bordo */}
+      <div className="border rounded-3 p-4 mb-4 shadow-sm" style={{backgroundColor: '#f8f9fa'}}>
+        <h5 className="mb-3 fw-bold" style={{color: '#5a8bbf'}}>Filtra per argomento</h5>
+        <Row className="mb-4 justify-content-center">
+          {FILTRI_ARGOMENTO.map(filtro => (
+            <Col key={filtro} xs="auto" className="mb-2">
+              <Button
+                variant={activeArgomento === filtro ? "primary" : "outline-secondary"}
+                onClick={() => {
+                  setActiveArgomento(filtro === activeArgomento ? null : filtro)
+                  setCurrentPage(0)
+                }}
+                style={{
+                  minWidth: '120px',
+                  backgroundColor: activeArgomento === filtro ? '#5a8bbf' : 'transparent',
+                  color: activeArgomento === filtro ? '#fff' : '#5a8bbf',
+                  border: `2px solid ${activeArgomento === filtro ? '#5a8bbf' : '#5a8bbf'}`,
+                  borderRadius: '20px',
+                  fontWeight: '500'
+                }}
+                className="hover-shadow"
+              >
+                {filtro}
+                {" "}
+                {argomentoCounter[filtro] && (
+                  <Badge bg={activeArgomento === filtro ? "light" : "secondary"} 
+                         text={activeArgomento === filtro ? "dark" : "white"} 
+                         className="ms-2">
+                    {argomentoCounter[filtro]}
+                  </Badge>
+                )}
+              </Button>
+            </Col>
+          ))}
+        </Row>
+
+        {/* Filtri di ricerca aggiuntivi */}
+        <h5 className="mt-4 mb-3 fw-bold" style={{color: '#5a8bbf'}}>Ricerca avanzata</h5>
+        <Row className="g-3">
+          <Col md={4}>
+            <InputGroup>
+              <InputGroup.Text style={{backgroundColor: '#e9f2fa', borderColor: '#5a8bbf'}}>
+                Autore
+              </InputGroup.Text>
+              <Form.Control
+                type="text"
+                name="autore"
+                value={searchFilters.autore}
+                onChange={handleSearchChange}
+                placeholder="Cerca per autore"
+                style={{borderColor: '#5a8bbf'}}
+              />
+            </InputGroup>
+          </Col>
+          <Col md={4}>
+            <InputGroup>
+              <InputGroup.Text style={{backgroundColor: '#e9f2fa', borderColor: '#5a8bbf'}}>
+                Anno
+              </InputGroup.Text>
+              <Form.Control
+                type="text"
+                name="anno"
+                value={searchFilters.anno}
+                onChange={handleSearchChange}
+                placeholder="Cerca per anno"
+                style={{borderColor: '#5a8bbf'}}
+              />
+            </InputGroup>
+          </Col>
+          <Col md={4}>
+            <InputGroup>
+              <InputGroup.Text style={{backgroundColor: '#e9f2fa', borderColor: '#5a8bbf'}}>
+                Luogo
+              </InputGroup.Text>
+              <Form.Control
+                type="text"
+                name="luogo"
+                value={searchFilters.luogo}
+                onChange={handleSearchChange}
+                placeholder="Cerca per luogo"
+                style={{borderColor: '#5a8bbf'}}
+              />
+            </InputGroup>
+          </Col>
+        </Row>
+      </div>
+
+      {/* Sezione Risultati - Contenitore con bordo */}
+      <div ref={cardsRef} className="border rounded-3 p-4 shadow-sm" style={{backgroundColor: '#f8f9fa'}}>
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h5 className="mb-0 fw-bold" style={{color: '#5a8bbf'}}>
+            Risultati: {filteredData.length} opere trovate
+          </h5>
+          
+          {totalPages > 1 && (
+            <div className="d-flex align-items-center">
+              <Button 
+                variant="outline-primary" 
+                onClick={handlePrevPage} 
+                disabled={currentPage === 0}
+                className="me-2 d-flex align-items-center justify-content-center"
+                style={{borderRadius: '50%', width: '40px', height: '40px'}}
+              >
+                <ChevronLeft />
+              </Button>
+              <span className="mx-2">
+                Pagina {currentPage + 1} di {totalPages}
+              </span>
+              <Button 
+                variant="outline-primary" 
+                onClick={handleNextPage} 
+                disabled={currentPage === totalPages - 1}
+                className="d-flex align-items-center justify-content-center"
+                style={{borderRadius: '50%', width: '40px', height: '40px'}}
+              >
+                <ChevronRight />
+              </Button>
+            </div>
+          )}
+        </div>
+
+        <Row className="g-4">
+          {paginatedData.length > 0 ? (
+            paginatedData.map(row => (
+              <Col xs={12} md={4} key={row.id}>
+                <Card className="shadow-sm h-100 border-0" 
+                      style={{
+                        borderLeft: `4px solid ${getColorForTip(row.tipologia_fonte)}`,
+                        transition: 'all 0.3s ease'
+                      }}>
+                  <Card.Body className="p-3">
+                    <Card.Title className="fw-bold fs-6" style={{color: '#3d7da0'}}>
+                      {row.titolo}
+                    </Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted small">
+                      {row.autore}
+                    </Card.Subtitle>
+                    
+                    <div className="small text-muted mb-2">
+                      {row.contenuto_in && (
+                        <div className="mb-1">
+                          <strong>In:</strong> {row.contenuto_in}
+                        </div>
+                      )}
+                      {row.dettagli_edizione && (
+                        <div className="mb-1">
+                          <strong>Edizione:</strong> {row.dettagli_edizione}
+                        </div>
+                      )}
+                      {row.editori && (
+                        <div className="mb-1">
+                          <strong>Editor:</strong> {row.editori}
+                        </div>
+                      )}
+                      {row.pagine && (
+                        <div className="mb-1">
+                          <strong>Pagine:</strong> {row.pagine}
+                        </div>
+                      )}
+                      {row.argomento && (
+                        <div className="mb-1">
+                          <strong>Argomento:</strong> 
+                          <Badge bg="light" text="dark" className="ms-2">
+                            {row.argomento}
+                          </Badge>
+                        </div>
+                      )}
+                    </div>
+                  </Card.Body>
+                  {row.fonti_menzionate?.length > 0 && (
+                    <Card.Footer className="bg-light py-2 px-3">
+                      <strong className="small">Fonti menzionate:</strong>
+                      <ul className="list-inline mt-1 mb-0">
+                        {row.fonti_menzionate.map(fm => (
+                          <li key={fm.fonte_id.id} className="list-inline-item me-2 mb-1">
+                            <Link 
+                              to={`/fonte/?tb=fonte&id=${fm.fonte_id.id}`} 
+                              className="text-decoration-none text-dark small d-inline-flex align-items-center"
+                              style={{
+                                backgroundColor: getColorForTip(fm.fonte_id.tipologia_fonte),
+                                color: 'white',
+                                padding: '2px 8px',
+                                borderRadius: '12px',
+                                fontSize: '0.75rem'
+                              }}
+                            >
+                              📜 {fm.fonte_id.nome}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </Card.Footer>
+                  )}
+                </Card>
+              </Col>
+            ))
+          ) : (
+            <Col className="text-center py-5">
+              <h5 className="text-muted">Nessun risultato trovato</h5>
+              <Button 
+                variant="outline-primary" 
+                onClick={() => {
+                  setActiveArgomento(null)
+                  setSearchFilters({autore: '', anno: '', luogo: ''})
+                }}
+              >
+                Resetta filtri
+              </Button>
+            </Col>
+          )}
+        </Row>
+      </div>
+    </div>
+  )
+}

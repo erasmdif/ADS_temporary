@@ -1,0 +1,694 @@
+---
+title: Map Component
+description: Interactive maps with MapLibre GL JS – raster and vector overlay layers, data overlays, search, and live examples.
+order: 32
+category: components
+---
+
+import { Map } from '@lad-sapienza/scms-core/components/Map';
+import TableOfContents from '@lad-sapienza/scms-core/components/TableOfContents/TableOfContents.astro';
+import Example from '@components/Example.astro';
+
+The `Map` component renders an interactive map using [MapLibre GL JS](https://maplibre.org/) (v6). Overlay layers — GeoJSON, CSV, Directus, a generic API, or raster XYZ/WMS tiles — can be added via the `overlayLayers` prop or shorthand props like `geojson`, `csv`, `directus`, etc. Layers can include searchable fields for advanced filtering.
+
+**Requirements:** MapLibre GL JS v6 needs **WebGL2** (supported by every current browser; the map can't render where WebGL2 is unavailable or disabled). The MapLibre Web Worker is configured automatically by `@lad-sapienza/scms-core`, so a consuming site needs no bundler or worker setup of its own.
+
+<TableOfContents title="On this page" />
+
+---
+
+## Live Examples
+
+<Example title="Simple map with base layers">
+  <Fragment slot="intro">
+    The most basic Map configuration. Displays a map centered on coordinates `37,37` (Turkey) at zoom 8 with two switchable basemap layers.
+
+    Available basemap shorthand values: `CAWM`, `OSM`, `EsriSatellite`, `EsriStreets`, `EsriTopo`, `GoogleSatellite`, `GoogleRoadmap`, `GoogleTerrain`, `GoogleAlteredRoadmap`, `CartoDB`, `StamenTerrain`, `OSMMapnick`, `OSMCycle`.
+  </Fragment>
+  <Fragment slot="code">
+  ```jsx
+  <Map 
+    client:only="react"
+    height="500px" 
+    center="37,37,8"
+    baseLayers={['EsriSatellite', 'GoogleTerrain']}
+  />
+  ```
+  </Fragment>
+
+  <Map 
+    client:only="react"
+    height="500px" 
+    center="37,37,8"
+    baseLayers={['EsriSatellite', 'GoogleTerrain', 'Imperium']}
+  />
+</Example>
+
+---
+
+<Example title="Custom basemap configuration">
+  <Fragment slot="intro">
+    Instead of shorthand keys, provide full configuration objects with `name`, `url`, and optional `attribution`:
+  </Fragment>
+  <Fragment slot="code">
+  ```jsx
+  <Map 
+    client:only="react"
+    height="500px" 
+    center="37,37,8"
+    baseLayers={[
+      {
+        name: "Esri Topo",
+        url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+      },
+      'GoogleSatellite'
+    ]}
+  />
+  ```
+  </Fragment>
+
+  <Map 
+    client:only="react"
+    height="500px" 
+    center="37,37,8"
+    baseLayers={[
+      {
+        name: "Esri Topo",
+        url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+      },
+      'GoogleSatellite'
+    ]}
+  />
+</Example>
+
+---
+
+<Example title="Adding map controls">
+  <Fragment slot="intro">
+    Add navigation, scale, fullscreen, and layer-switcher controls using their respective props. Each accepts a position string (`top-right`, `top-left`, `bottom-right`, `bottom-left`).
+  </Fragment>
+  <Fragment slot="code">
+  ```jsx
+  <Map 
+    client:only="react"
+    height="500px" 
+    center="37,37,8"
+    navigationControl="top-left"
+    scaleControl="bottom-left"
+    fullscreenControl="top-right"
+    layerControl="top-right"
+    baseLayers={['EsriSatellite', 'GoogleTerrain']}
+  />
+  ```
+  </Fragment>
+
+  <Map 
+    client:only="react"
+    height="500px" 
+    center="37,37,8"
+    navigationControl="top-left"
+    scaleControl="bottom-left"
+    fullscreenControl='top-right'
+    layerControl='top-right'
+    baseLayers={['EsriSatellite', 'GoogleTerrain']}
+  />
+</Example>
+
+---
+
+<Example title="Load geo-data from a GeoJSON file">
+  <Fragment slot="intro">
+    Use the `geojson` shorthand prop to load a GeoJSON file directly. `fitToContent: true` automatically zooms the map to show all features.
+  </Fragment>
+  <Fragment slot="code">
+  ```jsx
+  <Map 
+    client:only="react"
+    height="500px"
+    geojson={{
+      name: "Kahramanmaraş Survey Sites",
+      path: "/data/ksa.geojson",
+      popup: "<b>${Site_Name}</b><br/>${Description}",
+      fitToContent: true,
+      style: {
+        type: 'circle',
+        paint: {
+          'circle-radius': 4,
+          'circle-color': '#ff6b6b',
+          'circle-stroke-width': 1,
+          'circle-stroke-color': '#ffffff'
+        }
+      }
+    }}
+    baseLayers={['EsriSatellite', 'GoogleTerrain']}
+  />
+  ```
+  </Fragment>
+
+  <Map 
+    geojson={{
+      name: "Kahramanmaraş Survey Sites",
+      path: "/data/ksa.geojson",
+      popup: "<b>${Site_Name}</b><br/>${Description}",
+      fitToContent: true,
+      style: {
+        type: 'circle',
+        paint: {
+          'circle-radius': 4,
+          'circle-color': '#ff6b6b',
+          'circle-stroke-width': 1,
+          'circle-stroke-color': '#ffffff'
+        }
+      }
+    }}
+    height="500px" 
+    client:only="react"
+    baseLayers={['EsriSatellite', 'GoogleTerrain']}
+  />
+</Example>
+
+---
+
+<Example title="Load geo-data from a CSV file">
+  <Fragment slot="intro">
+    Load point data from a CSV file. Use `lng` and `lat` to specify which columns contain the coordinates.
+  </Fragment>
+  <Fragment slot="code">
+  ```jsx
+  <Map 
+    client:only="react"
+    height="500px" 
+    center="37,37,8"
+    csv={{
+      path: "/data/ksa.csv",
+      lng: "Longitude",
+      lat: "Latitude",
+      popup: "<b>${Site_Name}</b><br/>${Description}",
+      style: {
+        type: 'circle',
+        paint: {
+          'circle-radius': 8,
+          'circle-color': '#4ecdc4',
+          'circle-stroke-width': 2,
+          'circle-stroke-color': '#ffffff'
+        }
+      }
+    }}
+    baseLayers={['EsriSatellite', 'GoogleTerrain']}
+  />
+  ```
+  </Fragment>
+
+  <Map 
+    client:only="react"
+    height="500px" 
+    center="37,37,8"
+    csv={{
+      path: "/data/ksa.csv",
+      lng: "Longitude",
+      lat: "Latitude",
+      popup: "<b>${Site_Name}</b><br/>${Description}",
+      style: {
+        type: 'circle',
+        paint: {
+          'circle-radius': 8,
+          'circle-color': '#4ecdc4',
+          'circle-stroke-width': 2,
+          'circle-stroke-color': '#ffffff'
+        }
+      }
+    }}
+    baseLayers={['EsriSatellite', 'GoogleTerrain']}
+  />
+</Example>
+
+---
+
+<Example title="Client-side filtering with GeoJSON">
+  <Fragment slot="intro">
+    Filter features client-side using a Directus-like filter object. Supported operators: `_eq`, `_neq`, `_in`, `_nin`, `_contains`, `_ncontains`, `_gt`, `_gte`, `_lt`, `_lte`, `_null`, `_nnull`. Multiple conditions use AND logic.
+  </Fragment>
+  <Fragment slot="code">
+  ```jsx
+  <Map 
+    client:only="react"
+    height="500px" 
+    geojson={{
+      path: "/data/ksa.geojson",
+      name: "Middle Bronze Age Sites",
+      filter: { Middle_Bronze: { _eq: "true" } },
+      popup: "<b>${Site_Name}</b><br/>${Description}",
+      fitToContent: true,
+      style: {
+        type: 'circle',
+        paint: {
+          'circle-radius': 6,
+          'circle-color': '#e74c3c',
+          'circle-stroke-width': 1,
+          'circle-stroke-color': '#ffffff'
+        }
+      }
+    }}
+    baseLayers={['EsriSatellite', 'GoogleTerrain']}
+  />
+  ```
+  </Fragment>
+
+  <Map 
+    client:only="react"
+    height="500px" 
+    geojson={{
+      path: "/data/ksa.geojson",
+      name: "Middle Bronze Age Sites",
+      filter: { Middle_Bronze: { _eq: "true" } },
+      popup: "<b>${Site_Name}</b><br/>${Description}<br />Middle Bronze Age: ${Middle_Bronze}",
+      fitToContent: true,
+      style: {
+        type: 'circle',
+        paint: {
+          'circle-radius': 6,
+          'circle-color': '#e74c3c',
+          'circle-stroke-width': 1,
+          'circle-stroke-color': '#ffffff'
+        }
+      }
+    }}
+    baseLayers={['EsriSatellite', 'GoogleTerrain']}
+  />
+</Example>
+
+---
+
+<Example title="Multiple Overlay Layers">
+  <Fragment slot="intro">
+    Add multiple overlay layers (GeoJSON and CSV) with independent styles and popups using the `overlayLayers` prop:
+  </Fragment>
+  <Fragment slot="code">
+  ```jsx
+  <Map 
+    client:only="react"
+    height="600px" 
+    scaleControl="bottom-left"
+    overlayLayers={[
+      {
+        name: 'GeoJSON Sites',
+        source: { type: 'geojson', url: '/data/ksa.geojson' },
+        popupTemplate: '<b>${Site_Name}</b><br/>${Description}',
+        fitToContent: true,
+        style: {
+          type: 'circle',
+          paint: { 'circle-radius': 8, 'circle-color': '#ff6b6b' }
+        }
+      },
+      {
+        name: 'CSV Sites',
+        source: { type: 'csv', url: '/data/ksa.csv' },
+        popupTemplate: '<b>${Site_Name}</b>',
+        style: {
+          type: 'circle',
+          paint: { 'circle-radius': 4, 'circle-color': '#4ecdc4' }
+        }
+      }
+    ]}
+    baseLayers={['EsriSatellite', 'GoogleTerrain']}
+  />
+  ```
+  </Fragment>
+
+  <Map 
+    client:only="react"
+    height="600px" 
+    scaleControl="bottom-left"
+    overlayLayers={[
+      {
+        name: 'GeoJSON Sites',
+        source: { type: 'geojson', url: '/data/ksa.geojson' },
+        popupTemplate: '<b>${Site_Name}</b><br/>${Description}',
+        fitToContent: true,
+        style: {
+          type: 'circle',
+          paint: {
+            'circle-radius': 8,
+            'circle-color': '#ff6b6b',
+            'circle-stroke-width': .5,
+            'circle-stroke-color': '#ffffff'
+          }
+        }
+      },
+      {
+        name: 'CSV Sites',
+        source: { type: 'csv', url: '/data/ksa.csv' },
+        popupTemplate: '<b>${Site_Name}</b>',
+        style: {
+          type: 'circle',
+          paint: {
+            'circle-radius': 4,
+            'circle-color': '#4ecdc4',
+            'circle-stroke-width': .5,
+            'circle-stroke-color': '#ffffff'
+          }
+        }
+      }
+    ]}
+    baseLayers={['EsriSatellite', 'GoogleTerrain']}
+  />
+</Example>
+
+---
+
+<Example title="Raster overlay independent of the basemap">
+  <Fragment slot="intro">
+    A raster layer (XYZ or WMS tiles) can now be an independent, toggleable overlay instead of only a radio-exclusive basemap — e.g. a satellite or historical map layer shown on top of whichever basemap the user picks. Set `source.type` to `xyz` or `wms` on an `overlayLayers` entry; it renders as MapLibre raster tiles and shows up as a checkbox in the layer control, separate from the basemap radio group.
+
+    Both raster source types need the tile server to send CORS headers — MapLibre uploads tiles as WebGL textures, which browsers refuse cross-origin without a successful CORS check.
+  </Fragment>
+  <Fragment slot="code">
+  ```jsx
+  <Map
+    client:only="react"
+    height="500px"
+    center="37,37,8"
+    baseLayers={['EsriStreets']}
+    overlayLayers={[
+      {
+        name: 'Satellite',
+        source: {
+          type: 'xyz',
+          url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+        }
+      },
+      {
+        name: 'US States (WMS demo)',
+        source: {
+          type: 'wms',
+          url: 'https://ahocevar.com/geoserver/wms',
+          layers: 'topp:states'
+        }
+      }
+    ]}
+  />
+  ```
+  </Fragment>
+
+  <Map
+    client:only="react"
+    height="500px"
+    center="37,37,8"
+    baseLayers={['EsriStreets']}
+    overlayLayers={[
+      {
+        name: 'Satellite',
+        source: {
+          type: 'xyz',
+          url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+        }
+      },
+      {
+        name: 'US States (WMS demo)',
+        source: {
+          type: 'wms',
+          url: 'https://ahocevar.com/geoserver/wms',
+          layers: 'topp:states'
+        }
+      }
+    ]}
+  />
+</Example>
+
+---
+
+<Example title="Load map from MapLibre style JSON">
+  <Fragment slot="intro">
+    Load a complete map configuration from a MapLibre style JSON file. The style file can include sources, layers, and full styling:
+  </Fragment>
+  <Fragment slot="code">
+  ```jsx
+  <Map 
+    client:only="react"
+    height="500px" 
+    center="37,37,8"
+    mapStyle="/data/ksa.json"
+  />
+  ```
+  </Fragment>
+
+  <Map 
+    client:only="react"
+    height="500px" 
+    center="37,37,8"
+    mapStyle="/data/ksa.json"
+  />
+</Example>
+
+---
+
+<Example title="Override and expand style JSON layers">
+  <Fragment slot="intro">
+    Use `styleOverrides` to override paint/layout properties or add extra features (`popupTemplate`, `fitToContent`) to layers defined in a MapLibre style JSON:
+  </Fragment>
+  <Fragment slot="code">
+  ```jsx
+  <Map 
+    client:only="react"
+    height="500px" 
+    mapStyle="/data/ksa.json"
+    styleOverrides={{
+      'ksa': {
+        paint: { 'circle-color': '#00ff00', 'circle-radius': 8 },
+        popupTemplate: '<b>${Site_Name}</b>',
+        fitToContent: true
+      }
+    }}
+  />
+  ```
+  </Fragment>
+
+  <Map 
+    client:only="react"
+    height="500px" 
+    mapStyle="/data/ksa.json"
+    styleOverrides={{
+      'ksa': {
+        paint: { 'circle-color': '#00ff00', 'circle-radius': 8 },
+        popupTemplate: '<b>${Site_Name}</b>',
+        fitToContent: true
+      }
+    }}
+  />
+</Example>
+
+---
+
+<Example title="Load data from Directus">
+  <Fragment slot="intro">
+    Load geographical data directly from a Directus collection. `geoField` specifies which field contains GeoJSON geometry. Filter with Directus query syntax via `queryString`.
+
+    Credentials can be passed directly or via `PUBLIC_DIRECTUS_URL` / `PUBLIC_DIRECTUS_TOKEN` env vars.
+  </Fragment>
+  <Fragment slot="code">
+  ```jsx
+  <Map 
+    client:only="react"
+    height="500px" 
+    center="37,37,8"
+    directus={{
+      table: "scms_ksa",
+      geoField: "geometry",
+      queryString: "filter[Hellenistic_Roman][_eq]=true",
+      name: "Hellenistic-Roman Sites",
+      popup: "<b>${Site_Name}</b><br/>${Description}",
+      fitToContent: true,
+      style: {
+        type: 'circle',
+        paint: { 'circle-radius': 6, 'circle-color': '#9b59b6' }
+      }
+    }}
+    baseLayers={['EsriSatellite', 'GoogleTerrain']}
+  />
+  ```
+  </Fragment>
+
+  <Map 
+    client:only="react"
+    height="500px" 
+    center="37,37,8"
+    directus={{
+      table: "scms_ksa",
+      geoField: "geometry",
+      queryString: "filter[Hellenistic_Roman][_eq]=true",
+      name: "Hellenistic-Roman Sites",
+      popup: "<b>${Site_Name}</b><br/>${Description}<br/><a href='./record/scms_ksa/${id}'>View record</a>",
+      fitToContent: true,
+      style: {
+        type: 'circle',
+        paint: {
+          'circle-radius': 6,
+          'circle-color': '#9b59b6',
+          'circle-stroke-width': 1,
+          'circle-stroke-color': '#ffffff'
+        }
+      }
+    }}
+    baseLayers={['EsriSatellite', 'GoogleTerrain']}
+  />
+</Example>
+
+---
+
+## Overlay Layer Search
+
+<Example title="Overlay Layers with Search">
+  <Fragment slot="intro">
+    Enable per-layer search by setting `searchInFields` on an overlay layer. A search icon appears in the layer control; clicking it opens a search interface supporting both simple free-text and advanced field/operator/value queries.
+  </Fragment>
+  <Fragment slot="code">
+  ```jsx
+  <Map 
+    client:only="react"
+    height="600px" 
+    overlayLayers={[
+      {
+        name: 'Archaeological Sites',
+        source: { type: 'geojson', url: '/data/ksa.geojson' },
+        popupTemplate: '<b>${Site_Name}</b><br/>${Item_Label}',
+        searchInFields: {
+          Site_Name: "Site Name",
+          Item_Label: "Item Label", 
+          Site_Description: "Description"
+        },
+        fitToContent: true,
+        style: {
+          type: 'circle',
+          paint: { 'circle-radius': 6, 'circle-color': '#ff6b6b' }
+        }
+      }
+    ]}
+    baseLayers={['EsriSatellite', 'OSM']}
+  />
+  ```
+  </Fragment>
+
+  <Map 
+    client:only="react"
+    height="600px" 
+    overlayLayers={[
+      {
+        name: 'Archaeological Sites',
+        source: { type: 'geojson', url: '/data/ksa.geojson' },
+        popupTemplate: '<b>${Site_Name}</b><br/>${Item_Label}<br/>${Site_Description}',
+        searchInFields: {
+          Site_Name: "Site Name",
+          Item_Label: "Item Label", 
+          Site_Description: "Description"
+        },
+        fitToContent: true,
+        style: {
+          type: 'circle',
+          paint: {
+            'circle-radius': 6,
+            'circle-color': '#ff6b6b',
+            'circle-stroke-width': 1,
+            'circle-stroke-color': '#ffffff'
+          }
+        }
+      }
+    ]}
+    baseLayers={['EsriSatellite', 'OSM']}
+  />
+</Example>
+
+---
+
+## Props API
+
+### MapProps
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `height` | `string` | `'400px'` | Map height (CSS value) |
+| `center` | `string` | — | Initial center as `"lng,lat,zoom"` |
+| `baseLayers` | `BaseLayerConfig[] \| BasemapKey[]` | — | Base layers (use shorthand keys or full config objects) |
+| `overlayLayers` | `OverlayLayerConfig[]` | — | Independent, toggleable overlay layers |
+| `geojson` | shorthand | — | Shorthand for a single GeoJSON layer |
+| `csv` | shorthand | — | Shorthand for a single CSV layer |
+| `directus` | shorthand | — | Shorthand for a single Directus layer |
+| `mapStyle` | `string \| object` | — | MapLibre style JSON URL or object |
+| `styleOverrides` | `Record<string, LayerOverride>` | — | Override/extend layers from `mapStyle` |
+| `navigationControl` | `ControlPosition` | — | Navigation control position |
+| `scaleControl` | `ControlPosition` | — | Scale bar position |
+| `fullscreenControl` | `ControlPosition` | — | Fullscreen button position |
+| `layerControl` | `boolean \| ControlPosition` | `true` | Layer switcher position |
+| `geolocateControl` | `ControlPosition` | — | Geolocate button position |
+| `sprite` | `string` | — | MapLibre sprite URL |
+
+`ControlPosition`: `'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'`
+
+### BaseLayerConfig
+
+| Prop | Type | Description |
+|---|---|---|
+| `name` | `string` | Label shown in the layer control |
+| `url` | `string` | Tile URL template, `{z}/{x}/{y}` (optionally with `{s}`, expanded automatically to `a`/`b`/`c`) |
+| `attribution` | `string` | Attribution HTML |
+| `tileSize` | `number` | Tile size in pixels (default: `256`) |
+
+### OverlayLayerConfig
+
+| Prop | Type | Description |
+|---|---|---|
+| `name` | `string` | Layer display name |
+| `source` | `SourceConfig \| XyzSourceConfig \| WmsSourceConfig` | Data source — see below |
+| `style` | `object` | MapLibre paint/layout properties (row/feature sources only) |
+| `popupTemplate` | `string` | HTML popup with `${fieldName}` placeholders (row/feature sources only) |
+| `visible` | `boolean` | Initial visibility (default: `true`) |
+| `fitToContent` | `boolean` | Auto-zoom to layer bounds (row/feature sources only) |
+| `filter` | `FilterObject \| function` | Client-side feature filter (row/feature sources only) |
+| `searchInFields` | `SearchInFields` | Fields to expose in the search UI (row/feature sources only) |
+
+`source.type` is `geojson`, `csv`, `json`, `directus`, or `api` for row/feature data (fetched and converted to GeoJSON), or `xyz`/`wms` for raster tiles (rendered natively via MapLibre, never fetched — `style`/`popupTemplate`/`fitToContent`/`filter`/`searchInFields` don't apply to these).
+
+The `popupTemplate` string itself is rendered as-is (so `<b>`, `<a href="...">`, etc. work), but every `${fieldName}` value substituted into it is HTML-escaped first — safe even when the data comes from a source you don't fully control (a public Directus collection, a third-party CSV/GeoJSON URL).
+
+If two overlay entries share the exact same `source`, the underlying fetch happens only once — each layer's own `filter` is applied on top of the shared cached data.
+
+### XyzSourceConfig / WmsSourceConfig
+
+```typescript
+interface XyzSourceConfig {
+  type: 'xyz';
+  url: string;           // {z}/{x}/{y}, optionally {s}
+  tileSize?: number;      // default: 256
+  attribution?: string;
+}
+
+interface WmsSourceConfig {
+  type: 'wms';
+  url: string;            // WMS endpoint base URL
+  layers: string;         // GetMap LAYERS param
+  format?: string;        // default: 'image/png'
+  version?: string;       // default: '1.3.0'
+  transparent?: boolean;  // default: true
+  styles?: string;
+  crs?: string;           // default: 'EPSG:3857'
+  tileSize?: number;      // default: 256
+  attribution?: string;
+}
+```
+
+Both raster source types render as an independent overlay — a historical map or satellite layer can be toggled on top of any basemap, rather than only being selectable *as* the basemap. See the "Raster overlay independent of the basemap" example above.
+
+### DirectusShorthand (for Map)
+
+```typescript
+interface DirectusShorthand {
+  table: string;
+  geoField?: string;       // Field containing GeoJSON geometry
+  queryString?: string;    // Directus filter query string
+  name?: string;           // Layer display name
+  popup?: string;          // Popup HTML template
+  fitToContent?: boolean;
+  style?: object;
+  url?: string;            // defaults to PUBLIC_DIRECTUS_URL
+  token?: string;          // defaults to PUBLIC_DIRECTUS_TOKEN
+}
+```

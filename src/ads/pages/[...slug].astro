@@ -1,0 +1,11 @@
+---
+import { getCollection, render } from 'astro:content';
+import AdsLayout from '../layouts/AdsLayout.astro';
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages.filter(page => page.data.slug !== 'atlante').map(page => ({ params: { slug: page.data.slug === 'home' ? undefined : page.data.slug }, props: { page } }));
+}
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+<AdsLayout title={page.data.title} description={page.data.description} catalog={page.data.slug === 'fonti'} home={page.data.slug === 'home'} bibliography={page.data.slug === 'bibliografia'} credits={page.data.slug === 'crediti'} record={['fonte', 'luogo', 'monumento', 'riferimento'].includes(page.data.slug)}><Content /></AdsLayout>

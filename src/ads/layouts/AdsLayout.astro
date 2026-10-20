@@ -1,0 +1,50 @@
+---
+import { siteMetadata } from '../user.config.mjs';
+import '../styles/ads.scss';
+import '../styles/site-shell.css';
+import '../styles/records.css';
+import ProjectFooter from '../components/ProjectFooter.astro';
+import '../styles/project-footer.css';
+const { title = siteMetadata.title, description = siteMetadata.description, atlas = false, catalog = false, home = false, bibliography = false, credits = false, record = false } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const url = (path: string) => base + path;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const menu = [ ['/', 'Home'], ['/crediti/', 'Crediti'], ['/atlante/', 'Atlante'], ['/fonti/', 'Fonti'], ['/bibliografia/', 'Bibliografia'], ['/produzione/', 'Produzione scientifica'] ];
+---
+<!doctype html>
+<html lang="it" data-bs-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="author" content={siteMetadata.author} />
+    <title>{title} | ADS</title>
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={`${title} | ADS`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={new URL(url('/images/logo_ADS.png'), Astro.site)} />
+    <link rel="icon" href={url('/ads-favicon.png')} />
+    <!-- ADS uses its original light theme. This follows the core theme initializer. -->
+    <script is:inline>document.documentElement.setAttribute('data-bs-theme', 'light');</script>
+  </head>
+  <body class:list={['ads-site', { 'ads-atlas-page': atlas, 'ads-catalog-page': catalog, 'ads-home-page': home, 'ads-bibliography-page': bibliography, 'ads-credits-page': credits, 'ads-record-page': record }]}>
+    <a class="ads-skip-link" href="#main-content">Vai al contenuto</a>
+    <header class="ads-site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark ads-navbar" aria-label="Navigazione principale">
+      <div class="container">
+        <a class="navbar-brand ads-shared-brand" href={url('/')}><span>ADS</span><span>Archivio Digitale Sabino<small>Dal libro al luogo</small></span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ads-nav" aria-controls="ads-nav" aria-expanded="false" aria-label="Apri il menu"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="ads-nav">
+          <ul class="navbar-nav ms-auto">
+            {menu.map(([href, label]) => <li class="nav-item"><a class:list={['nav-link', { active: Astro.url.pathname.replace(/\/$/, '') === url(href).replace(/\/$/, '') }]} href={url(href)}>{label}</a></li>)}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </header>
+    <main id="main-content" class:list={[atlas || catalog || home || bibliography || credits || record ? 'ads-wide-main' : 'container ads-standard-main pb-5']}><slot /></main>
+    <ProjectFooter />
+    <script>import 'bootstrap/dist/js/bootstrap.bundle.min.js';</script>
+  </body>
+</html>

@@ -1,0 +1,711 @@
+---
+title: "Fonti"
+date: "2025-05-21"
+slug: "fonti"
+description: "Esplora la collezione di fonti storiche"
+menu_position: 3
+---
+
+import { useState, useEffect } from "react"
+import { Row, Col, Button, Badge, Card, Stack } from "react-bootstrap"
+import getDataFromSource from "../../services/getDataFromSource"
+import { Link } from "gatsby"
+import Slider from 'rc-slider'
+import 'rc-slider/assets/index.css'
+
+# Collezione di Fonti Storiche
+
+export default function FontiPage() {
+  const [data, setData] = useState([])
+  const [selectedTipologie, setSelectedTipologie] = useState([])
+  const [selectedEstensori, setSelectedEstensori] = useState([])
+  const [selectedCommittenti, setSelectedCommittenti] = useState([])
+  const [yearRange, setYearRange] = useState([1400, 1600])
+  const [showFilters, setShowFilters] = useState(true)
+  const [currentPage, setCurrentPage] = useState(0)
+  const itemsPerPage = 6
+
+  // Soft color palette
+  const colors = {
+    primary: '#8c9ebd',
+    secondary: '#d8e1f0',
+    light: '#f8fafd',
+    dark: '#4a5a7a',
+    text: '#4a4a4a',
+    accent: '#b8c7e0'
+  }
+
+  useEffect(() => {
+    const fetch = async () => {
+      const result = await getDataFromSource({
+        directus: {
+          table: "fonte",
+          queryString: "fields=id,nome,tipologia,anno_produzione,committente_nome,committente_tipologia,luogo_conservazione,regesto,data_precisa_se_nota,link_esterni,segnatura_archivistica,estensore_tipologia&limit=-1"
+        }
+      })
+      setData(result)
+    }
+    fetch()
+  }, [])
+
+  // Tipologie predefinite (ordinato alfabeticamente)
+  const tipologiePredefinite = ["Carta", "Filza", "Manoscritto", "Pergamena", "Registro"]
+
+  // Estensori predefiniti (ordinato alfabeticamente)
+  const estensoriPredefiniti = [
+    "Abate", "Arbitro", "Cancelleria diocesana",
+    "Cancelleria imperiale", "Cancelleria pontificia", "Cancelleria regia",
+    "Cronista", "Monaco", "Notaio",
+    "Notaio della Sacra Rota", "Oblato", "Oblato laico",
+    "Protonotario apostolico", "Scriniario", "Tabellione",
+    "vicario abbaziale"
+  ].sort()
+
+  // Committenti predefiniti (ordinato alfabeticamente)
+  const committentiPredefiniti = [
+    "Abbazia", "Abbazia di Farfa", "Abate",
+    "Abate commendatario", "Amministratore apostolico", "Antipapa",
+    "Camerario papale", "Cardinale", "Cardinale e abate commendatario",
+    "Cellerario", "Commissario e governatore di Roma", "Comune",
+    "Economo", "Imperatore del Sacro Romano Impero", "Laico",
+    "Luogotenente abbaziale", "Papato", "Podestà",
+    "Preposito", "Priore", "Principe",
+    "Re di Sicilia", "Vicario abbaziale", "Arciprete"
+  ].sort()
+
+  // Get min/max years from data
+  const years = data.map(item => item.anno_produzione).filter(Boolean)
+  const minYear = Math.min(...years, 1400)
+  const maxYear = Math.max(...years, 1600)
+
+  // Toggle filters
+  const toggleFilter = (filterArray, setFilterArray, value) => {
+    setFilterArray(prev =>
+      prev.includes(value) ? prev.filter(v => v !== value) : [...prev, value]
+    )
+    setCurrentPage(0) // Reset to first page when filters change
+  }
+
+  const handleYearChange = (value) => {
+    setYearRange(value)
+    setCurrentPage(0)
+  }
+
+  const resetFilters = () => {
+    setSelectedTipologie([])
+    setSelectedEstensori([])
+    setSelectedCommittenti([])
+    setYearRange([minYear, maxYear])
+    setCurrentPage(0)
+  }
+
+  const filteredData = data.filter(item => {
+    const matchTipologia = selectedTipologie.length === 0 || 
+      (selectedTipologie.includes("Altro") 
+        ? !tipologiePredefinite.includes(item.tipologia)
+        : selectedTipologie.includes(item.tipologia))
+    const matchEstensore = selectedEstensori.length === 0 || 
+      selectedEstensori.includes(item.estensore_tipologia)
+    const matchCommittente = selectedCommittenti.length === 0 || 
+      selectedCommittenti.includes(item.committente_tipologia)
+    const matchYear = !item.anno_produzione || 
+      (item.anno_produzione >= yearRange[0] && item.anno_produzione <= yearRange[1])
+    
+    return matchTipologia && matchEstensore && matchCommittente && matchYear
+  })
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage)
+  const paginatedData = filteredData.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  )
+
+  const nextPage = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+
+  const prevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1)
+    }
+  }
+
+  // Generate pagination items with ellipsis
+  const getPaginationItems = () => {
+    const items = []
+    const maxVisiblePages = 9
+    
+    if (totalPages <= maxVisiblePages) {
+      // Show all pages if total pages is less than max visible
+      for (let i = 0; i < totalPages; i++) {
+        items.push(i)
+      }
+    } else {
+      // Show first 7 pages, ellipsis, and last page
+      for (let i = 0; i < 7; i++) {
+        items.push(i)
+      }
+      items.push('...')
+      items.push(totalPages - 1)
+    }
+    
+    return items
+  }
+
+  return (
+    <>
+      {/* INTRODUCTION */}
+      <Row className="mb-4">
+        <Col>
+          <div className="text-center mb-4" style={{ 
+            color: colors.text,
+            padding: '1.5rem',
+            borderBottom: `1px solid ${colors.secondary}`
+          }}>
+            <p style={{ 
+              fontSize: '1.1rem',
+              lineHeight: '1.7',
+              marginBottom: 0
+            }}>
+              Esplora la collezione di fonti storiche documentarie. 
+              Utilizza i filtri laterali per restringere la ricerca in base alle tue esigenze.
+            </p>
+          </div>
+        </Col>
+      </Row>
+
+      {/* FILTERS SECTION */}
+      <Row className="mb-4">
+        <Col lg={3}>
+          <Card style={{ 
+            border: `1px solid ${colors.secondary}`,
+            boxShadow: 'none',
+            backgroundColor: 'transparent'
+          }}>
+            <Card.Header 
+              style={{ 
+                backgroundColor: 'transparent',
+                color: colors.dark,
+                cursor: 'pointer',
+                borderBottom: `1px solid ${colors.secondary}`,
+                padding: '1rem'
+              }}
+              onClick={() => setShowFilters(!showFilters)}
+            >
+              <div className="d-flex justify-content-between align-items-center">
+                <span style={{ fontWeight: '500' }}>Filtri</span>
+                <span>{showFilters ? '−' : '+'}</span>
+              </div>
+            </Card.Header>
+            
+            {showFilters && (
+              <Card.Body style={{ 
+                backgroundColor: 'transparent',
+                padding: '1.5rem 1rem'
+              }}>
+                <Stack gap={4}>
+                  {/* TIPOLOGIA FILTER */}
+                  <div>
+                    <h6 style={{ 
+                      color: colors.dark,
+                      marginBottom: '1rem',
+                      fontSize: '0.95rem',
+                      fontWeight: '500',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px'
+                    }}>
+                      Tipologia
+                    </h6>
+                    <div className="d-flex flex-wrap gap-2">
+                      {[...tipologiePredefinite, "Altro"].map(tipologia => (
+                        <Button
+                          key={tipologia}
+                          size="sm"
+                          variant={selectedTipologie.includes(tipologia) ? "primary" : "outline-primary"}
+                          onClick={() => toggleFilter(selectedTipologie, setSelectedTipologie, tipologia)}
+                          style={{ 
+                            backgroundColor: selectedTipologie.includes(tipologia) ? colors.primary : 'transparent',
+                            borderColor: colors.primary,
+                            color: selectedTipologie.includes(tipologia) ? 'white' : colors.primary,
+                            fontSize: '0.8rem',
+                            padding: '0.25rem 0.5rem'
+                          }}
+                        >
+                          {tipologia}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* ESTENSORE FILTER */}
+                  <div>
+                    <h6 style={{ 
+                      color: colors.dark,
+                      marginBottom: '1rem',
+                      fontSize: '0.95rem',
+                      fontWeight: '500',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px'
+                    }}>
+                      Estensore
+                    </h6>
+                    <div className="d-flex flex-wrap gap-2">
+                      {estensoriPredefiniti.map((estensore, index) => (
+                        <React.Fragment key={estensore}>
+                          <Button
+                            size="sm"
+                            variant={selectedEstensori.includes(estensore) ? "primary" : "outline-primary"}
+                            onClick={() => toggleFilter(selectedEstensori, setSelectedEstensori, estensore)}
+                            style={{ 
+                              backgroundColor: selectedEstensori.includes(estensore) ? colors.primary : 'transparent',
+                              borderColor: colors.primary,
+                              color: selectedEstensori.includes(estensore) ? 'white' : colors.primary,
+                              fontSize: '0.8rem',
+                              padding: '0.25rem 0.5rem',
+                              flex: '1 0 calc(33.333% - 0.5rem)',
+                              maxWidth: 'calc(33.333% - 0.5rem)'
+                            }}
+                          >
+                            {estensore}
+                          </Button>
+                          {(index + 1) % 3 === 0 && <div className="w-100"></div>}
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* COMMITTENTE FILTER */}
+                  <div>
+                    <h6 style={{ 
+                      color: colors.dark,
+                      marginBottom: '1rem',
+                      fontSize: '0.95rem',
+                      fontWeight: '500',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px'
+                    }}>
+                      Committente
+                    </h6>
+                    <div className="d-flex flex-wrap gap-2">
+                      {committentiPredefiniti.map((committente, index) => (
+                        <React.Fragment key={committente}>
+                          <Button
+                            size="sm"
+                            variant={selectedCommittenti.includes(committente) ? "primary" : "outline-primary"}
+                            onClick={() => toggleFilter(selectedCommittenti, setSelectedCommittenti, committente)}
+                            style={{ 
+                              backgroundColor: selectedCommittenti.includes(committente) ? colors.primary : 'transparent',
+                              borderColor: colors.primary,
+                              color: selectedCommittenti.includes(committente) ? 'white' : colors.primary,
+                              fontSize: '0.8rem',
+                              padding: '0.25rem 0.5rem',
+                              flex: '1 0 calc(33.333% - 0.5rem)',
+                              maxWidth: 'calc(33.333% - 0.5rem)'
+                            }}
+                          >
+                            {committente}
+                          </Button>
+                          {(index + 1) % 3 === 0 && <div className="w-100"></div>}
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* YEAR FILTER */}
+                  <div>
+                    <h6 style={{ 
+                      color: colors.dark,
+                      marginBottom: '1rem',
+                      fontSize: '0.95rem',
+                      fontWeight: '500',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px'
+                    }}>
+                      Anno di produzione: {yearRange[0]} - {yearRange[1]}
+                    </h6>
+                    <Slider
+                      range
+                      min={minYear}
+                      max={maxYear}
+                      value={yearRange}
+                      onChange={handleYearChange}
+                      trackStyle={{ backgroundColor: colors.primary }}
+                      handleStyle={{ 
+                        borderColor: colors.primary,
+                        backgroundColor: 'white',
+                        opacity: 1
+                      }}
+                      railStyle={{ backgroundColor: colors.secondary }}
+                    />
+                    <div style={{ 
+                      display: 'flex', 
+                      justifyContent: 'space-between',
+                      marginTop: '5px',
+                      fontSize: '0.8rem',
+                      color: colors.text
+                    }}>
+                      <span>{minYear}</span>
+                      <span>{maxYear}</span>
+                    </div>
+                  </div>
+
+                  {/* RESET BUTTON */}
+                  <Button 
+                    variant="outline-secondary"
+                    size="sm"
+                    onClick={resetFilters}
+                    style={{
+                      borderColor: colors.primary,
+                      color: colors.primary,
+                      marginTop: '1rem'
+                    }}
+                  >
+                    Resetta tutti i filtri
+                  </Button>
+
+                  {/* ACTIVE FILTERS BADGES */}
+                  {(selectedTipologie.length > 0 || selectedEstensori.length > 0 || selectedCommittenti.length > 0) && (
+                    <div className="mt-3">
+                      <h6 style={{ 
+                        color: colors.dark,
+                        marginBottom: '0.5rem',
+                        fontSize: '0.9rem',
+                        fontWeight: '500'
+                      }}>
+                        Filtri attivi:
+                      </h6>
+                      <div className="d-flex flex-wrap gap-2">
+                        {selectedTipologie.map(tipologia => (
+                          <Badge 
+                            key={`active-${tipologia}`}
+                            pill
+                            bg="primary"
+                            style={{ 
+                              backgroundColor: colors.primary,
+                              color: 'white',
+                              fontSize: '0.75rem',
+                              padding: '0.35rem 0.6rem'
+                            }}
+                          >
+                            {tipologia} ×
+                          </Badge>
+                        ))}
+                        {selectedEstensori.map(estensore => (
+                          <Badge 
+                            key={`active-${estensore}`}
+                            pill
+                            bg="primary"
+                            style={{ 
+                              backgroundColor: colors.primary,
+                              color: 'white',
+                              fontSize: '0.75rem',
+                              padding: '0.35rem 0.6rem'
+                            }}
+                          >
+                            {estensore} ×
+                          </Badge>
+                        ))}
+                        {selectedCommittenti.map(committente => (
+                          <Badge 
+                            key={`active-${committente}`}
+                            pill
+                            bg="primary"
+                            style={{ 
+                              backgroundColor: colors.primary,
+                              color: 'white',
+                              fontSize: '0.75rem',
+                              padding: '0.35rem 0.6rem'
+                            }}
+                          >
+                            {committente} ×
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </Stack>
+              </Card.Body>
+            )}
+          </Card>
+        </Col>
+
+        {/* RESULTS */}
+        <Col lg={9}>
+          {filteredData.length === 0 ? (
+            <div className="text-center py-5" style={{ color: colors.text }}>
+              <h4>Nessuna fonte corrisponde ai filtri selezionati</h4>
+              <Button 
+                variant="outline-primary"
+                onClick={resetFilters}
+                style={{
+                  borderColor: colors.primary,
+                  color: colors.primary
+                }}
+              >
+                Resetta filtri
+              </Button>
+            </div>
+          ) : (
+            <div>
+              {/* Pagination controls top */}
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <Button 
+                  variant="outline-secondary"
+                  onClick={prevPage}
+                  disabled={currentPage === 0}
+                  style={{
+                    borderColor: colors.primary,
+                    color: colors.primary,
+                    visibility: currentPage === 0 ? 'hidden' : 'visible'
+                  }}
+                >
+                  ← Precedente
+                </Button>
+                
+                <span className="text-muted">
+                  Pagina {currentPage + 1} di {totalPages} ({filteredData.length} risultati)
+                </span>
+                
+                <Button 
+                  variant="outline-secondary"
+                  onClick={nextPage}
+                  disabled={currentPage >= totalPages - 1}
+                  style={{
+                    borderColor: colors.primary,
+                    color: colors.primary,
+                    visibility: currentPage >= totalPages - 1 ? 'hidden' : 'visible'
+                  }}
+                >
+                  Successiva →
+                </Button>
+              </div>
+
+              {/* Results list - vertical layout */}
+              <Stack gap={3}>
+                {paginatedData.map((item) => (
+                  <Card 
+                    key={item.id}
+                    style={{
+                      border: `1px solid ${colors.secondary}`,
+                      boxShadow: 'none',
+                      transition: 'all 0.2s ease',
+                      ':hover': {
+                        borderColor: colors.primary
+                      }
+                    }}
+                    className="hover-shadow-sm"
+                  >
+                    <Card.Body style={{ 
+                      backgroundColor: 'white',
+                      padding: '1.5rem'
+                    }}>
+                      {/* TITLE SECTION */}
+                      <h3 style={{
+                        marginBottom: '1rem',
+                        color: colors.dark,
+                        fontSize: '1.25rem'
+                      }}>
+                        <Link
+                          to={`/fonte/?tb=fonte&id=${item.id}`}
+                          style={{ 
+                            color: colors.dark,
+                            textDecoration: 'none',
+                            ':hover': {
+                              color: colors.primary
+                            }
+                          }}
+                        >
+                          {item.nome}
+                        </Link>
+                      </h3>
+
+                      <Row>
+                        {/* MAIN CONTENT */}
+                        <Col md={8}>
+                          {item.regesto && (
+                            <div 
+                              className="mb-3"
+                              style={{
+                                fontSize: '0.95rem',
+                                lineHeight: '1.6',
+                                color: colors.text
+                              }}
+                              dangerouslySetInnerHTML={{ __html: item.regesto.substring(0, 200) + (item.regesto.length > 200 ? '...' : '') }}
+                            />
+                          )}
+
+                          <div className="mt-2">
+                            <Link 
+                              to={`/fonte/?tb=fonte&id=${item.id}`}
+                              style={{
+                                color: colors.primary,
+                                fontSize: '0.9rem',
+                                textDecoration: 'none',
+                                fontWeight: '500'
+                              }}
+                            >
+                              Vedi dettagli →
+                            </Link>
+                          </div>
+                        </Col>
+
+                        {/* SIDEBAR WITH DETAILS */}
+                        <Col md={4}>
+                          <Stack gap={2} style={{ 
+                            borderLeft: `1px solid ${colors.secondary}`,
+                            paddingLeft: '1rem'
+                          }}>
+                            {item.tipologia && (
+                              <div>
+                                <div style={{
+                                  fontSize: '0.75rem',
+                                  color: colors.primary,
+                                  fontWeight: '500',
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '0.5px'
+                                }}>
+                                  Tipologia
+                                </div>
+                                <div style={{ 
+                                  fontSize: '0.9rem',
+                                  marginBottom: '0.5rem'
+                                }}>
+                                  {item.tipologia}
+                                </div>
+                              </div>
+                            )}
+                            
+                            {item.anno_produzione && (
+                              <div>
+                                <div style={{
+                                  fontSize: '0.75rem',
+                                  color: colors.primary,
+                                  fontWeight: '500',
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '0.5px'
+                                }}>
+                                  Anno
+                                </div>
+                                <div style={{ 
+                                  fontSize: '0.9rem',
+                                  marginBottom: '0.5rem'
+                                }}>
+                                  {item.anno_produzione}
+                                </div>
+                              </div>
+                            )}
+                            
+                            {item.estensore_tipologia && (
+                              <div>
+                                <div style={{
+                                  fontSize: '0.75rem',
+                                  color: colors.primary,
+                                  fontWeight: '500',
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '0.5px'
+                                }}>
+                                  Estensore
+                                </div>
+                                <div style={{ 
+                                  fontSize: '0.9rem',
+                                  marginBottom: '0.5rem'
+                                }}>
+                                  {item.estensore_tipologia}
+                                </div>
+                              </div>
+                            )}
+                            
+                            {item.committente_tipologia && (
+                              <div>
+                                <div style={{
+                                  fontSize: '0.75rem',
+                                  color: colors.primary,
+                                  fontWeight: '500',
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '0.5px'
+                                }}>
+                                  Committente
+                                </div>
+                                <div style={{ 
+                                  fontSize: '0.9rem',
+                                  marginBottom: '0.5rem'
+                                }}>
+                                  {item.committente_tipologia}
+                                </div>
+                              </div>
+                            )}
+                          </Stack>
+                        </Col>
+                      </Row>
+                    </Card.Body>
+                  </Card>
+                ))}
+              </Stack>
+
+              {/* Bottom pagination controls */}
+              {totalPages > 1 && (
+                <div className="d-flex justify-content-center mt-4">
+                  <nav aria-label="Page navigation">
+                    <ul className="pagination flex-wrap justify-content-center">
+                      <li className={`page-item ${currentPage === 0 ? 'disabled' : ''}`}>
+                        <button 
+                          className="page-link" 
+                          onClick={prevPage}
+                          style={{
+                            borderColor: colors.primary,
+                            color: colors.primary
+                          }}
+                        >
+                          &laquo;
+                        </button>
+                      </li>
+                      
+                      {getPaginationItems().map((item, index) => (
+                        <li 
+                          key={index} 
+                          className={`page-item ${item === currentPage ? 'active' : ''} ${item === '...' ? 'disabled' : ''}`}
+                        >
+                          {item === '...' ? (
+                            <span className="page-link">...</span>
+                          ) : (
+                            <button 
+                              className="page-link" 
+                              onClick={() => setCurrentPage(item)}
+                              style={{
+                                backgroundColor: item === currentPage ? colors.primary : 'transparent',
+                                borderColor: colors.primary,
+                                color: item === currentPage ? 'white' : colors.primary
+                              }}
+                            >
+                              {item + 1}
+                            </button>
+                          )}
+                        </li>
+                      ))}
+                      
+                      <li className={`page-item ${currentPage >= totalPages - 1 ? 'disabled' : ''}`}>
+                        <button 
+                          className="page-link" 
+                          onClick={nextPage}
+                          style={{
+                            borderColor: colors.primary,
+                            color: colors.primary
+                          }}
+                        >
+                          &raquo;
+                        </button>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              )}
+            </div>
+          )}
+        </Col>
+      </Row>
+    </>
+  )
+}

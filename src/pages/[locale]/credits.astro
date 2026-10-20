@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { LOCALES } from '../../utils/i18n';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  return LOCALES.map(locale => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+
+const copy = {
+  en: {
+    title: 'Credits',
+    description: 'Learn about s:CMS and its features',
+    intro1Before: 's:CMS is a project of ',
+    lad: 'LAD: Laboratorio di Archeologia Digitale alla Sapienza',
+    intro1After: ' aimed at providing an easy to use management system for rich and multimedial contents, with a particular attention to the publication online of research data and geodata hosted in external databases.',
+    intro2Before: 'It is built with ',
+    astro: 'Astro',
+    intro2Mid: ', a modern web framework for building fast, content-focused websites, completed with ',
+    bootstrap: 'Bootstrap',
+    intro2After: ' for styling. The new version brings improved performance and a cleaner architecture.',
+    featuresTitle: 'Main features',
+    features: [
+      { bold: 's:CMS is secure', rest: ': once the site is built, all you publish online are static web pages, plain HTML, JS and CSS. No programming languages, no databases, no security updates to apply, no security holes...' },
+      { bold: 's:CMS is fast', rest: ': static sites deliver optimal performance with zero client-side JavaScript by default' },
+      { bold: 's:CMS is serverless', rest: ': deploy anywhere - no server maintenance required' },
+      { bold: 's:CMS is feature-rich', rest: ': extensible architecture allowing custom components and integrations' },
+    ],
+  },
+  it: {
+    title: 'Crediti',
+    description: 'Scopri di più su s:CMS e le sue funzionalità',
+    intro1Before: 's:CMS è un progetto di ',
+    lad: 'LAD: Laboratorio di Archeologia Digitale alla Sapienza',
+    intro1After: ' che offre un sistema di gestione semplice da usare per contenuti ricchi e multimediali, con particolare attenzione alla pubblicazione online di dati di ricerca e geodati ospitati su database esterni.',
+    intro2Before: 'È costruito con ',
+    astro: 'Astro',
+    intro2Mid: ', un moderno framework web per siti veloci e orientati ai contenuti, completato da ',
+    bootstrap: 'Bootstrap',
+    intro2After: ' per lo stile. La nuova versione porta prestazioni migliori e un’architettura più pulita.',
+    featuresTitle: 'Funzionalità principali',
+    features: [
+      { bold: 's:CMS è sicuro', rest: ': una volta costruito, tutto ciò che pubblichi online sono pagine web statiche, HTML, JS e CSS semplici. Nessun linguaggio di programmazione, nessun database, nessun aggiornamento di sicurezza da applicare, nessuna falla di sicurezza...' },
+      { bold: 's:CMS è veloce', rest: ': i siti statici offrono prestazioni ottimali con zero JavaScript lato client di default' },
+      { bold: 's:CMS è serverless', rest: ': pubblica ovunque - nessuna manutenzione server richiesta' },
+      { bold: 's:CMS è ricco di funzionalità', rest: ': architettura estensibile che permette componenti e integrazioni personalizzate' },
+    ],
+  },
+};
+
+const t = copy[locale as keyof typeof copy];
+---
+
+<BaseLayout locale={locale} title={t.title} description={t.description}>
+  <main class="container py-4">
+    <article class="markdown-content">
+      <p>
+        {t.intro1Before}<a href="https://purl.org/lad" target="_blank" rel="noreferrer">{t.lad}</a>{t.intro1After}
+      </p>
+      <p>
+        {t.intro2Before}<a href="https://astro.build/" target="_blank" rel="noreferrer">{t.astro}</a>{t.intro2Mid}<a href="https://getbootstrap.com/" target="_blank" rel="noreferrer">{t.bootstrap}</a>{t.intro2After}
+      </p>
+      <h2>{t.featuresTitle}</h2>
+      <ul>
+        {t.features.map(feature => (
+          <li><strong>{feature.bold}</strong>{feature.rest}</li>
+        ))}
+      </ul>
+    </article>
+  </main>
+</BaseLayout>

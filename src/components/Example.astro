@@ -1,0 +1,52 @@
+---
+
+interface Props {
+  codeWidth?: 'narrow' | 'default' | 'equal' | 'full';
+  disabled?: boolean;
+  title?: string;
+}
+
+const { codeWidth = 'default', disabled = false, title } = Astro.props;
+
+if (disabled) {
+  return null;
+}
+
+
+const colClasses = {
+  narrow: 'col-md-4',  // 1fr out of 3fr total ≈ col-4 out of 12
+  default: 'col-md-5', // 2fr out of 5fr total ≈ col-5 out of 12
+  equal: 'col-md-6',
+  full: 'col-12'
+}[codeWidth];
+
+const resultColClasses = {
+  narrow: 'col-md-8',  // 2fr out of 3fr total
+  default: 'col-md-7', // 3fr out of 5fr total
+  equal: 'col-md-6',
+  full: 'col-12'
+}[codeWidth];
+
+// Generate ID from title (matching rehype-slug behavior)
+const titleId = title
+  ? title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '')
+  : undefined;
+---
+
+{title && <h2 id={titleId}>{title}</h2>}
+
+<div class="alert alert-info">
+  <slot name="intro" />
+</div>
+
+<div class="row g-3">
+  <div class={colClasses}>
+    <slot name="code" />
+  </div>
+  <div class={resultColClasses}>
+    <slot />
+  </div>
+</div>

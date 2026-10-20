@@ -1,0 +1,91 @@
+{
+  "report": [
+    {
+      "route": "/",
+      "status": 200,
+      "title": "Homepage | ADS",
+      "islands": 1,
+      "overflow": false
+    },
+    {
+      "route": "/crediti/",
+      "status": 200,
+      "title": "Crediti | ADS",
+      "islands": 1,
+      "overflow": false
+    },
+    {
+      "route": "/produzione/",
+      "status": 200,
+      "title": "Produzione scientifica | ADS",
+      "islands": 1,
+      "overflow": false
+    },
+    {
+      "route": "/fonti/",
+      "status": 200,
+      "title": "Fonti | ADS",
+      "islands": 1,
+      "overflow": false,
+      "results": "Pagina 1 di 66 (392 risultati)"
+    },
+    {
+      "route": "/bibliografia/",
+      "status": 200,
+      "title": "Bibliografia | ADS",
+      "islands": 1,
+      "overflow": false,
+      "results": "Risultati: 805 opere trovate",
+      "emptyFilterWorks": true
+    },
+    {
+      "route": "/atlante/",
+      "status": 200,
+      "title": "Atlante | ADS",
+      "islands": 1,
+      "overflow": false,
+      "markers": 3,
+      "categories": 4,
+      "clusterTotal": 340,
+      "expansionWorks": true
+    },
+    {
+      "route": "/fonte/",
+      "status": 200,
+      "title": "Fonte | ADS",
+      "islands": 1,
+      "overflow": false
+    },
+    {
+      "route": "/luogo/",
+      "status": 200,
+      "title": "Record Luogo | ADS",
+      "islands": 1,
+      "overflow": false
+    },
+    {
+      "route": "/monumento/",
+      "status": 200,
+      "title": "Record Monumento | ADS",
+      "islands": 1,
+      "overflow": false
+    },
+    {
+      "route": "/personaggio/",
+      "status": 200,
+      "title": "Personaggio | ADS",
+      "islands": 1,
+      "overflow": false
+    },
+    {
+      "route": "fonte detail with tb",
+      "recordRendered": true
+    },
+    {
+      "route": "mobile home",
+      "overflow": false,
+      "menuExpanded": true
+    }
+  ],
+  "errors": []
+}

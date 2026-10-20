@@ -1,0 +1,17 @@
+---
+title: 'Example: A Photo Gallery in a Blog Post'
+description: 'A short example showing the Gallery component embedded in regular content.'
+date: 2026-01-20
+author: 'Example Author'
+tags: ['example', 'gallery']
+---
+
+import { Gallery } from '@lad-sapienza/scms-core/components/Gallery';
+
+This is an example post — it exists to show what an image gallery looks like once it's dropped into a content file, not to teach the `Gallery` component's full API. For that, see the [Gallery documentation](/en/docs/components/gallery).
+
+The three images below live in this post's own `gallery/` folder — `<Gallery />` finds and renders them automatically, no configuration needed:
+
+<Gallery columns={{ min: 200, max: 3 }} />
+
+Replace this post (and its `gallery/` folder) with your own content.

@@ -1,0 +1,122 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { LOCALES, localizeCollection } from '../../../utils/i18n';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  return LOCALES.map(locale => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+
+const posts = localizeCollection(await getCollection('blog'), 'blog', LOCALES)
+  .filter(p => p.locale === locale && !p.entry.data.draft)
+  .sort((a, b) => b.entry.data.date.valueOf() - a.entry.data.date.valueOf());
+
+const dateLocale = locale === 'it' ? 'it-IT' : 'en-US';
+
+const copy: Record<string, { title: string; lead: string; empty: string }> = {
+  en: {
+    title: 'Blog',
+    lead: 'Example posts — for a technical walkthrough, see the {link} instead.',
+    empty: 'No blog posts yet. Check back soon!',
+  },
+  it: {
+    title: 'Blog',
+    lead: 'Articoli di esempio — per una guida tecnica, vedi invece {link}.',
+    empty: 'Ancora nessun articolo. Torna a trovarci presto!',
+  },
+};
+const t = copy[locale];
+const gettingStartedLabel = locale === 'it' ? 'la guida "Per iniziare"' : 'the Getting Started guide';
+const [leadBefore, leadAfter] = t.lead.split('{link}');
+---
+
+<BaseLayout locale={locale} title={t.title} description="Example posts showing what the blog collection looks like with real content.">
+  <main class="container py-5">
+    <div class="mb-4">
+      <h1 class="mb-0">{t.title}</h1>
+      <p class="lead">
+        {leadBefore}<a href={`/${locale}/docs/guides/getting-started`}>{gettingStartedLabel}</a>{leadAfter}
+      </p>
+    </div>
+
+    <div class="mt-5">
+      <div class="row g-4">
+        {posts.map(({ slug, entry: post }) => (
+          <div class="col-12 col-md-6 col-lg-4">
+            <article class="card h-100">
+              {post.data.image && (
+                <div style="height: 200px; overflow: hidden;">
+                  <img
+                    src={post.data.image}
+                    alt={post.data.title}
+                    class="card-img-top w-100 h-100"
+                    style="object-fit: cover;"
+                  />
+                </div>
+              )}
+
+              <div class="card-body d-flex flex-column">
+                <div class="flex-grow-1">
+                  <a href={`/${locale}/blog/${slug}`} class="text-decoration-none">
+                    <h5 class="card-title">
+                      {post.data.title}
+                    </h5>
+                  </a>
+
+                  <p class="card-text text-muted mt-3">
+                    {post.data.description}
+                  </p>
+
+                  {post.data.tags && post.data.tags.length > 0 && (
+                    <div class="mt-3 d-flex flex-wrap gap-2">
+                      {post.data.tags.map((tag) => (
+                        <span class="badge bg-primary-subtle text-primary-emphasis">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div class="mt-3 pt-3 border-top d-flex align-items-center text-muted small">
+                  <time datetime={post.data.date.toISOString()}>
+                    {post.data.date.toLocaleDateString(dateLocale, {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </time>
+                  {post.data.author && (
+                    <>
+                      <span class="mx-2">·</span>
+                      <span>{post.data.author}</span>
+                    </>
+                  )}
+                </div>
+              </div>
+            </article>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {posts.length === 0 && (
+      <div class="mt-5 text-center text-muted">
+        <p>{t.empty}</p>
+      </div>
+    )}
+  </main>
+</BaseLayout>
+
+<style>
+  /* Card titles sit inside a link (for the whole-card click target), which
+     would otherwise tint them with the site's link/accent color. Pin them to
+     the heading color instead, matching every other heading on the site. */
+  .card-title {
+    color: var(--bs-heading-color);
+  }
+</style>

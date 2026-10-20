@@ -1,0 +1,52 @@
+ADS — Batch fix v1
+
+INSTALLAZIONE
+Applicare dopo ADS_aggiornamento_Record_v1.zip e tutte le patch precedenti.
+Copiare src e public nella radice del progetto, unire le cartelle e sovrascrivere i file.
+Riavviare: npm run dev -- --force
+Non occorre npm ci. Nessuna modifica a .env, dipendenze o database.
+
+CREDITS
+Aumentato lo spazio laterale fra i due gruppi di collaboratori e il badge centrale.
+Badge compatti e biografie apribili conservati.
+
+ATLANTE
+- Corretta la posizione CSS dei marker singoli: position:absolute, come richiesto da Leaflet. La precedente position:relative interferiva con le traslazioni geografiche e il normale flusso del DOM.
+- Il marker selezionato viene mostrato fuori dal gruppo dei cluster, con geometria identica all'icona normale. Evitate animazioni di raggruppamento che interferiscono con il cambio di selezione.
+- Disattivato il poligono di copertura al passaggio sui cluster.
+- La mappa viene costruita dagli stessi risultati filtrati delle anteprime: selezione da marker, ricerca, pulsante luogo nelle card o elenco dei luoghi senza coordinate.
+- La selezione di un luogo privo di coordinate svuota i marker geografici.
+- 8 anteprime per pagina, con navigazione precedente/successiva.
+- Marker selezionati rossi con simbolo, puntino e contorni color pergamena; SVG custom separati.
+
+IN ATTESA DEGLI ALLEGATI
+La sostituzione di sfondi e immagine dell'infobox dell'Atlante non è inclusa: i nuovi asset e gli screenshot citati non risultavano allegati al messaggio. Sono conservati gli asset attuali. Inviare quei file per il successivo aggiornamento grafico.
+
+FOOTER
+Un solo ProjectFooter condiviso per tutte le pagine gestite dal layout ADS, comprese Home, Credits, Bibliografia e record.
+Testo breve coerente con il progetto, senza lorem ipsum.
+Il file /images/logo_sapienza_footer.png nella copia di lavoro è valido. È incluso esplicitamente nella patch per ripristinare l'asset anche nella cartella locale; il percorso rispetta BASE_URL.
+Il logo personale viene usato in una copia SVG custom priva del rettangolo bianco, senza modificare l'originale.
+
+PRODUZIONE SCIENTIFICA
+Rimosso il contenuto precedente; pagina in costruzione con ritorno alla homepage.
+
+HOME
+Quarta sezione La Sabina online, dopo Ricerca e patrimonio, con testo editoriale e collegamenti:
+https://sabinasacra.lad-sapienza.it/
+http://ascres.uniroma1.it/
+La sezione presenta un panorama complementare di risorse di ricerca e valorizzazione; non introduce connessioni automatiche fra i database dei siti.
+
+FONTI
+4 anteprime per pagina in elenco, 6 in griglia; paginazione coerente con la vista.
+Tutti gli accordion inizialmente aperti.
+Colonne sidebar/risultati allineate alle estremità su desktop; impaginazione impilata su mobile.
+
+RECORD
+Per fonti e bibliografie senza luoghi collegati, omesse le sezioni geografiche, i relativi rimandi interni e i diagrammi che presuppongono quei collegamenti.
+Per i record con luoghi le sezioni restano disponibili.
+
+VERIFICHE
+Astro e build statica; browser su dati Directus già disponibili e coordinate/tessere simulate solo nei test.
+Ancoraggio dei marker rispetto alle trasformazioni Leaflet dopo cambio basemap, selezione da mappa e da ricerca; filtri sincronizzati; copertura cluster disattivata; anteprime 8 e 4/6; accordion aperti; footer e loghi; casi senza luoghi; desktop/mobile.
+La patch contiene esclusivamente file custom src/ads e asset in public. Scheletro originale sCMS invariato.

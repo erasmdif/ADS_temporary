@@ -1,0 +1,123 @@
+---
+import "../styles/global.css"
+import SEO from "@lad-sapienza/scms-core/components/SEO/SEO.astro"
+import { siteMetadata } from "../user.config.mjs"
+import packageJson from "../../package.json"
+
+import BSNavbar from "@lad-sapienza/scms-core/components/BSNavbar"
+import ThemeToggle from "@lad-sapienza/scms-core/components/ThemeToggle"
+import LocaleSwitcher from "@lad-sapienza/scms-core/components/LocaleSwitcher"
+import I18nInit from "@lad-sapienza/scms-core/components/i18n/I18nInit.astro"
+import { getEntry } from 'astro:content'
+import { DEFAULT_LOCALE, LOCALES, LOCALE_LABELS, type Locale, withLocalePrefix } from '../utils/i18n'
+
+interface Props {
+  locale: Locale
+  title?: string
+  description?: string
+}
+
+const { locale, title = siteMetadata.title, description = siteMetadata.description } =
+  Astro.props
+
+const currentPath = Astro.url.pathname
+const menuEntry = await getEntry('menu', `${locale}/menu`)
+const menuItems = withLocalePrefix(menuEntry?.data ?? [], locale)
+
+const dictionaryEntry = await getEntry('i18n', locale)
+const defaultDictionaryEntry =
+  locale === DEFAULT_LOCALE ? dictionaryEntry : await getEntry('i18n', DEFAULT_LOCALE)
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <SEO title={title} description={description} siteMetadata={siteMetadata} />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <!-- Preload critical fonts for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <slot name="head" />
+  </head>
+
+  <body class="d-flex flex-column min-vh-100">
+    <I18nInit
+      locale={locale}
+      defaultLocale={DEFAULT_LOCALE}
+      dictionary={dictionaryEntry?.data}
+      defaultDictionary={defaultDictionaryEntry?.data}
+    />
+    <BSNavbar
+      client:load
+      menuItems={menuItems}
+      currentPath={currentPath}
+      cssClasses={{
+        nav: "bg-body-tertiary navbar-expand-md sticky-top shadow-sm border-bottom",
+        ul: "ms-auto mb-2 mb-md-0",
+        li: "text-center fw-medium",
+      }}
+      brand={{
+        text: siteMetadata.title,
+        link: `/${locale}/`,
+        cssClasses: "fw-bold",
+      }}
+    />
+    <ThemeToggle client:load />
+    <LocaleSwitcher client:load locales={[...LOCALES]} currentLocale={locale} labels={LOCALE_LABELS} />
+
+    <main
+      class="container flex-grow-1"
+      style="padding-top: 6rem; padding-bottom: 3rem;"
+    >
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-5 mt-auto" style="background: var(--scms-footer-bg); color: #d8cfc2;">
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-4">
+          <div>
+            <h3 class="mb-1" style="color: #fff;">
+              s:CMS <small style="color: #a89a86; font-family: var(--bs-body-font-family); font-size: 0.8125rem;">(v{packageJson.version})</small>
+            </h3>
+            <p class="mb-0" style="color: #a89a86;">
+              A project by
+              <a
+                href="https://lad.saras.uniroma1.it"
+                target="_blank"
+                rel="noreferrer"
+                style="color: #d8cfc2; font-weight: 500;"
+              >
+                LAD: Laboratorio di Archeologia Digitale alla Sapienza
+              </a>
+            </p>
+          </div>
+          <div class="d-flex gap-4">
+            <a
+              href="https://github.com/lad-sapienza/sCMS"
+              target="_blank"
+              rel="noreferrer"
+              style="color: #d8cfc2;"
+            >
+              Code
+            </a>
+            <a
+              href="https://github.com/lad-sapienza/sCMS/issues"
+              target="_blank"
+              rel="noreferrer"
+              style="color: #d8cfc2;"
+            >
+              Issues
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      defer
+      is:inline></script>
+  </body>
+</html>

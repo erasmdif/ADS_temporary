@@ -1,0 +1,57 @@
+AGGIORNAMENTO ATLANTE ADS
+
+Copia le cartelle src e public contenute nello ZIP nella cartella principale
+ADS_scms_astro, unendole a quelle esistenti e sovrascrivendo i file omonimi.
+Non eliminare le cartelle esistenti.
+
+Non occorre npm ci / npm install. Il tuo .env rimane invariato.
+Arresta il server con Ctrl+C e riavvia:
+
+npm run dev -- --force
+
+Apri /atlante/ e ricarica con Ctrl+Shift+R se necessario.
+
+NOVITA
+- Grafica antracite, bordeaux e avorio, sfondi e SVG del draft allegato.
+- Ricerca in titoli, regesti, segnature, persone e luoghi collegati.
+- Tipologie documentarie e relazioni luogo-fonte filtrabili.
+- Marker custom per luogo e cluster con conteggio di fonti distinte.
+- Dossier del luogo, con tutte le relazioni e rimandi alle schede.
+- Tre periodi: 500-999, 1000-1499, 1500-1899. Estremi inclusivi.
+- Date digitabili (conferma con Invio o uscendo dal campo) e cursori nativi.
+- Istogramma reale 500-1899 per anno iniziale; Tutte le date include anni esterni.
+- Date su intervallo selezionate per sovrapposizione; fonti senza data opzionali.
+- Griglia/elenco, ordinamento, caricamento progressivo e filtro area mappa.
+- Preferiti conservati in questo browser; confronto di 2-4 fonti.
+- Export CSV di tutti i risultati filtrati, una riga per associazione.
+- Elenco dei luoghi senza coordinate e filtro delle loro fonti.
+- OSM predefinita, alternativa CARTO chiara, zoom, inquadramento e fullscreen.
+- Layout adattato a desktop e mobile; Guida all'interno della pagina.
+
+DATI E FRAMEWORK
+I dati continuano a provenire da Directus. Non viene importato alcun dato
+illustrativo del draft e non viene scritto nulla sul database.
+Manoscri/Perg vengono riconosciuti nelle categorie principali; Carta e Filza
+sono in Altro, con la tipologia originale sempre indicata nelle schede.
+Le associazioni senza ruolo sono consultabili come Non specificata / altra.
+Fonti senza luoghi restano nell'elenco generale quando tutte le relazioni
+sono abilitate. Un filtro spaziale richiede invece un luogo georeferenziato.
+I conteggi per relazione possono sovrapporsi; non sono sommabili.
+I marker misti usano il simbolo Altro. I numeri contano fonti, non associazioni.
+L'export e i risultati seguono tutti i filtri attivi; la mappa conserva il
+contesto degli altri luoghi quando apri un dossier.
+
+Sono modificati esclusivamente componenti, layout e route custom src/ads,
+oltre agli asset aggiunti in public/ads-atlas. Configurazioni e dipendenze
+rimangono invariate. Il layout scuro riguarda soltanto l'Atlante.
+
+VERIFICHE
+Build: 11 pagine completate.
+Test: periodi, date su intervallo, ricerca, ruoli e conteggi distinti.
+Browser: desktop/mobile, preferiti, confronto, CSV, dossier, filtri, griglia/
+elenco e marcatori. Nessun errore JavaScript o overflow orizzontale mobile.
+Le coordinate temporanee usate per i test dei marker non sono incluse.
+Checksum: i 70 file dello scheletro sCMS continuano a coincidere con upstream.
+
+Gli asset provengono dal pacchetto di draft fornito dall'utente: sfondo raster,
+icone, marker e infografica. Il PNG dimostrativo non è usato come mappa.

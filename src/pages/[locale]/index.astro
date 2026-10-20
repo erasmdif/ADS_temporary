@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { LOCALES } from '../../utils/i18n';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  return LOCALES.map(locale => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+
+const copy = {
+  en: {
+    title: 's:CMS by LAD',
+    description: 'A modern static site Content Management System developed and maintained by LAD: Laboratorio di Archeologia Digitale alla Sapienza.',
+    eyebrow: 'Laboratorio di Archeologia Digitale · Sapienza',
+    intro1Before: 's:CMS is an open source, ready-to-use content management system for ',
+    intro1Link1: 'generating static sites',
+    intro1Mid: ' powered by ',
+    intro1Link2: 'Astro',
+    intro1After: '. It provides data-oriented components for easily ',
+    connecting: 'connecting',
+    displaying: 'displaying',
+    and: ', and ',
+    analyzing: 'analyzing',
+    intro1End: ' research data stored in databases, flat files, or remote sources. Features include interactive maps, searchable tables, and (soon) charts.',
+    intro2: 'Our goal is to enable researchers to publish rich data portals online, pulling information from a wide range of sources — static files, remote services, or online databases. We build components — reusing well-known open source projects — to make integration seamless and offer a simplified workflow for securely publishing content.',
+    whyTitle: 'Why static sites?',
+    whyBody: 'Static sites are fast, secure, and durable: no databases to manage, no code that gets outdated, no performance issues. Once you build and deploy your site, you can be confident it will keep working.',
+    whatTitle: 'What can I do with s:CMS?',
+    whatBody: 'Set up a fully working, secure website in minutes. Combine static pages, text, and images with rich data pulled in real time from remote databases or self-hosted static files. Build maps and fully searchable tables. Customize the layout and look & feel to fit your needs.',
+    quote: 'Think of s:CMS as the public, fully customizable front-end of your research database — now powered by Astro.',
+    ctaTitle: 'Ready to get started?',
+    ctaButton: 'Read the Getting Started guide',
+  },
+  it: {
+    title: 's:CMS by LAD',
+    description: 'Un moderno Content Management System per siti statici, sviluppato e mantenuto da LAD: Laboratorio di Archeologia Digitale alla Sapienza.',
+    eyebrow: 'Laboratorio di Archeologia Digitale · Sapienza',
+    intro1Before: 's:CMS è un content management system open source, pronto all’uso, per ',
+    intro1Link1: 'generare siti statici',
+    intro1Mid: ' basato su ',
+    intro1Link2: 'Astro',
+    intro1After: '. Offre componenti orientati ai dati per ',
+    connecting: 'collegare',
+    displaying: 'visualizzare',
+    and: ' e ',
+    analyzing: 'analizzare',
+    intro1End: ' facilmente dati di ricerca conservati in database, file statici o fonti remote. Include mappe interattive, tabelle ricercabili e (presto) grafici.',
+    intro2: 'Il nostro obiettivo è permettere ai ricercatori di pubblicare online ricchi portali di dati, attingendo da un’ampia gamma di fonti — file statici, servizi remoti o database online. Costruiamo componenti — riutilizzando progetti open source noti — per rendere l’integrazione semplice e offrire un flusso di lavoro snello per pubblicare contenuti in modo sicuro.',
+    whyTitle: 'Perché siti statici?',
+    whyBody: 'I siti statici sono veloci, sicuri e duraturi: nessun database da gestire, nessun codice che invecchia, nessun problema di prestazioni. Una volta costruito e pubblicato il sito, puoi essere certo che continuerà a funzionare.',
+    whatTitle: 'Cosa posso fare con s:CMS?',
+    whatBody: 'Metti in piedi un sito web sicuro e completamente funzionante in pochi minuti. Combina pagine statiche, testo e immagini con dati ricchi, prelevati in tempo reale da database remoti o file statici auto-ospitati. Costruisci mappe e tabelle completamente ricercabili. Personalizza layout e aspetto secondo le tue esigenze.',
+    quote: 'Pensa a s:CMS come al front-end pubblico e completamente personalizzabile del tuo database di ricerca — ora basato su Astro.',
+    ctaTitle: 'Pronto a iniziare?',
+    ctaButton: 'Leggi la guida "Per iniziare"',
+  },
+};
+
+const t = copy[locale as keyof typeof copy];
+---
+
+<BaseLayout locale={locale} title={t.title} description={t.description}>
+  <div class="mx-auto" style="max-width: 920px;">
+    <p class="text-uppercase mb-4" style="font-size: 0.75rem; letter-spacing: 0.14em; color: var(--bs-gray-700);">
+      {t.eyebrow}
+    </p>
+    <h1 style="font-size: 3.5rem; line-height: 1.05;">{t.title}</h1>
+    <p class="lead mt-4" style="max-width: 680px; color: var(--bs-gray-700);">
+      {t.description}
+    </p>
+  </div>
+
+  <hr class="my-5" style="border-color: var(--bs-border-color);" />
+
+  <div class="mx-auto" style="max-width: 760px;">
+    <p style="font-size: 1.125rem; line-height: 1.75;">
+      {t.intro1Before}{' '}
+      <a href="https://www.cloudflare.com/en-gb/learning/performance/static-site-generator/" target="_blank" rel="noreferrer">{t.intro1Link1}</a>{t.intro1Mid}
+      <a href="https://astro.build/" target="_blank" rel="noreferrer">{t.intro1Link2}</a>{t.intro1After}
+      <strong>{t.connecting}</strong>, <strong>{t.displaying}</strong>{t.and}<strong>{t.analyzing}</strong>{t.intro1End}
+    </p>
+    <p style="font-size: 1.125rem; line-height: 1.75;">
+      {t.intro2}
+    </p>
+  </div>
+
+  <div class="row g-5 mt-2 pt-5" style="max-width: 920px; margin-left: auto; margin-right: auto; border-top: 1px solid var(--bs-border-color);">
+    <div class="col-12 col-md-6">
+      <h2 style="font-size: 1.75rem;">{t.whyTitle}</h2>
+      <p style="color: var(--bs-gray-700);">
+        {t.whyBody}
+      </p>
+    </div>
+    <div class="col-12 col-md-6">
+      <h2 style="font-size: 1.75rem;">{t.whatTitle}</h2>
+      <p style="color: var(--bs-gray-700);">
+        {t.whatBody}
+      </p>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-5 pt-3" style="max-width: 760px;">
+    <blockquote class="ps-4" style="border-left: 2px solid var(--bs-primary); margin: 0;">
+      <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; line-height: 1.5; margin: 0; font-weight: 400;">
+        {t.quote}
+      </p>
+    </blockquote>
+  </div>
+
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-5 pt-5" style="max-width: 920px; margin-left: auto; margin-right: auto; border-top: 1px solid var(--bs-border-color);">
+    <h2 class="m-0" style="font-size: 1.5rem;">{t.ctaTitle}</h2>
+    <a href={`/${locale}/docs/guides/getting-started`} class="btn btn-primary">
+      {t.ctaButton}
+    </a>
+  </div>
+</BaseLayout>

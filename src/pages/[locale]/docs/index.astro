@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { LOCALES, localizeCollection } from '../../../utils/i18n';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  return LOCALES.map(locale => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+
+const docs = await getCollection('docs');
+const localized = localizeCollection(docs, 'docs', LOCALES).filter(d => d.locale === locale);
+
+function getCategory(slug: string) {
+  const parts = slug.split('/');
+  return parts.length > 1 ? parts[0] : 'other';
+}
+
+const copy: Record<string, { title: string; lead: string; guides: string; components: string }> = {
+  en: { title: 'Documentation', lead: 'Guides, component references, and live examples for s:CMS.', guides: 'Guides', components: 'Components' },
+  it: { title: 'Documentazione', lead: 'Guide, riferimenti dei componenti ed esempi live per s:CMS.', guides: 'Guide', components: 'Componenti' },
+};
+const t = copy[locale];
+
+const categories = [
+  { key: 'guides',     label: t.guides,     icon: '📖' },
+  { key: 'components', label: t.components, icon: '🧩' },
+];
+
+function docsInCategory(key: string) {
+  return localized
+    .filter(d => getCategory(d.slug) === key && !d.entry.data.draft)
+    .sort((a, b) => (a.entry.data.order ?? 999) - (b.entry.data.order ?? 999));
+}
+
+function docHref(slug: string) {
+  return `/${locale}/docs/${slug}`;
+}
+---
+
+<BaseLayout locale={locale} title={t.title} description="Guides and component reference for s:CMS">
+  <main class="container py-4">
+    <div>
+      <h1>{t.title}</h1>
+      <p class="lead text-secondary">
+        {t.lead}
+      </p>
+
+      {categories.map(({ key, label, icon }) => {
+        const items = docsInCategory(key);
+        if (items.length === 0) return null;
+        return (
+          <section class="mt-5">
+            <h2 class="h4 fw-bold mb-3">{icon} {label}</h2>
+            <div class="row g-3">
+              {items.map(({ slug, entry }) => (
+                <div class="col-12 col-md-6">
+                  <a
+                    href={docHref(slug)}
+                    class="card p-4 h-100 text-decoration-none d-block"
+                  >
+                    <h3 class="h5 fw-semibold text-body mb-2 mt-0">
+                      {entry.data.title}
+                    </h3>
+                    <p class="text-secondary mb-0 small">
+                      {entry.data.description}
+                    </p>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  </main>
+</BaseLayout>

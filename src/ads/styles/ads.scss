@@ -1,0 +1,23 @@
+$primary: #822433;
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import './legacy-style.css';
+
+body.ads-site { margin: 0; padding: 0; background: white; color: #333; font-family: Inter, system-ui, sans-serif; }
+.ads-navbar { background: #822433; }
+.custom-header { background: linear-gradient(135deg, #e6edf2, #f4f7f9); color: #2b3e50; border-radius: 0 0 40px 40px; box-shadow: 0 4px 12px rgb(0 0 0 / 10%); }
+.main-title { font-size: 2rem; font-weight: 600; color: #2b3e50; }
+.subtitle { font-size: 1.2rem; font-weight: 400; color: #5b7d99; }
+.ads-logo { border-radius: 12px; box-shadow: 0 4px 8px rgb(0 0 0 / 10%); }
+.ads-footer { background: #f8f4e9; border-top: 4px solid #5a3921; padding: 1.5rem 0; color: #5a3921; line-height: 1.5; }
+.ads-footer a { color: #5a3921; text-decoration: none; }
+.ads-footer a:hover { color: #8c6a56; text-decoration: underline; }
+.ads-footer-sapienza { filter: brightness(0) contrast(100%); }
+.ads-skip-link { position: absolute; top: -100px; left: 1rem; z-index: 10000; padding: .75rem; background: white; }
+.ads-skip-link:focus { top: .5rem; }
+.ads-note-collapsed { max-height: 12em; overflow: hidden; }
+.ads-site input[type='checkbox'] { display: inline-block; }
+.leaflet-marker-icon { transition: none; }
+.leaflet-marker-icon:hover { transform: none; }
+@media (min-width: 576px) { .main-title { font-size: 2.5rem; } }
+@media (max-width: 575px) { .dashboard-map { height: 380px; } .ads-site main { overflow-wrap: anywhere; } }

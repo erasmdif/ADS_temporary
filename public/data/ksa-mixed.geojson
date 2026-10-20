@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"name": "ksa",
+"features": [
+{ "type": "Feature", "label": "KM 050", "properties": {"label":"KM 050"}, "geometry": { "type": "Point", "coordinates": [ 36.954649105549279, 37.259593782220087 ]} },
+{ "type": "Feature", "label": "KM 055", "properties": {"label":"KM 055"},"geometry": { "type": "Point", "coordinates": [ 36.890969103556273, 37.419325751809147 ]} },
+{ "type": "Feature", "label": "KM 040", "properties": {"label":"KM 040"},"geometry": { "type": "Point", "coordinates": [ 36.952079121889497, 37.288459349669857 ] } },
+{ "type": "Feature", "label": "KM 088", "properties": {"label":"KM 088"},"geometry": { "type": "Point", "coordinates": [ 37.124069775070708, 37.281317696743997 ]} },
+{ "type": "Feature", "label": "KM 128", "properties": {"label":"KM 128"},"geometry": { "type": "Point", "coordinates": [ 36.842944444908213, 37.52519444580949 ]} },
+{ "type": "Feature", "label": "KM 227", "properties": {"label":"KM 227"},"geometry": { "type": "Point", "coordinates": [ 37.035555556205878, 37.357611112715652 ]} },
+
+{ "type": "Feature", "label": "KM 050 Poly", "properties": {"label":"KM 050 Poly"},"geometry": { "type": "Polygon", "coordinates": [[[ 36.954649105549279, 37.259593782220087 ], [ 36.890969103556273, 37.419325751809147 ], [ 36.952079121889497, 37.288459349669857 ], [ 37.124069775070708, 37.281317696743997 ]]]} }
+]
+}

@@ -1,0 +1,86 @@
+---
+title: "Crediti"
+date: "2023-10-01"
+slug: "crediti"
+description: "About us"
+menu_position: 1
+---
+
+import { Card, Col, Row, Badge, OverlayTrigger, Tooltip, ButtonGroup, Button } from "react-bootstrap";
+
+# ADS: Archivio digitale Sabino
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+<div className="my-5 border-top"></div>
+
+{/* Pulsanti di navigazione */}
+<ButtonGroup className="d-flex justify-content-center mb-5">
+  <Button 
+    variant="outline-primary" 
+    className="me-3 rounded-pill px-4 py-2" 
+    onClick={() => document.getElementById("responsabile-scientifico").scrollIntoView({ behavior: "smooth" })}>Responsabile Scientifico</Button>
+  <Button 
+    variant="outline-secondary" 
+    className="rounded-pill px-4 py-2" 
+    onClick={() => document.getElementById("collaboratori").scrollIntoView({ behavior: "smooth" })}>Collaboratori Scientifici</Button>
+</ButtonGroup>
+
+{/* Sezione Responsabile Scientifico */}
+<div id="responsabile-scientifico" className="text-center my-5">
+  <Badge bg="primary" className="fs-5 px-3 py-2 rounded-pill">Responsabile scientifico</Badge>
+</div>
+
+<Row className="g-4 mb-5 justify-content-center">
+  <Col sm={4}>
+    <OverlayTrigger
+      overlay={<Tooltip id="longo-tooltip">Professore ordinario di storia medievale presso il dipartimento di Storia Antropologia Religioni Arte Spettacolo (SARAS) della Sapienza Università di Roma</Tooltip>}
+    >
+      <a href="https://corsidilaurea.uniroma1.it/it/users/umbertolongouniroma1it" className="text-decoration-none" target="_blank" rel="noopener noreferrer">
+        <Card
+          className="text-center p-3 bg-white border border-light shadow-sm rounded-4 hover-card"
+        >
+          <div className="d-flex justify-content-center py-3">
+            <img src="/images/umberto_longo.png" alt="Umberto Longo" className="rounded-circle border border-3 border-primary shadow" style={{ width: "120px", height: "120px", objectFit: "cover" }} />
+          </div>
+          <Card.Body>
+            <Card.Title className="fs-5 fw-bold text-primary">Umberto Longo</Card.Title>
+          </Card.Body>
+        </Card>
+      </a>
+    </OverlayTrigger>
+  </Col>
+</Row>
+
+<div className="my-5 border-top"></div>
+
+{/* Sezione Collaboratori */}
+<div id="collaboratori" className="text-center my-5">
+  <Badge bg="secondary" className="fs-5 px-3 py-2 rounded-pill">Collaboratori Scientifici</Badge>
+</div>
+
+<Row className="g-4 mb-5 justify-content-center">
+  {[
+    { name: "Alexa Bianchini", subtitle: "Assegnista di ricerca in storia medievale", link: "https://orcid.org/0000-0001-7487-6505", img: "/images/alexa_bianchini.jpg" },
+    { name: "Francesco D'Angelo", subtitle: "Assegnista di ricerca in storia medievale", link: "#", img: "/images/francesco_d_angelo.jpg"},
+  ].map(person => (
+    <Col xs={6} md={3} key={person.name}>
+      <OverlayTrigger
+        overlay={<Tooltip id={`${person.name}-tooltip`}>{person.subtitle}</Tooltip>}
+      >
+        <a href={person.link} className="text-decoration-none" target="_blank" rel="noopener noreferrer">
+          <Card
+            className="text-center p-3 bg-white border border-light shadow-sm rounded-4 hover-card"
+          >
+            <div className="d-flex justify-content-center py-3">
+              <img src={person.img} alt={person.name} className="rounded-circle border border-3 border-secondary shadow" style={{ width: "100px", height: "100px", objectFit: "cover" }} />
+            </div>
+            <Card.Body>
+              <Card.Title className="fs-6 fw-bold text-secondary">{person.name}</Card.Title>
+            </Card.Body>
+          </Card>
+        </a>
+      </OverlayTrigger>
+    </Col>
+  ))}
+</Row>

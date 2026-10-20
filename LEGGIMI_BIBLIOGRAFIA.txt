@@ -1,0 +1,71 @@
+AGGIORNAMENTO REPERTORIO BIBLIOGRAFICO ADS
+
+Copia src e public nella cartella principale ADS_scms_astro, unendole a quelle
+esistenti e sovrascrivendo i file omonimi. Non eliminare le cartelle prima.
+La patch si applica al progetto con le precedenti revisioni di Atlante,
+Fonti, header condiviso e Home.
+
+Il tuo .env e le dipendenze restano invariati. Non serve npm ci/npm install.
+Arresta il server con Ctrl+C e riavvia:
+
+npm run dev -- --force
+
+Ricarica il browser con Ctrl+Shift+R se necessario.
+
+NOVITA
+- Repertorio editoriale porpora/pergamena, con filtri orizzontali e citazioni.
+- Indice degli autori e percorsi tematici; categorie e conteggi da Directus.
+- Ricerca in campi bibliografici; filtri autore, volume/rivista, editori,
+  presenza di link esterno, fonti collegate, luoghi delle fonti e raccolta.
+- Dettaglio aperto nella voce con tutti i campi popolati, copia citazione,
+  link esterno quando valido, permalink e rimandi alle fonti.
+- Ogni rimando conserva tipo di legame e pagine della relazione M:N;
+  il conteggio delle fonti esclude i duplicati della stessa fonte.
+- Aprire una voce non la seleziona. Le caselle alimentano una raccolta
+  indipendente da filtri, apertura e paginazione, conservata nel browser.
+- Export CSV/TXT sia di tutti i risultati filtrati sia della raccolta.
+- Paginazione 10/25/50 voci. Layout adattato a mobile.
+- Footer dedicato alla bibliografia; header/navbar condivisi invariati.
+
+INDICE ALFABETICO
+Il campo autore e testo libero. La regola automatica interpreta solo il
+formato iniziali + cognome (G. Crocetti, A. De Luigi, A.M. D’Achille).
+Conserva particelle/cognomi composti e considera il primo autore quando
+le firme multiple sono separate esplicitamente. Non deduce il cognome dai
+nomi scritti per esteso. Il gruppo # raccoglie le firme da normalizzare,
+che restano integralmente consultabili e ricercabili.
+
+Per introdurre attribuzioni verificate editorialmente, modifica:
+src/ads/content/bibliography-author-keys.js
+
+Formato di una voce nel dizionario:
+"Nome autore come nel database": "Chiave cognome verificata"
+
+La mappa viene fornita vuota: non sono inserite attribuzioni arbitrarie.
+Il testo originale del campo autore resta sempre visibile.
+
+DATI
+Nessun record del JSON dimostrativo del draft viene importato.
+Stora della storiografia e Storia della storiografia rimangono categorie
+separate; le voci prive di argomento sono consultabili.
+Editori mantiene il significato del campo originale, senza assumere che
+si tratti di una casa editrice. Non viene introdotto un filtro anno:
+non e presente un anno bibliografico autonomo nel database.
+Il link esterno non viene presentato come garanzia di testo completo o
+accesso aperto. I collegamenti alle fonti provengono esclusivamente dalle
+relazioni Directus; i luoghi derivano dalle fonti collegate.
+
+La citazione copiata/esportata e composta dai campi disponibili: non e
+una normalizzazione bibliografica certificata. In caso di copia automatica
+non consentita, si apre un campo con il testo selezionabile.
+
+VERIFICHE
+Build su 11 pagine; modello per cognomi, categorie, link, conteggi distinti,
+filtri combinati e citazioni. Browser desktop/mobile: apertura/selezione,
+raccolta, paginazione, categorie, link, export di tutte le pagine,
+permalink, associazioni reali, copia alternativa e header condiviso.
+Nessun errore JavaScript o scorrimento orizzontale a 390/320 px.
+I 70 file dello scheletro sCMS rimangono identici.
+
+Sono modificati solo file custom src/ads e asset public/ads-bibliography.
+Nessun cambiamento a database, .env, configurazioni, dipendenze o deploy.

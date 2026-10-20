@@ -1,0 +1,99 @@
+/* Generale */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  /* Contenitore della tabella */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Intestazioni della tabella */
+  .data-table thead {
+    background-color: #0077b6;
+    color: white;
+    text-transform: uppercase;
+  }
+  
+  .data-table th {
+    padding: 14px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #005f8d;
+    white-space: nowrap;
+  }
+  
+  /* Righe della tabella */
+  .data-table tbody tr {
+    transition: background 0.3s ease-in-out;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .data-table tbody tr:nth-child(even) {
+    background-color: #f1f8ff;
+  }
+  
+  .data-table tbody tr:hover {
+    background-color: #e3f2fd;
+  }
+  
+  /* Celle della tabella */
+  .data-table td {
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  /* Per le celle che devono supportare testo lungo */
+  .data-table td div {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  /* Note: testo lungo con gestione del wrapping */
+  .data-table .note-cell {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 400px;
+    line-height: 1.4;
+  }
+  
+  /* Stile per evidenziare le date incerte */
+  .red-text {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* Miglioramento dei link */
+  .data-table a {
+    color: #0077b6;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .data-table a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Miglioramento della barra di ricerca */
+  .data-table-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  

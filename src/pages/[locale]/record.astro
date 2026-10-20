@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RecordView from '../../components/RecordView.tsx';
+import { LOCALES } from '../../utils/i18n';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  return LOCALES.map(locale => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params;
+---
+<BaseLayout locale={locale} title="Record">
+  <RecordView client:load />
+</BaseLayout>

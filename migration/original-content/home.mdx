@@ -1,0 +1,95 @@
+---
+title: "Homepage"
+date: "2023-10-01"
+slug: "home"
+description: "Homepage project"
+---
+
+import { Link } from "gatsby";
+import { Container, Row, Col, Card } from "react-bootstrap";
+import { FileEarmarkText, Book, GeoAlt, PeopleFill, JournalText, Globe } from 'react-bootstrap-icons';
+
+
+<Container className="py-5 mb-5 px-0">
+  <div className="text-center mb-4">
+    <h1 className="fw-bold" style={{ color: "#6c9dad" }}>PANORAMI DI DIVERSITÀ</h1>
+    <hr className="mx-auto" style={{ width: '80px', height: '2px', backgroundColor: '#6c9dad', opacity: 1 }} />
+    <p className="lead mb-4">Ebrei, Cristiani e spazio Sacro tra Sabina e Valle dell'Aniene</p>
+  </div>
+
+  <Card className="border-0 shadow-sm p-4">
+    <p className="mb-3">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut turpis quis sem porta volutpat. 
+      Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer sit amet nulla non ipsum.
+    </p>
+  </Card>
+</Container>
+
+<Container className="my-5">
+  <h2 className="text-center fw-light mb-5 position-relative">
+    <span className="px-3 bg-white position-relative z-1" style={{ color: '#6c9dad' }}>Esplora il progetto</span>
+    <span className="position-absolute top-50 start-0 end-0 border-top" style={{ height: '1px', borderColor: '#6c9dad', opacity: 0.5 }}></span>
+  </h2>
+
+  <Row className="g-4">
+    {[
+      { title: "894 fonti antiche", icon: <FileEarmarkText />, desc: "Documenti originali che testimoniano la presenza ebraica e cristiana nei territori studiati", link: "/fonti" },
+      { title: "645 riferimenti bibliografici", icon: <Book />, desc: "Opere scientifiche e fonti secondarie utilizzate nel progetto", link: "/bibliografia" },
+      { title: "337 collegamenti geografici ricostruiti", icon: <GeoAlt />, desc: "Associazioni tra luoghi, eventi e figure storiche mappate sul territorio", link: "/atlante" }
+    ].map((item, idx) => (
+      <Col key={idx} md={4}>
+        <Card className="h-100 border-0 shadow-sm text-center rounded-3">
+          <Card.Body className="d-flex flex-column justify-content-center p-4">
+            <div className="mb-3 mx-auto rounded-circle d-flex align-items-center justify-content-center bg-opacity-10" style={{ backgroundColor: "#6c9dad20", color: "#6c9dad", width: '70px', height: '70px', fontSize: '1.75rem' }}>
+              {item.icon}
+            </div>
+            <h3 className="mb-3 fw-bold" style={{ color: "#6c9dad" }}>{item.title}</h3>
+            <Card.Text className="text-muted small mb-0">{item.desc}</Card.Text>
+            <Link to={item.link} className="stretched-link"></Link>
+          </Card.Body>
+        </Card>
+      </Col>
+    ))}
+  </Row>
+</Container>
+
+<Container className="my-5">
+  <Row className="g-4">
+    {[
+      {
+        title: "Chi siamo",
+        desc: "Scopri il team scientifico e accademico che ha contribuito alla realizzazione del progetto.",
+        icon: <PeopleFill />,
+        link: "/crediti",
+        button: "Scopri"
+      },
+      {
+        title: "Risultati della ricerca",
+        desc: "Esplora pubblicazioni e materiali prodotti nell’ambito del progetto.",
+        icon: <JournalText />,
+        link: "/produzione",
+        button: "Scopri"
+      },
+      {
+        title: "Esplora l'atlante della Sabina",
+        desc: "Le collocazioni mostrate in questo sito sono state prodotte nell'ambito del progetto PNRR Spoke 1 WP5.",
+        icon: <Globe />,
+        link: "https://sabinasacra.lad-sapienza.it/",
+        button: "Visita il sito"
+      }
+    ].map((item, idx) => (
+      <Col key={idx} md={4}>
+        <Card className="h-100 border-0 shadow-sm d-flex flex-row align-items-center p-4">
+          <div className="me-4 rounded-circle d-flex align-items-center justify-content-center bg-opacity-10" style={{ backgroundColor: "#6c9dad20", color: "#6c9dad", width: '80px', height: '80px', fontSize: '2rem', flexShrink: '0' }}>
+            {item.icon}
+          </div>
+          <div>
+            <Card.Title className="h5 mb-3 fw-bold" style={{ color: "#6c9dad" }}>{item.title}</Card.Title>
+            <Card.Text className="mb-3">{item.desc}</Card.Text>
+            <Link to={item.link} className="btn btn-sm mt-2 text-white" style={{ background: '#6c9dad', border: 'none' }}>{item.button}</Link>
+          </div>
+        </Card>
+      </Col>
+    ))}
+  </Row>
+</Container>

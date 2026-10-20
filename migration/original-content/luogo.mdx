@@ -1,0 +1,310 @@
+---
+title: "Record Luogo"
+date: "2023-10-01"
+slug: "luogo"
+description: ""
+---
+
+import { Record, Field } from "../../modules/scms.js";
+import "../layout/style.css";
+import { Row, Col } from "react-bootstrap";
+import { useState } from "react";
+import Collabora from "../components/collabora"
+
+
+<Record>
+<div className="p-3 text-white bg-primary rounded-top border-top border-5 border-danger">
+  <div className="ms-3">
+    <h2 className="mb-1">
+      <Field name={["nome_luogo"]} />{" "}
+      <span className="fs-4 fw-normal">
+        (<Field name={["localita"]} transformer={(value) => value || "Località non specificata"} />)
+      </span>
+    </h2>
+  </div>
+</div>
+
+  <div className="p-4 bg-white border rounded-bottom shadow-sm">
+    <Row className="g-4">
+      <Col lg={6}>
+        {/* Sezione Note */}
+        <div className="card border-0 shadow-sm h-100">
+          <div className="card-header bg-white border-bottom py-3">
+            <h2 className="h4 mb-0 text-dark">
+              <i className="bi bi-journal-text me-2"></i>Note
+            </h2>
+          </div>
+          <div className="card-body">
+            <Field 
+              name={["note"]} 
+              transformer={(note) => {
+                const [expanded, setExpanded] = useState(false);
+                const maxLength = 300;
+                
+                if (!note) {
+                  return <p className='text-muted small'>Nessuna nota disponibile per questo luogo</p>;
+                }
+                
+                const displayText = expanded ? note : note.slice(0, maxLength) + (note.length > maxLength ? '...' : '');
+                
+                return (
+                  <div>
+                    <div 
+                      className="text-justify" 
+                      dangerouslySetInnerHTML={{ __html: displayText }} 
+                    />
+                    {note.length > maxLength && (
+                      <button 
+                        onClick={() => setExpanded(!expanded)} 
+                        className="btn btn-link p-0 small mt-2"
+                      >
+                        {expanded ? 'Mostra meno' : 'Scopri di più'}
+                      </button>
+                    )}
+                  </div>
+                );
+              }}
+            />
+          </div>
+        </div>
+      </Col>
+
+      <Col lg={6}>
+        {/* Monumenti Associati */}
+        <div className="card border-0 shadow-sm mb-4">
+          <div className="card-header bg-white border-bottom py-3">
+            <h2 className="h4 mb-0 text-dark">
+              <i className="bi bi-building me-2"></i>Monumenti Associati
+            </h2>
+            <p className="mb-0 text-muted small">
+              Tutti i monumenti collegati a questo luogo
+            </p>
+          </div>
+          <div className="card-body">
+            <Field 
+              name={["monumenti_associati"]}
+              transformer={(monumenti) => {
+                if (!monumenti?.length) return (
+                  <div className="text-muted small">Nessun monumento associato</div>
+                );
+
+                return (
+                  <div className="row row-cols-1 g-3">
+                    {monumenti.map((monumento) => (
+                      <div key={monumento.id} className="col">
+                        <div className="card h-100 shadow-sm border-0">
+                          <div className="row g-0">
+                            <div className="col-md-4 d-flex align-items-center p-3">
+                              {monumento.link_immagine ? (
+                                <img
+                                  src={
+                                    monumento.link_immagine.includes("upload.wikimedia.org/wikipedia/commons/")
+                                      ? `https://upload.wikimedia.org/wikipedia/commons/thumb/${monumento.link_immagine.split("/")[monumento.link_immagine.split("/").length - 3]}/${monumento.link_immagine.split("/")[monumento.link_immagine.split("/").length - 2]}/${monumento.link_immagine.split("/").pop()}/300px-${monumento.link_immagine.split("/").pop()}`
+                                      : monumento.link_immagine.includes("commons.wikimedia.org/wiki/File:")
+                                        ? `https://commons.wikimedia.org/wiki/Special:FilePath/${decodeURIComponent(monumento.link_immagine.split("File:").pop().split("?")[0])}`
+                                        : monumento.link_immagine.includes("#/media/File:")
+                                          ? `https://commons.wikimedia.org/wiki/Special:FilePath/${decodeURIComponent(monumento.link_immagine.split("#/media/File:").pop().split("/")[0].split("?")[0])}`
+                                          : monumento.link_immagine
+                                  }
+                                  alt={`${monumento.nome_luogo} - anteprima`}
+                                  className="img-fluid rounded-start h-100"
+                                  style={{ objectFit: 'cover' }}
+                                  onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = 'data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="60" viewBox="0 0 80 60"%3E%3Crect width="80" height="60" fill="%23e9ecef"/%3E%3Ctext x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%236c757d" font-family="Arial"%3ENo image%3C/text%3E%3C/svg%3E';
+                                  }}
+                                />
+                              ) : (
+                                <div className="w-100 h-100 d-flex align-items-center justify-content-center bg-light">
+                                  <i className="bi bi-image text-muted fs-1"></i>
+                                </div>
+                              )}
+                            </div>
+                            <div className="col-md-8">
+                              <div className="card-body p-3">
+                                <h5 className="card-title">
+                                  <a
+                                    href={`/monumento/?tb=luogo_di_interesse&id=${monumento.id}`}
+                                    className="text-decoration-none text-dark"
+                                  >
+                                    {monumento.nome_luogo || "ND"}
+                                  </a>
+                                </h5>
+                                <div className="d-flex flex-wrap gap-2 mb-2">
+                                  {monumento.tipo_monumento && (
+                                    <span className="badge bg-light text-dark border">
+                                      {monumento.tipo_monumento}
+                                    </span>
+                                  )}
+                                  {monumento.caratteristica_di_dettaglio && (
+                                    <span className="badge bg-light text-dark border">
+                                      {monumento.caratteristica_di_dettaglio}
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="card-text small text-muted mb-1">
+                                  {monumento.anno_inizio || "ND"}
+                                  {monumento.periodo_fine && monumento.periodo_fine <= new Date().getFullYear() ? ` — ${monumento.periodo_fine}` : ''}
+                                </p>
+                                <a 
+                                  href={`/monumento/?tb=luogo_di_interesse&id=${monumento.id}`}
+                                  className="btn btn-sm btn-outline-primary mt-2"
+                                >
+                                  Scopri di più
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Personaggi Associati */}
+        <div className="card border-0 shadow-sm">
+          <div className="card-header bg-white border-bottom py-3">
+            <h2 className="h4 mb-0 text-dark">
+              <i className="bi bi-people me-2"></i>Personaggi Associati
+            </h2>
+            <p className="mb-0 text-muted small">
+              Tutte le persone collegate a questo luogo
+            </p>
+          </div>
+          <div className="card-body">
+            <Field 
+              name={["persone_associate_al_luogo"]}
+              transformer={(personaggi) => {
+                if (!personaggi?.length) return (
+                  <div className="text-muted small">Nessun personaggio associato</div>
+                );
+
+                const personaggiAssociati = personaggi.map((assoc) => assoc.persona_id);
+                
+                return (
+                  <div className="row row-cols-1 g-3">
+                    {personaggiAssociati.map((personaggio) => (
+                      <div key={personaggio.id} className="col">
+                        <div className="card h-100 shadow-sm border-0">
+                          <div className="row g-0">
+                            <div className="col-md-4 d-flex align-items-center p-3">
+                              <div className="w-100 h-100 d-flex align-items-center justify-content-center bg-light rounded-start">
+                                <i className="bi bi-person text-muted fs-1"></i>
+                              </div>
+                            </div>
+                            <div className="col-md-8">
+                              <div className="card-body p-3">
+                                <h5 className="card-title">
+                                  <a
+                                    href={`/personaggio/?tb=persona&id=${personaggio.id}`}
+                                    className="text-decoration-none text-dark"
+                                  >
+                                    {personaggio.nome_e_cognome || "ND"}
+                                  </a>
+                                </h5>
+                                <div className="d-flex flex-wrap gap-2 mb-2">
+                                  {personaggio.ruolo && (
+                                    <span className="badge bg-light text-dark border">
+                                      {personaggio.ruolo}
+                                    </span>
+                                  )}
+                                  {personaggio.periodo && (
+                                    <span className="badge bg-light text-dark border">
+                                      {personaggio.periodo}
+                                    </span>
+                                  )}
+                                </div>
+                                <a 
+                                  href={`/personaggio/?tb=persona&id=${personaggio.id}`}
+                                  className="btn btn-sm btn-outline-primary mt-2"
+                                >
+                                  Scopri di più
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              }}
+            />
+          </div>
+        </div>
+      </Col>
+    </Row>
+
+    {/* Fonti - Mantenuto uguale */}
+    <div className="mt-5 pt-4 border-top">
+      <h4 className="text-primary mb-4 ms-2">
+        <i className="bi bi-archive me-2"></i>Fonti
+      </h4>
+      
+      <Field 
+        name={["fonti"]}
+        transformer={(fonti) => {
+          if (!fonti?.length) return (
+            <div className="text-muted ms-2">Nessuna fonte catalogata</div>
+          );
+
+          const fontiRaggruppate = fonti.reduce((acc, fonte) => {
+            const categoria = fonte.fonte_id.tipologia_specifica 
+              ? fonte.fonte_id.tipologia_specifica.charAt(0).toUpperCase() + 
+                fonte.fonte_id.tipologia_specifica.slice(1).toLowerCase()
+              : "Altro";
+            if (!acc[categoria]) acc[categoria] = [];
+            acc[categoria].push(fonte.fonte_id);
+            return acc;
+          }, {});
+
+          return (
+            <div className="accordion" id="fontiAccordion">
+              {Object.entries(fontiRaggruppate).map(([categoria, fonti], index) => (
+                <div key={index} className="accordion-item border-0 mb-2">
+                  <h5 className="accordion-header">
+                    <button 
+                      className="accordion-button bg-light text-dark collapsed shadow-none" 
+                      type="button" 
+                      data-bs-toggle="collapse" 
+                      data-bs-target={`#collapse${index}`}
+                    >
+                      {categoria} <span className="badge bg-primary ms-2">{fonti.length}</span>
+                    </button>
+                  </h5>
+                  <div 
+                    id={`collapse${index}`} 
+                    className="accordion-collapse collapse bg-white"
+                    data-bs-parent="#fontiAccordion"
+                  >
+                    <div className="accordion-body pt-0">
+                      <ul className="list-unstyled">
+                        {fonti.map((fonte) => (
+                          <li key={fonte.id} className="mb-2 pb-2 border-bottom d-flex justify-content-between align-items-center">
+                            <span className="text-dark">{fonte.nome}</span>
+                            <a 
+                              href={`/fonte/?tb=fonte&id=${fonte.id}`}
+                              className="text-decoration-none text-primary ms-3"
+                            >
+                              <span className="badge bg-primary">Scopri di più</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          );
+        }}
+      />
+    </div>
+  </div>
+</Record>
+
+ <Collabora />

@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Public+Sans:wght@400;500;600;700&display=swap');
+
+/* Import Bootstrap compiled CSS */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+/* Editorial design system: serif headings on warm paper, terracotta accent */
+:root {
+  --bs-primary: #a8431e;
+  --bs-secondary: #7a6a56;
+  --bs-success: #4c7a53;
+  --bs-body-font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  --bs-body-color: #3a332c;
+  --bs-body-bg: #faf7f2;
+  --bs-heading-color: #241f1a;
+  --bs-border-color: #e4ddd0;
+  --bs-dark: #241f1a;
+  --bs-light: #f6f1e8;
+  --bs-tertiary-bg: #f6f1e8;
+  --bs-gray-100: #f1ebe0;
+  --bs-gray-700: #5c5348;
+  --bs-gray-800: #3a332c;
+  --bs-gray-900: #241f1a;
+  --bs-link-color: #a8431e;
+  --bs-link-hover-color: #c96a41;
+
+  /* Fixed dark-ink footer band, deliberately independent of theme — see
+     BaseLayout.astro's <footer>. Not overridden under [data-bs-theme="dark"]
+     on purpose: it must render the same in both modes, so it can't reuse
+     --bs-heading-color once that token flips to a light value in dark mode. */
+  --scms-footer-bg: #241f1a;
+}
+
+/* Editorial design system, dark mode: warm ink instead of warm paper — same
+   terracotta identity, lightened for contrast against a dark background
+   rather than reused as-is (the light-mode value reads muddy on dark). */
+[data-bs-theme="dark"] {
+  --bs-primary: #e2814f;
+  --bs-secondary: #a89984;
+  --bs-success: #7fa686;
+  --bs-body-color: #cabfae;
+  --bs-body-bg: #1b1613;
+  --bs-heading-color: #f3e9da;
+  --bs-border-color: #3a3128;
+  --bs-dark: #f3e9da;
+  --bs-light: #241e19;
+  --bs-tertiary-bg: #241e19;
+  --bs-gray-100: #2c2419;
+  --bs-gray-700: #a99d8c;
+  --bs-gray-800: #ede0cd;
+  --bs-gray-900: #12100d;
+  --bs-link-color: #e2814f;
+  --bs-link-hover-color: #f0a06e;
+}
+
+body {
+  font-family: var(--bs-body-font-family);
+  color: var(--bs-body-color);
+  background: var(--bs-body-bg);
+  line-height: 1.75;
+}
+
+/* Headings: serif, restrained weight — negative letter-spacing suited to
+   sans-serif display type reads oddly on a serif face, so keep it light */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--bs-heading-color);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+h1 {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.875rem;
+}
+
+h3, h4, h5, h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+:where(article, main, section, .markdown-content) > :is(h1, h2, h3, h4, h5, h6):first-child {
+  margin-top: 0;
+}
+
+/*
+ * Prose typography for rendered Markdown/MDX content. Applies to any
+ * `.markdown-content` wrapper — used by both docs/[...slug].astro and
+ * blog/[...slug].astro — so both content types share one typography
+ * system instead of each page type maintaining its own.
+ */
+.markdown-content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  color: var(--bs-dark);
+}
+
+.markdown-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--bs-gray-800);
+}
+
+.markdown-content p {
+  margin-bottom: 1.5rem;
+  color: var(--bs-gray-700);
+  line-height: 1.7;
+}
+
+.markdown-content blockquote {
+  margin: 2rem 0;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--bs-primary);
+}
+
+.markdown-content blockquote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--bs-heading-color);
+}
+
+.markdown-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content ul, .markdown-content ol {
+  margin-bottom: 1.5rem;
+  margin-left: 2rem;
+}
+
+.markdown-content li {
+  margin-bottom: 0.5rem;
+  color: var(--bs-gray-700);
+}
+
+.markdown-content ul li {
+  list-style-type: disc;
+}
+
+.markdown-content strong {
+  font-weight: 600;
+  color: var(--bs-dark);
+}
+
+.markdown-content a {
+  color: var(--bs-primary);
+  text-decoration: none;
+}
+
+.markdown-content a:hover {
+  color: var(--bs-primary);
+  text-decoration: underline;
+}
+
+.markdown-content code {
+  background-color: var(--bs-gray-100);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+}
+
+.markdown-content pre {
+  background-color: var(--bs-gray-900);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-content pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Buttons: flat terracotta fill, no gradient or lift */
+.btn-primary {
+  background: var(--bs-primary);
+  border-color: var(--bs-primary);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: #8a3719;
+  border-color: #8a3719;
+}
+
+.btn-outline-secondary {
+  border: 1px solid var(--bs-border-color);
+  color: var(--bs-body-color);
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--bs-heading-color);
+  border-color: var(--bs-heading-color);
+  color: #fff;
+}
+
+/* Cards: flat, bordered — no shadow, no hover lift */
+.card {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.375rem;
+  box-shadow: none;
+  background: #fffbf3;
+  transition: border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--bs-primary);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+/* Links */
+a {
+  color: var(--bs-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--bs-secondary);
+}
+
+/* Form controls */
+.form-control, .form-select {
+  border-radius: 0.375rem;
+  border: 1px solid var(--bs-border-color);
+  padding: 0.75rem 1rem;
+  font-family: var(--bs-body-font-family);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.2rem rgba(168, 67, 30, 0.12);
+}
+
+/* Badges */
+.badge {
+  border-radius: 0.25rem;
+  padding: 0.4rem 0.75rem;
+  font-weight: 500;
+  font-family: var(--bs-body-font-family);
+}
+
+/* Navbar */
+.navbar-brand {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.375rem;
+  letter-spacing: -0.01em;
+  color: var(--bs-heading-color) !important;
+}
+
+.nav-link {
+  color: var(--bs-body-color) !important;
+  font-size: 0.9375rem;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--bs-primary) !important;
+}
+
+.dropdown-menu {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 16px rgba(36, 31, 26, 0.08);
+}
+
+.dropdown-item.active,
+.dropdown-item:hover {
+  background: var(--bs-gray-100);
+  color: var(--bs-primary);
+}
+
+/*
+ * Dark-mode overrides for rules above that use a literal hex value instead
+ * of a custom property (so they don't pick up the [data-bs-theme="dark"]
+ * block automatically), plus two hover states that reuse --bs-heading-color
+ * as a background under the assumption it's always dark ink — true in light
+ * mode, not in dark mode where that token becomes light cream instead.
+ */
+[data-bs-theme="dark"] .card {
+  background: #241e19;
+}
+
+[data-bs-theme="dark"] .btn-primary:hover {
+  background: #ef9a6b;
+  border-color: #ef9a6b;
+}
+
+[data-bs-theme="dark"] .btn-outline-secondary:hover {
+  color: #1b1613;
+}
+
+[data-bs-theme="dark"] .form-control:focus,
+[data-bs-theme="dark"] .form-select:focus {
+  box-shadow: 0 0 0 0.2rem rgba(226, 129, 79, 0.18);
+}
+
+[data-bs-theme="dark"] .dropdown-menu {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* Responsive mobile optimization */
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+
+  .btn-primary, .btn-outline-secondary {
+    width: 100%;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+}

@@ -1,0 +1,58 @@
+AGGIORNAMENTO FONTI + HEADER CONDIVISO
+
+Copia src e public nella cartella principale ADS_scms_astro, unendole alle
+cartelle esistenti e sovrascrivendo i file omonimi. Non eliminarle prima.
+Questo aggiornamento si applica al progetto con la precedente revisione Atlante.
+
+Il tuo .env e le dipendenze rimangono invariati. Non serve npm ci/npm install.
+Arresta il server con Ctrl+C e riavvia:
+
+npm run dev -- --force
+
+Ricarica il browser con Ctrl+Shift+R se necessario.
+
+HEADER
+Header e navbar adottano lo stesso tema antracite/bordeaux su tutte le pagine,
+con identità ADS, nome del progetto e menu. Rimossi i precedenti header chiari.
+Il contenuto delle altre sezioni mantiene l'impaginazione esistente.
+Il catalogo usa sfondi uniformi; le incisioni restano soltanto nell'Atlante.
+
+CATALOGO
+- Ricerca in titolo, regesto, nomi, luoghi e segnatura. Cerca/Invio applicano
+  il testo; la ricerca avanzata permette di scegliere i campi.
+- Filtri reali per sei tipologie, intervallo cronologico, estensore e committente
+  (tipo e nome), luoghi, relazioni e conservazione.
+- I filtri si aggiornano subito. Nello stesso gruppo sono alternative; gruppi
+  diversi si combinano. Luogo e relazione devono appartenere alla stessa
+  associazione per soddisfare il filtro.
+- Conteggi dei valori riferiti all'intero archivio, prima dei filtri.
+- Date iniziali/finali incluse, sovrapposizione per le fonti su intervalli.
+  Periodi 500-999, 1000-1499, 1500-1899. Tutte le date include anni esterni.
+  I campi numerici si confermano con Invio o uscendo dal campo.
+- Schede avorio con tipologia, datazione, nome e ruolo di estensore/committente,
+  segnatura, autore/conservazione quando disponibili, regesto espandibile,
+  luoghi e relazioni, conteggio bibliografia e link alla scheda completa.
+- Persona citata non viene mostrata: non esiste nel database strutturato fornito.
+  I nomi non vengono dedotti dal regesto.
+- Griglia/elenco, ordinamento, paginazione e 6/12/24 elementi per pagina.
+- Preferiti condivisi con l'Atlante e conservati nel browser.
+- Export CSV di tutti i risultati filtrati, con tutti i metadati utilizzati e
+  i luoghi/relazioni. Non limitato alla pagina visibile.
+- Filtri e menu richiudibili su mobile; guida dentro la pagina.
+
+DATI E FRAMEWORK
+Continua a essere usato Directus. Nessun dato dimostrativo del draft viene
+importato e nessuna modifica viene scritta nel database.
+Sono aggiornati solo file custom src/ads e asset public/ads-catalog.
+Le configurazioni, le dipendenze e i file dello scheletro sCMS non cambiano.
+I campi predisposti ma inutilizzati di fonte rimangono esclusi.
+
+VERIFICHE
+Build completata su 11 pagine.
+Modello: intervalli, campi di ricerca, filtri combinati, stessa associazione
+luogo-relazione, preferiti, paginazione e normalizzazione tipologie.
+Browser desktop/mobile: ricerca, filtri, pagine, preferiti, download CSV,
+griglia/elenco, guida, menu e header uniforme. Nessun errore JavaScript o
+scorrimento orizzontale mobile. I 70 file upstream restano identici.
+
+Gli SVG provengono dal draft del catalogo fornito dall'utente.

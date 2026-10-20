@@ -1,0 +1,11 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const url = (path: string) => base + path;
+---
+<footer class="project-footer">
+  <div class="project-footer-inner">
+    <a class="project-footer-sapienza" href="https://www.uniroma1.it/" target="_blank" rel="noreferrer"><img src={url('/images/logo_sapienza_footer.png')} width="200" height="83" alt="Sapienza Università di Roma" /></a>
+    <div class="project-footer-intro"><a class="project-footer-brand" href={url('/')}>ADS <span>Archivio Digitale Sabino</span></a><p>ADS mette in relazione documenti, luoghi e studi per conoscere la storia della Sabina e valorizzarne il patrimonio culturale.</p><nav aria-label="Collegamenti del footer"><a href={url('/') + '#il-progetto'}>Il progetto</a><a href={url('/crediti/')}>Crediti</a><a href="mailto:julian.bogdani@uniroma1.it">Contatti</a></nav></div>
+    <div class="project-footer-credits"><p>Realizzato con <a href="https://github.com/lad-sapienza/sCMS">sCMS</a>, sviluppato dal <a href="https://lad.saras.uniroma1.it/">LAD — Sapienza</a>.</p><a href="mailto:julian.bogdani@uniroma1.it"><img src={url('/images/lad.png')} width="30" height="30" alt="LAD" />Julian Bogdani</a><a href="mailto:erasmo.difonso@libero.it"><img class="project-footer-personal-logo" src={url('/ads-shared/logo_erasmo.svg')} width="30" height="30" alt="" />Erasmo di Fonso</a><div><a href="https://github.com/lad-sapienza/sCMS">Codice sCMS ↗</a> · <a href="https://github.com/lad-sapienza/sCMS/issues">Segnala un problema ↗</a></div></div>
+  </div>
+</footer>

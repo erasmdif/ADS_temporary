@@ -1,0 +1,2987 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "id": 104,
+        "properties": {
+          "nome_luogo": "Viterbo",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 57,
+              "persona_id": {
+                "nome_e_cognome": "Valentino e Ilario"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.104004055569106,
+            42.41753792827808
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 199,
+        "properties": {
+          "nome_luogo": "Villa di Orazio a Licenza e cenobio costruito nell’alto medioevo",
+          "anno_inizio": 550,
+          "periodo_fine": 900,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 815
+            },
+            {
+              "id": 816
+            },
+            {
+              "id": 817
+            },
+            {
+              "id": 818
+            },
+            {
+              "id": 819
+            },
+            {
+              "id": 820
+            },
+            {
+              "id": 821
+            },
+            {
+              "id": 822
+            },
+            {
+              "id": 823
+            },
+            {
+              "id": 824
+            },
+            {
+              "id": 825
+            },
+            {
+              "id": 826
+            },
+            {
+              "id": 827
+            }
+          ],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.901242019566013,
+            42.065933077667836
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 112,
+        "properties": {
+          "nome_luogo": "Vicovaro",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 1198
+            },
+            {
+              "id": 1199
+            },
+            {
+              "id": 1200
+            },
+            {
+              "id": 1647
+            },
+            {
+              "id": 1648
+            },
+            {
+              "id": 1649
+            },
+            {
+              "id": 1650
+            },
+            {
+              "id": 1651
+            },
+            {
+              "id": 1652
+            },
+            {
+              "id": 1653
+            },
+            {
+              "id": 1654
+            },
+            {
+              "id": 1655
+            },
+            {
+              "id": 1656
+            },
+            {
+              "id": 1670
+            },
+            {
+              "id": 1675
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": [
+            {
+              "id": 198
+            },
+            {
+              "id": 234
+            },
+            {
+              "id": 236
+            },
+            {
+              "id": 338
+            },
+            {
+              "id": 344
+            },
+            {
+              "id": 346
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.89749691312636,
+            42.01793032749876
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 294,
+        "properties": {
+          "nome_luogo": "Varco Sabino",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 1444
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.020158627321734,
+            42.23935955463921
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 119,
+        "properties": {
+          "nome_luogo": "Vallepietra ",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 189,
+              "persona_id": {
+                "nome_e_cognome": "Domenico di Sora"
+              }
+            }
+          ],
+          "monumenti_associati": [
+            {
+              "id": 192
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.231687988578301,
+            41.92729277092889
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 80,
+        "properties": {
+          "nome_luogo": "Trevi nel Lazio",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": [
+            {
+              "id": 18
+            },
+            {
+              "id": 128
+            },
+            {
+              "id": 129
+            },
+            {
+              "id": 287
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.248532239342495,
+            41.86193200709644
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 51,
+        "properties": {
+          "nome_luogo": "Torri in Sabina",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 705
+            },
+            {
+              "id": 753
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 39,
+              "persona_id": {
+                "nome_e_cognome": "Giovanni"
+              }
+            }
+          ],
+          "monumenti_associati": [
+            {
+              "id": 52
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.63807577431092,
+            42.35210703915439
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 106,
+        "properties": {
+          "nome_luogo": "Torano",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 916
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 63,
+              "persona_id": {
+                "nome_e_cognome": "Anatolia"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.260907174928604,
+            42.15259968718976
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 151,
+        "properties": {
+          "nome_luogo": "Tombe della Valle Lungherina",
+          "anno_inizio": 100,
+          "periodo_fine": 200,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 460
+            },
+            {
+              "id": 461
+            },
+            {
+              "id": 462
+            },
+            {
+              "id": 463
+            },
+            {
+              "id": 464
+            },
+            {
+              "id": 465
+            },
+            {
+              "id": 466
+            },
+            {
+              "id": 467
+            },
+            {
+              "id": 468
+            },
+            {
+              "id": 469
+            }
+          ],
+          "tipo_monumento": "area a destinazione funeraria",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.845347766828837,
+            41.93624542530077
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 70,
+        "properties": {
+          "nome_luogo": "Toffia",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 264
+            },
+            {
+              "id": 488
+            },
+            {
+              "id": 710
+            },
+            {
+              "id": 759
+            },
+            {
+              "id": 1486
+            },
+            {
+              "id": 1629
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 87,
+              "persona_id": {
+                "nome_e_cognome": "Lorenzo"
+              }
+            }
+          ],
+          "monumenti_associati": [
+            {
+              "id": 245
+            },
+            {
+              "id": 335
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.752286025485944,
+            42.21236658276047
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 77,
+        "properties": {
+          "nome_luogo": "Tivoli",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 1497
+            },
+            {
+              "id": 1498
+            },
+            {
+              "id": 1499
+            },
+            {
+              "id": 1500
+            },
+            {
+              "id": 1501
+            },
+            {
+              "id": 1502
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": [
+            {
+              "id": 7
+            },
+            {
+              "id": 65
+            },
+            {
+              "id": 81
+            },
+            {
+              "id": 107
+            },
+            {
+              "id": 125
+            },
+            {
+              "id": 130
+            },
+            {
+              "id": 141
+            },
+            {
+              "id": 150
+            },
+            {
+              "id": 182
+            },
+            {
+              "id": 184
+            },
+            {
+              "id": 185
+            },
+            {
+              "id": 186
+            },
+            {
+              "id": 187
+            },
+            {
+              "id": 188
+            },
+            {
+              "id": 190
+            },
+            {
+              "id": 191
+            },
+            {
+              "id": 207
+            },
+            {
+              "id": 226
+            },
+            {
+              "id": 229
+            },
+            {
+              "id": 230
+            },
+            {
+              "id": 237
+            },
+            {
+              "id": 238
+            },
+            {
+              "id": 269
+            },
+            {
+              "id": 336
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.799979514323013,
+            41.96172158424923
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 153,
+        "properties": {
+          "nome_luogo": "Tempio di Vesta",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.480408478874466,
+            41.90479842833324
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 7,
+        "properties": {
+          "nome_luogo": "Tempio della Tosse o s. Maria degli Orti a Tivoli",
+          "anno_inizio": 300,
+          "periodo_fine": 1600,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 9
+            },
+            {
+              "id": 53
+            },
+            {
+              "id": 55
+            },
+            {
+              "id": 57
+            },
+            {
+              "id": 59
+            },
+            {
+              "id": 61
+            },
+            {
+              "id": 63
+            },
+            {
+              "id": 65
+            },
+            {
+              "id": 67
+            },
+            {
+              "id": 70
+            },
+            {
+              "id": 71
+            }
+          ],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.78979388517206,
+            41.96285382514981
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 346,
+        "properties": {
+          "nome_luogo": "Targa in memoria di Riccardo Di Giuseppe, antifascista di Vicovaro",
+          "anno_inizio": 1995,
+          "periodo_fine": 2100,
+          "data_certa": true,
+          "fonti": [
+            {
+              "id": 1671
+            },
+            {
+              "id": 1673
+            }
+          ],
+          "tipo_monumento": "luogo dedicato alla memoria",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [
+            {
+              "id": 288,
+              "persona_id": {
+                "nome_e_cognome": "Riccardo Di Giuseppe"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.89160173723593,
+            42.01503933229637
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 89,
+        "properties": {
+          "nome_luogo": "Tarano",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 715
+            },
+            {
+              "id": 765
+            },
+            {
+              "id": 1600
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 41,
+              "persona_id": {
+                "nome_e_cognome": "Giorgio"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.596020561096225,
+            42.35522872350637
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 109,
+        "properties": {
+          "nome_luogo": "Subiaco",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 900
+            },
+            {
+              "id": 1595
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 65,
+              "persona_id": {
+                "nome_e_cognome": "Anatolia"
+              }
+            }
+          ],
+          "monumenti_associati": [
+            {
+              "id": 124
+            },
+            {
+              "id": 133
+            },
+            {
+              "id": 134
+            },
+            {
+              "id": 183
+            },
+            {
+              "id": 242
+            },
+            {
+              "id": 270
+            },
+            {
+              "id": 276
+            },
+            {
+              "id": 277
+            },
+            {
+              "id": 278
+            },
+            {
+              "id": 279
+            },
+            {
+              "id": 280
+            },
+            {
+              "id": 281
+            },
+            {
+              "id": 282
+            },
+            {
+              "id": 283
+            },
+            {
+              "id": 284
+            },
+            {
+              "id": 285
+            },
+            {
+              "id": 286
+            },
+            {
+              "id": 288
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.092960736318418,
+            41.9273340452126
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 26,
+        "properties": {
+          "nome_luogo": "Stimigliano",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 702
+            },
+            {
+              "id": 748
+            },
+            {
+              "id": 1170
+            },
+            {
+              "id": 1603
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": [
+            {
+              "id": 27
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.56476934359074,
+            42.29997806191997
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 174,
+        "properties": {
+          "nome_luogo": "Stazzano",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": [
+            {
+              "id": 175
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.774637405802679,
+            42.09170717903362
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 206,
+        "properties": {
+          "nome_luogo": "S. Maria in monte Dominici a Marcellina ",
+          "anno_inizio": 700,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 858
+            },
+            {
+              "id": 859
+            },
+            {
+              "id": 860
+            },
+            {
+              "id": 861
+            },
+            {
+              "id": 862
+            },
+            {
+              "id": 863
+            },
+            {
+              "id": 864
+            },
+            {
+              "id": 865
+            }
+          ],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.807085811407546,
+            42.02182353747756
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 65,
+        "properties": {
+          "nome_luogo": "Sepolcro presso l’Acquoria ",
+          "anno_inizio": 250,
+          "periodo_fine": 400,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 270
+            },
+            {
+              "id": 271
+            },
+            {
+              "id": 272
+            },
+            {
+              "id": 273
+            },
+            {
+              "id": 274
+            },
+            {
+              "id": 275
+            },
+            {
+              "id": 1085
+            }
+          ],
+          "tipo_monumento": "area a destinazione funeraria",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.782108015683292,
+            41.96321350575789
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 150,
+        "properties": {
+          "nome_luogo": "Sepolcro di s. Maioreo",
+          "anno_inizio": -200,
+          "periodo_fine": 550,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 452
+            },
+            {
+              "id": 453
+            },
+            {
+              "id": 454
+            },
+            {
+              "id": 455
+            },
+            {
+              "id": 456
+            },
+            {
+              "id": 457
+            },
+            {
+              "id": 458
+            },
+            {
+              "id": 459
+            }
+          ],
+          "tipo_monumento": "area a destinazione funeraria",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [
+            {
+              "id": 103,
+              "persona_id": {
+                "nome_e_cognome": "Maioreo"
+              }
+            },
+            {
+              "id": 256,
+              "persona_id": {
+                "nome_e_cognome": "Maioreo"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.794758744421813,
+            41.95040068038122
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 295,
+        "properties": {
+          "nome_luogo": "Selci",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 1445
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.621833403539,
+            42.32008642152826
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 28,
+        "properties": {
+          "nome_luogo": "Scandriglia",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 337
+            },
+            {
+              "id": 339
+            },
+            {
+              "id": 698
+            },
+            {
+              "id": 731
+            },
+            {
+              "id": 749
+            },
+            {
+              "id": 794
+            },
+            {
+              "id": 795
+            },
+            {
+              "id": 950
+            },
+            {
+              "id": 1185
+            },
+            {
+              "id": 1611
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 21,
+              "persona_id": {
+                "nome_e_cognome": "Barbara"
+              }
+            }
+          ],
+          "monumenti_associati": [
+            {
+              "id": 29
+            },
+            {
+              "id": 30
+            },
+            {
+              "id": 224
+            },
+            {
+              "id": 255
+            },
+            {
+              "id": 256
+            },
+            {
+              "id": 257
+            },
+            {
+              "id": 258
+            },
+            {
+              "id": 259
+            },
+            {
+              "id": 313
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.841795072934474,
+            42.165281726777636
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 54,
+        "properties": {
+          "nome_luogo": "Sarcofago di Villa Smargiassi a Colle Rosa di Poggio Mirteto",
+          "anno_inizio": 270,
+          "periodo_fine": 2024,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 204
+            },
+            {
+              "id": 205
+            }
+          ],
+          "tipo_monumento": "altro",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.674329209048437,
+            42.25712623861014
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 13,
+        "properties": {
+          "nome_luogo": "Santuario francescano di Fontecolombo",
+          "anno_inizio": 1126,
+          "periodo_fine": 2024,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 20
+            },
+            {
+              "id": 21
+            },
+            {
+              "id": 22
+            },
+            {
+              "id": 23
+            },
+            {
+              "id": 26
+            },
+            {
+              "id": 28
+            }
+          ],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [
+            {
+              "id": 11,
+              "persona_id": {
+                "nome_e_cognome": "Francesco d'Assisi"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.828756628206548,
+            42.37939491672108
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 239,
+        "properties": {
+          "nome_luogo": "Santuario di s. Michele al Monte Tancia",
+          "anno_inizio": 774,
+          "periodo_fine": 2048,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 1060
+            },
+            {
+              "id": 1061
+            },
+            {
+              "id": 1062
+            },
+            {
+              "id": 1063
+            },
+            {
+              "id": 1064
+            },
+            {
+              "id": 1065
+            }
+          ],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [
+            {
+              "id": 135,
+              "persona_id": {
+                "nome_e_cognome": "Michele "
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.742922955011153,
+            42.32756916632712
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 303,
+        "properties": {
+          "nome_luogo": "Santuario di S. Maria della Foresta",
+          "anno_inizio": 1000,
+          "periodo_fine": 2024,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 1492
+            },
+            {
+              "id": 1493
+            },
+            {
+              "id": 1494
+            },
+            {
+              "id": 1495
+            }
+          ],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [
+            {
+              "id": 194,
+              "persona_id": {
+                "nome_e_cognome": "Francesco d'Assisi"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.87470666693892,
+            42.43659889656482
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 132,
+        "properties": {
+          "nome_luogo": "Santuario di s. Maria dei Bisognosi",
+          "anno_inizio": 610,
+          "periodo_fine": 2024,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 381
+            },
+            {
+              "id": 382
+            },
+            {
+              "id": 383
+            },
+            {
+              "id": 384
+            },
+            {
+              "id": 385
+            },
+            {
+              "id": 386
+            },
+            {
+              "id": 387
+            },
+            {
+              "id": 388
+            },
+            {
+              "id": 389
+            },
+            {
+              "id": 390
+            },
+            {
+              "id": 391
+            },
+            {
+              "id": 392
+            }
+          ],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [
+            {
+              "id": 169,
+              "persona_id": {
+                "nome_e_cognome": "Pietro l'Eremita"
+              }
+            },
+            {
+              "id": 179,
+              "persona_id": {
+                "nome_e_cognome": "Bonifacio IV"
+              }
+            },
+            {
+              "id": 182,
+              "persona_id": {
+                "nome_e_cognome": "Francesco d'Assisi"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.092764834667122,
+            42.04327644542266
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 87,
+        "properties": {
+          "nome_luogo": "Santuario di san Giacinto ",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 280
+            },
+            {
+              "id": 281
+            },
+            {
+              "id": 282
+            },
+            {
+              "id": 283
+            },
+            {
+              "id": 284
+            },
+            {
+              "id": 1086
+            }
+          ],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [
+            {
+              "id": 35,
+              "persona_id": {
+                "nome_e_cognome": "Giacinto"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.72652629360772,
+            42.20879287768392
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 301,
+        "properties": {
+          "nome_luogo": "Santuario di Poggio Bustone - Convento di S. Giacomo",
+          "anno_inizio": 1208,
+          "periodo_fine": 2024,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 1543
+            },
+            {
+              "id": 1544
+            },
+            {
+              "id": 1545
+            },
+            {
+              "id": 1546
+            },
+            {
+              "id": 1547
+            },
+            {
+              "id": 1548
+            }
+          ],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [
+            {
+              "id": 193,
+              "persona_id": {
+                "nome_e_cognome": "Francesco d'Assisi"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.89229941333329,
+            42.50474444183561
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 269,
+        "properties": {
+          "nome_luogo": "Santuario di Ercole Vincitore a Tivoli",
+          "anno_inizio": 150,
+          "periodo_fine": 550,
+          "data_certa": false,
+          "fonti": [
+            {
+              "id": 1207
+            },
+            {
+              "id": 1208
+            },
+            {
+              "id": 1209
+            },
+            {
+              "id": 1210
+            },
+            {
+              "id": 1211
+            },
+            {
+              "id": 1212
+            },
+            {
+              "id": 1213
+            },
+            {
+              "id": 1214
+            },
+            {
+              "id": 1215
+            },
+            {
+              "id": 1216
+            },
+            {
+              "id": 1217
+            },
+            {
+              "id": 1218
+            },
+            {
+              "id": 1219
+            },
+            {
+              "id": 1220
+            },
+            {
+              "id": 1221
+            },
+            {
+              "id": 1222
+            },
+            {
+              "id": 1408
+            },
+            {
+              "id": 1409
+            }
+          ],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [
+            {
+              "id": 144,
+              "persona_id": {
+                "nome_e_cognome": "Sinforosa"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.793463918625463,
+            41.96303818978524
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 192,
+        "properties": {
+          "nome_luogo": "Santuario della ss. Trinità di Vallepietra",
+          "anno_inizio": 400,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 652
+            },
+            {
+              "id": 653
+            },
+            {
+              "id": 654
+            },
+            {
+              "id": 655
+            },
+            {
+              "id": 656
+            },
+            {
+              "id": 657
+            },
+            {
+              "id": 658
+            },
+            {
+              "id": 659
+            },
+            {
+              "id": 660
+            },
+            {
+              "id": 661
+            },
+            {
+              "id": 662
+            },
+            {
+              "id": 663
+            },
+            {
+              "id": 664
+            },
+            {
+              "id": 665
+            },
+            {
+              "id": 666
+            },
+            {
+              "id": 667
+            },
+            {
+              "id": 668
+            },
+            {
+              "id": 669
+            },
+            {
+              "id": 670
+            },
+            {
+              "id": 671
+            },
+            {
+              "id": 672
+            },
+            {
+              "id": 673
+            },
+            {
+              "id": 674
+            },
+            {
+              "id": 675
+            },
+            {
+              "id": 676
+            },
+            {
+              "id": 677
+            },
+            {
+              "id": 678
+            },
+            {
+              "id": 679
+            },
+            {
+              "id": 680
+            },
+            {
+              "id": 1248
+            },
+            {
+              "id": 1249
+            }
+          ],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [
+            {
+              "id": 190,
+              "persona_id": {
+                "nome_e_cognome": "Domenico di Sora"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.231297300083497,
+            41.95635403024556
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 135,
+        "properties": {
+          "nome_luogo": "Santuario della Madonna della Mentorella",
+          "anno_inizio": 110,
+          "periodo_fine": 2024,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 410
+            },
+            {
+              "id": 411
+            },
+            {
+              "id": 412
+            },
+            {
+              "id": 413
+            },
+            {
+              "id": 414
+            },
+            {
+              "id": 415
+            },
+            {
+              "id": 416
+            },
+            {
+              "id": 417
+            },
+            {
+              "id": 418
+            },
+            {
+              "id": 419
+            },
+            {
+              "id": 420
+            },
+            {
+              "id": 421
+            },
+            {
+              "id": 422
+            },
+            {
+              "id": 423
+            },
+            {
+              "id": 424
+            }
+          ],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [
+            {
+              "id": 166,
+              "persona_id": {
+                "nome_e_cognome": "Eustachio"
+              }
+            },
+            {
+              "id": 176,
+              "persona_id": {
+                "nome_e_cognome": "Simplicio I"
+              }
+            },
+            {
+              "id": 183,
+              "persona_id": {
+                "nome_e_cognome": "Silvestro I"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.936470874464959,
+            41.92142862222664
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 108,
+        "properties": {
+          "nome_luogo": "Sant'Anatolia",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 64,
+              "persona_id": {
+                "nome_e_cognome": "Anatolia"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.290787382895047,
+            42.14998139248422
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 111,
+        "properties": {
+          "nome_luogo": "San Polo dei Cavalieri",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.836831472366754,
+            42.010242157457014
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 152,
+        "properties": {
+          "nome_luogo": "San Gregorio da Sassola",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": [
+            {
+              "id": 151
+            },
+            {
+              "id": 172
+            },
+            {
+              "id": 176
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.869942405147043,
+            41.915972638140715
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 145,
+        "properties": {
+          "nome_luogo": "Salisano",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 491
+            },
+            {
+              "id": 721
+            },
+            {
+              "id": 775
+            },
+            {
+              "id": 1088
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": [
+            {
+              "id": 146
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.744561333990077,
+            42.256766183937
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 137,
+        "properties": {
+          "nome_luogo": "Sacrario a ricordo dei caduti nella strage di Madonna della Pace, frazione di Agosta",
+          "anno_inizio": 1955,
+          "periodo_fine": 2024,
+          "data_certa": true,
+          "fonti": [
+            {
+              "id": 1674
+            },
+            {
+              "id": 1678
+            }
+          ],
+          "tipo_monumento": "luogo dedicato alla memoria",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [
+            {
+              "id": 71,
+              "persona_id": {
+                "nome_e_cognome": "Bernardino Albensi"
+              }
+            },
+            {
+              "id": 72,
+              "persona_id": {
+                "nome_e_cognome": "Arsenio Coluzzi"
+              }
+            },
+            {
+              "id": 73,
+              "persona_id": {
+                "nome_e_cognome": "Benedetto Di Roma"
+              }
+            },
+            {
+              "id": 74,
+              "persona_id": {
+                "nome_e_cognome": "Domenico Di Roma"
+              }
+            },
+            {
+              "id": 75,
+              "persona_id": {
+                "nome_e_cognome": "Giulio Di Roma"
+              }
+            },
+            {
+              "id": 76,
+              "persona_id": {
+                "nome_e_cognome": "Antonio Dari"
+              }
+            },
+            {
+              "id": 77,
+              "persona_id": {
+                "nome_e_cognome": "Tommaso Fioravanti"
+              }
+            },
+            {
+              "id": 78,
+              "persona_id": {
+                "nome_e_cognome": "Francesco Mammoli"
+              }
+            },
+            {
+              "id": 79,
+              "persona_id": {
+                "nome_e_cognome": "Bernardino Micarelli"
+              }
+            },
+            {
+              "id": 80,
+              "persona_id": {
+                "nome_e_cognome": "Tosello Micarelli"
+              }
+            },
+            {
+              "id": 82,
+              "persona_id": {
+                "nome_e_cognome": "Gilberto Miconi"
+              }
+            },
+            {
+              "id": 83,
+              "persona_id": {
+                "nome_e_cognome": "Ascenzio Monteverde"
+              }
+            },
+            {
+              "id": 84,
+              "persona_id": {
+                "nome_e_cognome": "Renato Tomei"
+              }
+            },
+            {
+              "id": 85,
+              "persona_id": {
+                "nome_e_cognome": "Mariano Tozzi"
+              }
+            },
+            {
+              "id": 86,
+              "persona_id": {
+                "nome_e_cognome": "Francesco Vareni"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.047822902816627,
+            41.9539821103267
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 113,
+        "properties": {
+          "nome_luogo": "Roviano",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": [
+            {
+              "id": 123
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.99429134358573,
+            42.02592132918298
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 86,
+        "properties": {
+          "nome_luogo": "Roma",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 328
+            },
+            {
+              "id": 330
+            },
+            {
+              "id": 335
+            },
+            {
+              "id": 650
+            },
+            {
+              "id": 781
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 34,
+              "persona_id": {
+                "nome_e_cognome": "Gaetano"
+              }
+            }
+          ],
+          "monumenti_associati": [
+            {
+              "id": 153
+            },
+            {
+              "id": 205
+            },
+            {
+              "id": 292
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.473352105568836,
+            41.89833754563014
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 31,
+        "properties": {
+          "nome_luogo": "Rocca Sinibalda",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 700
+            },
+            {
+              "id": 750
+            },
+            {
+              "id": 1073
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": [
+            {
+              "id": 32
+            },
+            {
+              "id": 33
+            },
+            {
+              "id": 34
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.92318361277762,
+            42.27429775081674
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 265,
+        "properties": {
+          "nome_luogo": "Roccaranieri",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 1197
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": null,
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.965638872479815,
+            42.33367532234345
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 103,
+        "properties": {
+          "nome_luogo": "Roccantica",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 476
+            },
+            {
+              "id": 718
+            },
+            {
+              "id": 772
+            },
+            {
+              "id": 1179
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 55,
+              "persona_id": {
+                "nome_e_cognome": "Valentino di Roma"
+              }
+            },
+            {
+              "id": 56,
+              "persona_id": {
+                "nome_e_cognome": "Valentino di Terni"
+              }
+            }
+          ],
+          "monumenti_associati": [
+            {
+              "id": 291
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.694005669044145,
+            42.32095020493483
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 115,
+        "properties": {
+          "nome_luogo": "Rocca di Botte",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": [
+            {
+              "id": 289
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.067852041043665,
+            42.02606091025058
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 293,
+        "properties": {
+          "nome_luogo": "Rivodutri",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 1441
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.855265928511017,
+            42.51697780299145
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 78,
+        "properties": {
+          "nome_luogo": "Riofreddo",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 138,
+              "persona_id": {
+                "nome_e_cognome": "Giorgio"
+              }
+            }
+          ],
+          "monumenti_associati": [
+            {
+              "id": 10
+            },
+            {
+              "id": 131
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.798165561117685,
+            41.96146907760601
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 35,
+        "properties": {
+          "nome_luogo": "Rieti",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 327
+            },
+            {
+              "id": 329
+            },
+            {
+              "id": 331
+            },
+            {
+              "id": 332
+            },
+            {
+              "id": 333
+            },
+            {
+              "id": 336
+            },
+            {
+              "id": 338
+            },
+            {
+              "id": 340
+            },
+            {
+              "id": 751
+            },
+            {
+              "id": 1069
+            },
+            {
+              "id": 1074
+            },
+            {
+              "id": 1075
+            },
+            {
+              "id": 1076
+            },
+            {
+              "id": 1077
+            },
+            {
+              "id": 1082
+            },
+            {
+              "id": 1188
+            },
+            {
+              "id": 1189
+            },
+            {
+              "id": 1190
+            },
+            {
+              "id": 1191
+            },
+            {
+              "id": 1192
+            },
+            {
+              "id": 1239
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 20,
+              "persona_id": {
+                "nome_e_cognome": "Barbara"
+              }
+            },
+            {
+              "id": 43,
+              "persona_id": {
+                "nome_e_cognome": "Lorenzo"
+              }
+            },
+            {
+              "id": 137,
+              "persona_id": {
+                "nome_e_cognome": "Angelo Sacchetti Sassetti"
+              }
+            },
+            {
+              "id": 143,
+              "persona_id": {
+                "nome_e_cognome": "Mosè ben Isaac da Rieti"
+              }
+            },
+            {
+              "id": 206,
+              "persona_id": {
+                "nome_e_cognome": "Angelella Colomba Guadagnoli"
+              }
+            }
+          ],
+          "monumenti_associati": [
+            {
+              "id": 36
+            },
+            {
+              "id": 37
+            },
+            {
+              "id": 38
+            },
+            {
+              "id": 39
+            },
+            {
+              "id": 40
+            },
+            {
+              "id": 41
+            },
+            {
+              "id": 42
+            },
+            {
+              "id": 231
+            },
+            {
+              "id": 275
+            },
+            {
+              "id": 303
+            },
+            {
+              "id": 305
+            },
+            {
+              "id": 306
+            },
+            {
+              "id": 307
+            },
+            {
+              "id": 308
+            },
+            {
+              "id": 309
+            },
+            {
+              "id": 310
+            },
+            {
+              "id": 311
+            },
+            {
+              "id": 312
+            },
+            {
+              "id": 318
+            },
+            {
+              "id": 327
+            },
+            {
+              "id": 329
+            },
+            {
+              "id": 337
+            },
+            {
+              "id": 340
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.865632314229657,
+            42.40228587515631
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 147,
+        "properties": {
+          "nome_luogo": "Pozzaglia Sabina",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 473
+            },
+            {
+              "id": 722
+            },
+            {
+              "id": 776
+            },
+            {
+              "id": 951
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 95,
+              "persona_id": {
+                "nome_e_cognome": "Ulpia"
+              }
+            }
+          ],
+          "monumenti_associati": [
+            {
+              "id": 148
+            },
+            {
+              "id": 219
+            },
+            {
+              "id": 302
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.963241276921565,
+            42.15791909717859
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 319,
+        "properties": {
+          "nome_luogo": "Poggio Sommavilla",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": [
+            {
+              "id": 320
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.526151638038584,
+            42.30820469022768
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 193,
+        "properties": {
+          "nome_luogo": "Poggio San Lorenzo",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 686
+            },
+            {
+              "id": 687
+            },
+            {
+              "id": 690
+            },
+            {
+              "id": 691
+            },
+            {
+              "id": 693
+            },
+            {
+              "id": 730
+            },
+            {
+              "id": 778
+            },
+            {
+              "id": 1491
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 107,
+              "persona_id": {
+                "nome_e_cognome": "Lorenzo"
+              }
+            },
+            {
+              "id": 113,
+              "persona_id": {
+                "nome_e_cognome": "Gregorio da Catino"
+              }
+            }
+          ],
+          "monumenti_associati": [
+            {
+              "id": 194
+            },
+            {
+              "id": 223
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.84484501748824,
+            42.25277111209843
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 248,
+        "properties": {
+          "nome_luogo": "Poggio Nativo",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 1142
+            },
+            {
+              "id": 1178
+            },
+            {
+              "id": 1487
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": [
+            {
+              "id": 249
+            },
+            {
+              "id": 254
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.795623805058057,
+            42.21582251111613
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 96,
+        "properties": {
+          "nome_luogo": "Poggio Moiano",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 716
+            },
+            {
+              "id": 769
+            },
+            {
+              "id": 911
+            },
+            {
+              "id": 1177
+            },
+            {
+              "id": 1489
+            },
+            {
+              "id": 1610
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 51,
+              "persona_id": {
+                "nome_e_cognome": "Sebastiano"
+              }
+            }
+          ],
+          "monumenti_associati": [
+            {
+              "id": 222
+            },
+            {
+              "id": 251
+            },
+            {
+              "id": 252
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.879267350350574,
+            42.20271754937363
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 53,
+        "properties": {
+          "nome_luogo": "Poggio Mirteto",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 261
+            },
+            {
+              "id": 493
+            },
+            {
+              "id": 706
+            },
+            {
+              "id": 738
+            },
+            {
+              "id": 754
+            },
+            {
+              "id": 1480
+            },
+            {
+              "id": 1628
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 33,
+              "persona_id": {
+                "nome_e_cognome": "Gaetano"
+              }
+            },
+            {
+              "id": 38,
+              "persona_id": {
+                "nome_e_cognome": "Giovanni"
+              }
+            },
+            {
+              "id": 48,
+              "persona_id": {
+                "nome_e_cognome": "Rocco"
+              }
+            }
+          ],
+          "monumenti_associati": [
+            {
+              "id": 54
+            },
+            {
+              "id": 149
+            },
+            {
+              "id": 315
+            },
+            {
+              "id": 316
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.688910668970692,
+            42.26562340570797
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 98,
+        "properties": {
+          "nome_luogo": "Poggio Catino",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 429
+            },
+            {
+              "id": 475
+            },
+            {
+              "id": 717
+            },
+            {
+              "id": 733
+            },
+            {
+              "id": 771
+            },
+            {
+              "id": 1087
+            },
+            {
+              "id": 1606
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 53,
+              "persona_id": {
+                "nome_e_cognome": "Silvestro I"
+              }
+            },
+            {
+              "id": 105,
+              "persona_id": {
+                "nome_e_cognome": "Gregorio da Catino"
+              }
+            }
+          ],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.693629908189962,
+            42.294585379191375
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 299,
+        "properties": {
+          "nome_luogo": "Poggio Bustone",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 1468
+            },
+            {
+              "id": 1469
+            }
+          ],
+          "tipo_monumento": null,
+          "tipologia": "luogo",
+          "persone_associate_al_luogo": [
+            {
+              "id": 192,
+              "persona_id": {
+                "nome_e_cognome": "Francesco d'Assisi"
+              }
+            }
+          ],
+          "monumenti_associati": [
+            {
+              "id": 301
+            },
+            {
+              "id": 322
+            }
+          ]
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.888653570739876,
+            42.501989640936245
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 211,
+        "properties": {
+          "nome_luogo": "Pieve di s. Pietro in Canapinula",
+          "anno_inizio": null,
+          "periodo_fine": null,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 885
+            },
+            {
+              "id": 886
+            },
+            {
+              "id": 887
+            }
+          ],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.155280850500674,
+            42.24546613749601
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": 33,
+        "properties": {
+          "nome_luogo": "Pieve di S. Giustino a Rocca Sinibalda",
+          "anno_inizio": 853,
+          "periodo_fine": 1500,
+          "data_certa": null,
+          "fonti": [
+            {
+              "id": 123
+            },
+            {
+              "id": 124
+            },
+            {
+              "id": 125
+            },
+            {
+              "id": 126
+            },
+            {
+              "id": 130
+            }
+          ],
+          "tipo_monumento": "edificio di culto",
+          "tipologia": "monumento",
+          "persone_associate_al_luogo": [],
+          "monumenti_associati": []
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            12.924153360550434,
+            42.27214716071305
+          ]
+        }
+      }
+    ]
+  }

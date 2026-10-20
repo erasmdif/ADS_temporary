@@ -1,0 +1,196 @@
+---
+title: ZoteroGeoViewer Component
+description: Visualise a Zotero group library on an interactive map, filtering items by geographic tags – live examples included.
+order: 33
+category: components
+---
+
+import { ZoteroGeoViewer } from '@lad-sapienza/scms-core/components/ZoteroGeoViewer';
+import Example from '@components/Example.astro';
+import TableOfContents from '@lad-sapienza/scms-core/components/TableOfContents/TableOfContents.astro';
+
+The `ZoteroGeoViewer` component connects to a public [Zotero](https://www.zotero.org/) group library and displays its items on an interactive map. Items are matched to geographic locations via Zotero tags. A tag-based filter, live statistics panel, and recent-items preview are included.
+
+<TableOfContents title="On this page" />
+
+---
+
+## Live Examples
+
+<Example title="Minimal usage" codeWidth='full'>
+  <Fragment slot="intro">
+    Connect to any public Zotero group by passing its numeric `groupId`. All other props are optional.
+  </Fragment>
+
+  <Fragment slot="code">
+  ```jsx
+  <ZoteroGeoViewer
+    groupId={336647} 
+    client:load />
+  ```
+  </Fragment>
+
+  <ZoteroGeoViewer
+    groupId={336647} 
+    client:load />
+</Example>
+
+---
+
+<Example title="Custom layout options" codeWidth='full'>
+  <Fragment slot="intro">
+    Change the split between map and sidebar, set a custom height, and define the initial map center:
+  </Fragment>
+
+  <Fragment slot="code">
+  ```jsx
+  <ZoteroGeoViewer
+    groupId={336647} 
+    layout="vertical"
+    mapHeight="500px"
+    mapCenter="20.5,40.0,8"
+    client:load />
+  ```
+  </Fragment>
+
+  <ZoteroGeoViewer
+    groupId={336647} 
+    layout="vertical"
+    mapHeight="500px"
+    mapCenter="20.5,40.0,8"
+    client:load />
+</Example>
+
+---
+
+<Example title="Autocomplete off, capped records preview" codeWidth='full'>
+  <Fragment slot="intro">
+    Set `tagAutocomplete={false}` to hide the suggestions dropdown while typing in the tag search box (you still get results on an exact/partial match). `maxItems` caps how many records the selected-tag preview list fetches and displays — useful for locations with very large libraries.
+  </Fragment>
+
+  <Fragment slot="code">
+  ```jsx
+  <ZoteroGeoViewer
+    groupId={336647} 
+    layout="vertical"
+    mapHeight="400px"
+    tagAutocomplete={false}
+    maxItems={5}
+    client:load />
+  ```
+  </Fragment>
+
+  <ZoteroGeoViewer
+    groupId={336647} 
+    layout="vertical"
+    mapHeight="400px"
+    tagAutocomplete={false}
+    maxItems={5}
+    client:load />
+</Example>
+
+---
+
+## Features
+
+### Geographical Visualization
+- Interactive map with location markers sized by item count
+- Popup windows with item details and direct links to Zotero
+- Automatic map bounds fitting to the loaded data
+
+### Tag-based Filtering
+- Real-time search through Zotero tags
+- Optional autocomplete suggestions
+- Client-side filtering for instant response
+
+### Live Statistics
+- Total items in the library
+- Number of georeferenced items
+- Number of unique locations
+- Updates automatically as you filter
+
+### Recent Items Preview
+- Shows the latest additions to the library
+- Direct links to Zotero items with author and publication info
+
+---
+
+## Layout Options
+
+<div className="row g-3 my-4">
+  <div className="col-12 col-md-6">
+    <div className="border rounded p-3">
+      <h4 className="fw-semibold">vertical</h4>
+      <p className="small text-secondary mb-0">Map on top, controls below</p>
+    </div>
+  </div>
+  <div className="col-12 col-md-6">
+    <div className="border rounded p-3">
+      <h4 className="fw-semibold">6x6</h4>
+      <p className="small text-secondary mb-0">Equal split (50/50)</p>
+    </div>
+  </div>
+  <div className="col-12 col-md-6">
+    <div className="border rounded p-3">
+      <h4 className="fw-semibold">8x4 (default)</h4>
+      <p className="small text-secondary mb-0">Map emphasis (67/33)</p>
+    </div>
+  </div>
+  <div className="col-12 col-md-6">
+    <div className="border rounded p-3">
+      <h4 className="fw-semibold">4x8</h4>
+      <p className="small text-secondary mb-0">Controls emphasis (33/67)</p>
+    </div>
+  </div>
+  <div className="col-12 col-md-6">
+    <div className="border rounded p-3">
+      <h4 className="fw-semibold">horizontal</h4>
+      <p className="small text-secondary mb-0">Map left, controls right (full width)</p>
+    </div>
+  </div>
+</div>
+
+---
+
+## Props API
+
+### ZoteroGeoViewerProps
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `groupId` | `number` | — | **Required.** Zotero group library ID |
+| `layout` | `LayoutType` | `'8x4'` | Map/sidebar split (see Layout Options above) |
+| `mapHeight` | `string` | — | CSS height for the map panel |
+| `mapCenter` | `string` | — | Initial center as `"lng,lat,zoom"` |
+| `tagAutocomplete` | `boolean` | `true` | Show autocomplete in tag search |
+| `maxItems` | `number` | `1000` | Maximum records to fetch/display in the selected-tag preview list |
+
+`LayoutType`: `'vertical' | '6x6' | '8x4' | '4x8' | '12x4' | 'horizontal'`
+
+---
+
+## Usage in Astro Files
+
+```astro
+---
+import { ZoteroGeoViewer } from '@lad-sapienza/scms-core/components/ZoteroGeoViewer';
+---
+
+<ZoteroGeoViewer 
+  groupId={12345}
+  layout="8x4"
+  client:idle
+/>
+```
+
+---
+
+## Technical Details
+
+### Data Sources
+- **Zotero API** — `https://api.zotero.org/groups/{groupId}/items`
+- **Coordinate Data** — `/data/zoteroTagCoordinates.geojson` (co-locate in `public/data/`)
+- **Matching** — items are matched to geographic locations via Zotero tag names
+
+### How matching works
+Each geographic location in `zoteroTagCoordinates.geojson` has a `name` property. The component matches Zotero items to locations by comparing their tags to these names. Locations with at least one matching item appear on the map.

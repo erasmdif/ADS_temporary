@@ -1,0 +1,22 @@
+/* Header e navigazione condivisi da tutte le sezioni ADS. */
+.ads-site-header { background: #1d1b1b; color: #ede7dd; border-bottom: 1px solid #76634b; }
+.ads-site-header .ads-navbar { background: #1d1b1b; border: 0; padding: .7rem 0; }
+.ads-site-header .ads-navbar .container { max-width: none; padding-inline: 2rem; }
+.ads-shared-brand { display: flex; align-items: center; gap: 1rem; color: #ede7dd; padding: 0; }
+.ads-shared-brand > span:first-child { font-family: Georgia, 'Times New Roman', serif; font-size: 1.8rem; letter-spacing: .1em; padding-right: 1rem; border-right: 1px solid #917b59; }
+.ads-shared-brand > span:last-child { font-size: .9rem; font-weight: 500; }
+.ads-shared-brand small { display: block; color: #c3b497; font-size: .7rem; margin-top: .12rem; font-weight: 400; }
+.ads-site-header .nav-link { font-size: .88rem; color: #d0c8bb; border-bottom: 2px solid transparent; padding-block: .5rem; }
+.ads-site-header .nav-link:hover { color: #fff3de; }
+.ads-site-header .nav-link.active { color: #fff3de; border-bottom-color: #bd4553; }
+.ads-site-header :focus-visible { outline: 3px solid #c9a169; outline-offset: 3px; }
+.ads-standard-main { padding-top: 2rem; }
+.ads-wide-main { width: 100%; padding: 0; }
+@media (max-width: 600px) {
+  .ads-site-header .ads-navbar .container { padding-inline: 1rem; }
+  .ads-shared-brand { gap: .7rem; }
+  .ads-shared-brand > span:first-child { font-size: 1.45rem; padding-right: .7rem; }
+  .ads-shared-brand > span:last-child { font-size: .75rem; }
+  .ads-shared-brand small { font-size: .62rem; }
+  .ads-site-header .nav-link { padding: .7rem 0; }
+}

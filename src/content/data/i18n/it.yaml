@@ -1,0 +1,94 @@
+# Italian dictionary. Only keys we want to add or override need to be here —
+# anything omitted falls back to English via @lad-sapienza/scms-core's
+# built-in defaults (with a console warning during dev/build, so a missing
+# translation is never silent).
+dataTb:
+  loading: "Caricamento dati..."
+  empty: "Nessun dato disponibile"
+  error: "Errore nel caricamento dei dati"
+  searchPlaceholder: "Cerca..."
+  paginationSummary: "Pagina {page} di {totalPages}"
+  rowsTotal: "({count} totali)"
+
+map:
+  defaultLayerName: "Layer predefinito"
+  baseMaps: "Basemap"
+  searchLayer: "Cerca in {name}"
+  active: "(Attivo)"
+  closeModal: "Chiudi finestra"
+  search:
+    noFieldsConfigured: "Nessun campo ricercabile configurato per questo layer."
+    loading: "Caricamento..."
+    placeholder: "Cerca..."
+    submit: "Cerca"
+    clear: "Cancella"
+    advancedSearch: "Ricerca avanzata"
+    simpleSearch: "Ricerca semplice"
+    addFilter: "Aggiungi filtro"
+    removeFilter: "Rimuovi filtro"
+    cannotRemoveLastFilter: "Non puoi rimuovere l'ultimo filtro"
+    operators:
+      eq: "Uguale a"
+      neq: "Diverso da"
+      lt: "Minore di"
+      lte: "Minore o uguale a"
+      gt: "Maggiore di"
+      gte: "Maggiore o uguale a"
+      null: "È nullo"
+      nnull: "Non è nullo"
+      contains: "Contiene"
+      icontains: "Contiene (senza distinzione maiuscole/minuscole)"
+      ncontains: "Non contiene"
+      startsWith: "Inizia con"
+      istartsWith: "Inizia con (senza distinzione maiuscole/minuscole)"
+      nstartsWith: "Non inizia con"
+      endsWith: "Finisce con"
+      iendsWith: "Finisce con (senza distinzione maiuscole/minuscole)"
+      nendsWith: "Non finisce con"
+    connectors:
+      and: "E"
+      or: "O"
+
+gallery:
+  openImage: "Apri immagine: {alt}"
+
+zoteroGeoViewer:
+  error:
+    title: "Errore nel caricamento dei dati Zotero"
+    propsUndefined: "Le proprietà del componente non sono definite"
+    groupIdRequired: "L'ID del gruppo è obbligatorio"
+  groupId: "ID gruppo: {id}"
+  loading: "Caricamento..."
+  loadingLibrary: "Caricamento della libreria Zotero..."
+  noDataLoaded: "Nessun dato caricato"
+  layerName: "Elementi Zotero"
+  popup:
+    items: "Elementi: {count}"
+    showRecords: "📚 Mostra {count} record"
+  stats:
+    title: "Statistiche della libreria"
+    totalItems: "Elementi totali"
+    georeferenced: "Georeferenziati"
+  search:
+    title: "Cerca tag"
+    placeholder: "Cerca luoghi..."
+    also: "Anche: {list}"
+    moreCount: "+{count} altri"
+    clearSearch: "Cancella ricerca"
+    selected: "Selezionato: {tag}"
+    alsoIncludes: "Include anche: {list}"
+    helpText: "Usa i marcatori sulla mappa per esplorare gli elementi in questa posizione."
+  recordsPreview:
+    title: "Record Zotero per {tag}"
+    including: "(incluso: {list})"
+    loading: "Caricamento record..."
+    error: "Errore: {message}"
+    viewInLibrary: "Vedi nella libreria Zotero"
+    noRecords: "Nessun record trovato per questo tag."
+
+record:
+  loading: "Caricamento record…"
+  notFound: "Nessun record trovato per la tabella “{table}” con ID “{id}”."
+
+navbar:
+  toggleNavigation: "Apri/chiudi la navigazione"

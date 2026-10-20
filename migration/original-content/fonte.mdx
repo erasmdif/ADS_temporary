@@ -1,0 +1,135 @@
+---
+title: "Fonte"
+date: "2023-10-01"
+slug: "fonte"
+description: ""
+---
+
+import { Record, Field } from "../../modules/scms.js";
+import "../layout/style.css";
+import { Row, Col } from "react-bootstrap";
+import Collabora from "../components/collabora"
+
+<Record>
+  <div className="p-4 rounded-top border-bottom border-3 border-primary bg-light">
+    <div className="ms-2">
+      <h2 className="mb-1 text-dark" style={{fontFamily: "'Merriweather', serif", fontWeight: 700}}>
+        <Field name={["nome"]} />
+      </h2>
+      <div className="fs-5 text-muted" style={{fontFamily: "'Open Sans', sans-serif"}}>
+        <Field name={["tipologia"]} />
+      </div>
+    </div>
+  </div>
+
+  <div className="p-4 bg-white rounded-bottom" style={{backgroundColor: '#f9f9f9'}}>
+    <Row className="g-4">
+      <Col lg={8}>
+        <div className="p-4 border rounded" style={{borderColor: '#e0f2fe'}}>
+          <h5 className="text-primary mb-3" style={{fontFamily: "'Open Sans', sans-serif", fontWeight: 600}}>Regesto</h5>
+          <div style={{fontFamily: "'Noto Serif', serif", lineHeight: '1.8'}}>
+            <Field name={["regesto"]} transformer={(val) => val ? <div dangerouslySetInnerHTML={{ __html: val }} /> : null} />
+          </div>
+
+          <h5 className="text-primary mt-4 mb-3" style={{fontFamily: "'Open Sans', sans-serif", fontWeight: 600}}>Note</h5>
+          <div style={{fontFamily: "'Noto Serif', serif", lineHeight: '1.8'}}>
+            <Field name={["note"]} transformer={(val) => val ? <div dangerouslySetInnerHTML={{ __html: val }} /> : null} />
+          </div>
+        </div>
+      </Col>
+
+      <Col lg={4}>
+        <div className="p-3 border rounded" style={{borderColor: '#e0f2fe'}}>
+          <h5 className="text-primary mb-3" style={{fontFamily: "'Open Sans', sans-serif", fontWeight: 600}}>
+            <i className="bi bi-info-circle me-2"></i>Dettagli
+          </h5>
+          <ul className="list-unstyled" style={{fontFamily: "'Open Sans', sans-serif"}}>
+            {["anno_produzione", "committente_nome", "luogo_conservazione", "segnatura_archivistica"].map(field => (
+              <Field 
+                key={field}
+                name={[field]}
+                transformer={(val) => val ? (
+                  <li className="mb-2 pb-2 border-bottom" style={{borderColor: '#e0f2fe'}}>
+                    <span className="text-muted me-2">{{
+                      "anno_produzione": "Anno:",
+                      "committente_nome": "Committente:",
+                      "luogo_conservazione": "Luogo di conservazione:",
+                      "segnatura_archivistica": "Segnatura:"
+                    }[field]}</span>
+                    {val}
+                  </li>
+                ) : null}
+              />
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-4 p-3 border rounded" style={{borderColor: '#e0f2fe'}}>
+          <h5 className="text-primary mb-3" style={{fontFamily: "'Open Sans', sans-serif", fontWeight: 600}}>
+            <i className="bi bi-geo-alt me-2"></i>Luoghi menzionati
+          </h5>
+          <Field name={["luoghi_fonte"]} transformer={(val) => {
+            if (!val?.length) return <div className="text-muted">Nessun luogo indicato</div>;
+            return (
+              <ul className="list-unstyled" style={{fontFamily: "'Open Sans', sans-serif"}}>
+                {val.map((v, i) => (
+                  <li key={i} className="mb-2 pb-2 border-bottom" style={{borderColor: '#e0f2fe'}}>
+                    {v.id_sabina ? (
+                      <a 
+                        href={`https://sabinasacra.lad-sapienza.it/luogo/?tb=luogo_di_interesse&id=${v.id_sabina}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-decoration-none"
+                      >
+                        {v.nome_luogo}
+                      </a>
+                    ) : v.nome_luogo}
+                    {v.tipo_di_associazione && (
+                      <span className="text-muted ms-2">({v.tipo_di_associazione})</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            );
+          }} />
+        </div>
+      </Col>
+    </Row>
+
+    <div className="mt-5 pt-4">
+      <h4 className="text-primary mb-4" style={{fontFamily: "'Merriweather', serif", fontWeight: 600}}>
+        <i className="bi bi-journal-text me-2"></i>Bibliografia
+      </h4>
+      <Field name={["bibliografia"]} transformer={(items) => {
+        if (!items?.length) return <div className="text-muted">Nessuna fonte bibliografica</div>;
+        return (
+          <div className="d-flex flex-wrap gap-3">
+            {items.map((item, i) => {
+              const totalItems = items.length;
+              const hue = 200 - (i / totalItems) * 60; // Da azzurro (200) a grigio (140)
+              const borderWidth = 2 + (i % 3); // Spessore bordo variabile
+              return (
+                <div 
+                  key={i} 
+                  className="p-3 rounded shadow-sm bg-white" 
+                  style={{
+                    flex: '1 0 300px',
+                    border: `${borderWidth}px solid hsl(${hue}, 50%, 80%)`,
+                    fontFamily: "'Open Sans', sans-serif",
+                    borderTop: `4px solid hsl(${hue}, 50%, 50%)`,
+                    backgroundColor: `hsla(${hue}, 50%, 95%, 0.3)`
+                  }}
+                >
+                  {item.bibliografia_id?.autore && <div className="fw-bold">{item.bibliografia_id.autore}</div>}
+                  {item.bibliografia_id?.titolo && <div className="fst-italic">{item.bibliografia_id.titolo}</div>}
+                  {item.bibliografia_id?.dettagli_edizione && <div className="text-muted small">{item.bibliografia_id.dettagli_edizione}</div>}
+                  {item.pagine && <div className="mt-1 small">pp. {item.pagine}</div>}
+                </div>
+              );
+            })}
+          </div>
+        );
+      }} />
+    </div>
+  </div>
+</Record>

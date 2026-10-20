@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from "astro:content"
+import { type CollectionEntry } from "astro:content"
+import BaseLayout from "../../../layouts/BaseLayout.astro"
+import { LOCALES, localizeCollection } from "../../../utils/i18n"
+
+export const prerender = true
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs")
+  const localized = localizeCollection(docs, "docs", LOCALES)
+
+  return localized.map(({ locale, slug, entry, isFallback }) => ({
+    params: { locale, slug },
+    props: { doc: entry, isFallback },
+  }))
+}
+
+interface Props {
+  doc: CollectionEntry<"docs">
+  isFallback: boolean
+}
+
+const { locale } = Astro.params
+const { doc, isFallback } = Astro.props
+const { Content } = await render(doc)
+
+const backLabels: Record<string, string> = { en: "← Back to Documentation", it: "← Torna alla documentazione" }
+const fallbackNotice: Record<string, string> = {
+  en: "This page isn't translated yet — showing the English version.",
+  it: "Questa pagina non è ancora tradotta — viene mostrata la versione inglese.",
+}
+---
+
+<BaseLayout locale={locale} title={doc.data.title} description={doc.data.description}>
+  <main class="container py-4">
+    <article>
+      <!-- Docs header -->
+      <div class="mb-4 pb-4 text-end">
+        <a
+          href={`/${locale}/docs`}
+          class="small btn btn-outline-primary text-decoration-none"
+        >
+          {backLabels[locale]}
+        </a>
+      </div>
+
+      {isFallback && (
+        <div class="alert alert-warning small" role="status">
+          {fallbackNotice[locale]}
+        </div>
+      )}
+
+      <!-- Content -->
+      <div class="markdown-content">
+        <Content />
+      </div>
+    </article>
+  </main>
+</BaseLayout>

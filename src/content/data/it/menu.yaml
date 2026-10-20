@@ -1,0 +1,44 @@
+- href: /
+  label: Home
+
+- href: /blog
+  label: Blog
+
+- label: Documentazione
+  match: /docs
+  children:
+    - label: Guide
+      children:
+        - href: /docs/guides/getting-started
+          label: Per iniziare
+        - href: /docs/guides/architecture
+          label: Architettura
+        - href: /docs/guides/theming
+          label: Temi grafici
+        - href: /docs/guides/deployment
+          label: Pubblicazione
+        - href: /docs/guides/updating
+          label: Aggiornamenti
+    - label: Componenti
+      children:
+        - href: /docs/components/datatb
+          label: DataTb
+        - href: /docs/components/gallery
+          label: Gallery
+        - href: /docs/components/map
+          label: Map
+        - href: /docs/components/zotero-geoviewer
+          label: Zotero GeoViewer
+        - href: /docs/components/record
+          label: Record
+        - href: /docs/components/seo
+          label: SEO
+        - href: /docs/components/tableofcontents
+          label: Sommario
+        - href: /docs/components/redirect-page
+          label: RedirectPage
+    - href: /docs
+      label: Tutta la documentazione
+
+- href: /credits
+  label: Crediti

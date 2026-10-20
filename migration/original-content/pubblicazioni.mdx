@@ -1,0 +1,348 @@
+---
+title: "Produzione scientifica"
+date: "2023-10-01"
+slug: "produzione"
+description: "Produzione scientifica"
+menu_position: 6
+---
+
+import { useState } from "react"
+import { Container, Row, Col, Card, Button, ListGroup, Badge } from "react-bootstrap"
+import { FilePdf, FileEarmarkImage } from "react-bootstrap-icons"
+import LogoBar from "../components/LogoBar"
+
+
+<Container className="mt-4 mb-5">
+  {/* Header elegante */}
+  <Row className="mb-5">
+    <Col className="text-center">
+      <h1 className="display-5 fw-light mb-3">Produzione Scientifica</h1>
+      <div className="d-flex justify-content-center">
+        <div className="border-bottom border-2 border-danger" style={{width: '100px'}}></div>
+      </div>
+    </Col>
+  </Row>
+
+  {/* Sezione Pubblicazioni */}
+  <section className="mb-5">
+    <div className="d-flex align-items-center mb-4">
+      <h2 className="h4 fw-normal mb-0 me-3 text-uppercase">Pubblicazioni</h2>
+      <div className="flex-grow-1 border-top" style={{borderTopColor: 'rgba(0,0,0,0.1)'}}></div>
+    </div>
+
+    <Row className="g-4">
+      {/* Scheda 1 - Sezione monografica */}
+      <Col md={6}>
+        <Card className="h-100 border-0 shadow-sm">
+          <Card.Body className="p-4">
+            <Badge bg="danger" className="mb-3 fw-normal rounded-pill">2025</Badge>
+            <h3 className="h5 mb-3">Sabina sacra. Ebrei, Cristiani e spazio sacro</h3>
+            <p className="text-muted small mb-4">Studi e Materiali di Storia delle Religioni 91 (1/2025), pp. 7-95</p>
+
+            {
+              (() => {
+                const [expanded, setExpanded] = useState(false)
+                return (
+                  <>
+                    <ListGroup variant="flush" className="mb-3">
+                      <ListGroup.Item className="border-0 px-0 py-1 bg-transparent small">
+                        <strong>Paola Buzi, Serena Di Nepi</strong>, <em>Introduzione</em>
+                      </ListGroup.Item>
+                      <ListGroup.Item className="border-0 px-0 py-1 bg-transparent small">
+                        <strong>Antonio Mursia</strong>, <em>Un itinerario cultuale. I santuari di San Michele Arcangelo lungo la via Salaria</em>
+                      </ListGroup.Item>
+                      <ListGroup.Item className="border-0 px-0 py-1 bg-transparent small">
+                        <strong>Giovanni Hermanin de Reichenfeld</strong>, <em>Dalla imitatio Romae alla societas monachorum. Continuità e discontinuità viaria, culturale e religiosa tra Subiaco, Tivoli e Roma prima e dopo l'arrivo di San Benedetto</em>
+                      </ListGroup.Item>
+                      <ListGroup.Item className="border-0 px-0 py-1 bg-transparent small">
+                        <strong>Francesco D'Angelo</strong>, <em>Devozione e controllo del territorio. Il culto di san Martino di Tours a Farfa nell'XI secolo</em>
+                      </ListGroup.Item>
+
+                      {expanded && (
+                        <>
+                          <ListGroup.Item className="border-0 px-0 py-1 bg-transparent small">
+                            <strong>Alexa Bianchini</strong>, <em>Pellegrinaggi e devozione a Farfa tra XI e XV secolo</em>
+                          </ListGroup.Item>
+                          <ListGroup.Item className="border-0 px-0 py-1 bg-transparent small">
+                            <strong>Andrea Zappia</strong>, <em>«Que antiquitis vocabatur dell'hEbrei». Storia e topografia della presenza ebraica alla fiera di Farfa (secoli XVI-XVII)</em>
+                          </ListGroup.Item>
+                          <ListGroup.Item className="border-0 px-0 py-1 bg-transparent small">
+                            <strong>Valentina Emiliani, Luca Giangolini</strong>, <em>Uno sguardo sulla vita religiosa della Sabina in età moderna tra governo del territorio e produzione culturale (XVI-XVIII sec.)</em>
+                          </ListGroup.Item>
+                          <ListGroup.Item className="border-0 px-0 py-1 bg-transparent small">
+                            <strong>Luciano Villani</strong>, <em>Le stragi naziste nella Valle dell'Aniene: memoria pubblica e pratiche sociali del ricordo dal secondo dopoguerra a oggi</em>
+                          </ListGroup.Item>
+                        </>
+                      )}
+                    </ListGroup>
+
+                    <div className="text-center">
+                      <Button 
+                        variant="link" 
+                        size="sm" 
+                        className="text-decoration-none"
+                        onClick={() => setExpanded(!expanded)}
+                      >
+                        {expanded ? "Mostra meno ▲" : "Scopri di più... ▼"}
+                      </Button>
+                    </div>
+                  </>
+                )
+              })()
+            }
+
+          </Card.Body>
+        </Card>
+      </Col>
+
+      {/* Scheda 2 - Articolo */}
+      <Col md={6}>
+        <Card className="h-100 border-0 shadow-sm">
+          <Card.Body className="p-4">
+            <Badge bg="warning" text="dark" className="mb-3 fw-normal rounded-pill">2025</Badge>
+            <h3 className="h5 mb-3">Jews in Rome</h3>
+            <p className="text-muted small mb-4">Oxford, Bibliographies on Renaissance and Reformation</p>
+            
+            <div className="d-flex align-items-center justify-content-between border-top pt-3">
+              <p className="mb-0 small"><strong>Autori:</strong> Serena Di Nepi, Andrea Zappia</p>
+              <Button 
+                href="https://dx.doi.org/10.1093/obo/9780195399301-0542" 
+                variant="outline-dark" 
+                size="sm" 
+                className="rounded-pill px-3"
+              >
+                Vai alla pubblicazione →
+              </Button>
+            </div>
+          </Card.Body>
+        </Card>
+      </Col>
+
+      {/* Scheda 3 - Articolo */}
+      <Col md={6}>
+        <Card className="h-100 border-0 shadow-sm">
+          <Card.Body className="p-4">
+            <Badge bg="warning" text="dark" className="mb-3 fw-normal rounded-pill">2025</Badge>
+            <h3 className="h5 mb-3">"Abramo ebreo da molti giorni in qua pernotta qui, e negotia"</h3>
+            <p className="text-muted small mb-4">Riforma e Movimenti Religiosi</p>
+            
+            <div className="border-top pt-3">
+              <p className="small mb-1"><em>Mercanti Ebrei e comunità locali nello Stato della Chiesa (XVII-XVIII secolo)</em></p>
+              <p className="small mb-0"><strong>Autore:</strong> Andrea Zappia</p>
+            </div>
+          </Card.Body>
+        </Card>
+      </Col>
+
+      {/* Scheda 4 - Sezione monografica */}
+      <Col md={6}>
+        <Card className="h-100 border-0 shadow-sm">
+          <Card.Body className="p-4">
+            <Badge bg="danger" className="mb-3 fw-normal rounded-pill">In corso</Badge>
+            <h3 className="h5 mb-3">Controllo del culto, controllo del territorio</h3>
+            <p className="text-muted small mb-4">Sezione monografica di Storia urbana 2025</p>
+            
+            <ListGroup variant="flush" className="mb-3">
+              <ListGroup.Item className="border-0 px-0 py-1 bg-transparent small">
+                <strong>Alexa Bianchini</strong>, <em>Controllo del territorio e gestione del patrimonio nel Lazio: alcuni casi di studio tra la Sabina e la Valle dell'Aniene alla fine del medioevo</em>
+              </ListGroup.Item>
+              <ListGroup.Item className="border-0 px-0 py-1 bg-transparent small">
+                <strong>Valentina Emiliani</strong>, <em>Governo ed influenza spirituale nel Lazio orientale del Seicento. Francesco Barberini abate commendatario di S. Maria di Farfa e di S. Salvatore Maggiore</em>
+              </ListGroup.Item>
+              <ListGroup.Item className="border-0 px-0 py-1 bg-transparent small">
+                <strong>Luca Giangolini</strong>, <em>«Sono con Dio da sola a solo»: la direzione spirituale e le esperienze religiose di un gruppo quietista in Sabina alla fine del Seicento</em>
+              </ListGroup.Item>
+              <ListGroup.Item className="border-0 px-0 py-1 bg-transparent small">
+                <strong>Andrea Zappia</strong>, <em>Evadere dal ghetto. Pratiche e strategie dei mercanti Ebrei nei circuiti fieristici dello Stato della Chiesa (XVII-XVIII sec.)</em>
+              </ListGroup.Item>
+            </ListGroup>
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
+  </section>
+
+  {/* Sezione Convegni */}
+  <section className="mb-5">
+    <div className="d-flex align-items-center mb-4">
+      <h2 className="h4 fw-normal mb-0 me-3 text-uppercase">Convegni e Workshop</h2>
+      <div className="flex-grow-1 border-top" style={{borderTopColor: 'rgba(0,0,0,0.1)'}}></div>
+    </div>
+
+    <Row className="g-4">
+      {/* Scheda 1 - Layout con immagine */}
+      <Col md={6}>
+        <Card className="h-100 border-0 shadow-sm">
+          <Row className="g-0 h-100">
+            <Col md={5} className="position-relative">
+              <div className="w-100 h-100 bg-light d-flex align-items-center justify-content-center">
+                {(() => {
+                  try {
+                    return (
+                      <img src="/images/subiaco-farfa-preview.jpg" 
+                           className="img-fluid h-100 object-fit-cover" 
+                           alt="Convegno Subiaco e Farfa"
+                           onError={(e) => {
+                             e.target.onerror = null;
+                             e.target.src = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23e9ecef'/%3E%3Ctext x='150' y='150' font-family='Arial' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='%236c757d'%3ELocandina%3C/text%3E%3C/svg%3E";
+                           }} />
+                    )
+                  } catch {
+                    return (
+                      <div className="text-center p-4 text-muted">
+                        <FileEarmarkImage className="fs-1" />
+                        <p className="small mt-2 mb-0">Locandina</p>
+                      </div>
+                    )
+                  }
+                })()}
+              </div>
+              <Button 
+                variant="danger" 
+                size="sm" 
+                className="position-absolute bottom-0 start-50 translate-middle-x mb-3 rounded-pill shadow-sm" 
+                href="/images/I monasteri di Subiaco e Farfa come crocevia monatico-culturale nei secoli XV e XVI.pdf" 
+                target="_blank">Programma PDF</Button>
+            </Col>
+            <Col md={7} className="d-flex flex-column">
+              <Card.Body className="p-4">
+                <h3 className="h5 mb-2">I monasteri di Subiaco e Farfa</h3>
+                <p className="small text-muted mb-3">Giornate di studio - Roma, 28–29 ottobre 2024</p>
+                <p className="small mb-0">I monasteri benedettini di Subiaco e Farfa hanno avuto una grande importanza per la vita monastica, politica, economica e liturgica-culturale...</p>
+              </Card.Body>
+              <Card.Footer className="bg-transparent border-0 pt-0 pb-3 px-4">
+                <Button 
+                  variant="outline-danger" 
+                  size="sm" 
+                  className="rounded-pill">Dettagli evento</Button>
+              </Card.Footer>
+            </Col>
+          </Row>
+        </Card>
+      </Col>
+
+      {/* Scheda 2 - Layout con immagine */}
+      <Col md={6}>
+        <Card className="h-100 border-0 shadow-sm">
+          <Row className="g-0 h-100">
+            <Col md={5} className="position-relative">
+              <div className="w-100 h-100 bg-light d-flex align-items-center justify-content-center">
+                {(() => {
+                  try {
+                    return (
+                      <img src="/images/sismed-preview.jpg" 
+                           className="img-fluid h-100 object-fit-cover" 
+                           alt="Convegno SISMED"
+                           onError={(e) => {
+                             e.target.onerror = null;
+                             e.target.src = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23e9ecef'/%3E%3Ctext x='150' y='150' font-family='Arial' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='%236c757d'%3ELocandina%3C/text%3E%3C/svg%3E";
+                           }} />
+                    )
+                  } catch {
+                    return (
+                      <div className="text-center p-4 text-muted">
+                        <FileEarmarkImage className="fs-1" />
+                        <p className="small mt-2 mb-0">Locandina</p>
+                      </div>
+                    )
+                  }
+                })()}
+              </div>
+              <Button 
+                variant="danger" 
+                size="sm" 
+                className="position-absolute bottom-0 start-50 translate-middle-x mb-3 rounded-pill shadow-sm" 
+                href="/images/III convegno SISMED Udine Programma generale web.pdf"
+                target="_blank">Programma PDF</Button>
+            </Col>
+            <Col md={7} className="d-flex flex-column">
+              <Card.Body className="p-4">
+                <h3 className="h5 mb-2">III Convegno SISMED</h3>
+                <p className="small text-muted mb-3">Udine, 10-13 giugno 2024</p>
+                <p className="small mb-0">Convegno organizzato dalla Società italiana per la storia medievale con numerose sessioni parallele su temi diversi.</p>
+              </Card.Body>
+              <Card.Footer className="bg-transparent border-0 pt-0 pb-3 px-4">
+                <Button 
+                  variant="outline-danger" 
+                  size="sm" 
+                  className="rounded-pill">Dettagli evento</Button>
+              </Card.Footer>
+            </Col>
+          </Row>
+        </Card>
+      </Col>
+
+      {/* Scheda 3 - Layout semplice */}
+      <Col md={6}>
+        <Card className="h-100 border-0 shadow-sm">
+          <Card.Body className="p-4">
+            <div className="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <h3 className="h5 mb-1">Panorami di diversità</h3>
+                <p className="small text-muted mb-2">Workshop - Roma, 19 dicembre 2023</p>
+              </div>
+              <Button 
+                variant="outline-danger" 
+                size="sm" 
+                className="rounded-pill" 
+                href="/images/Programma workshop 19 dicembre.jpg" 
+                target="_blank"><FileEarmarkImage /> Locandina</Button>
+            </div>
+            <p className="small mb-0">Luoghi sacri, storia religiosa e storia del territorio in Sabina tra tarda antichità e epoca moderna.</p>
+          </Card.Body>
+          <Card.Footer className="bg-light bg-opacity-10 border-0 py-2 px-4">
+            <small className="text-muted">Sala conferenze, Dipartimento di Storia</small>
+          </Card.Footer>
+        </Card>
+      </Col>
+
+      {/* Scheda 4 - Layout semplice */}
+      <Col md={6}>
+        <Card className="h-100 border-0 shadow-sm">
+          <Card.Body className="p-4">
+            <div className="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <h3 className="h5 mb-1">Dal documento al territorio</h3>
+                <p className="small text-muted mb-2">Workshop laboratoriale - Roma, 23 novembre 2023</p>
+              </div>
+              <Button
+                variant="outline-danger" 
+                size="sm" 
+                className="rounded-pill" 
+                href="/images/Locandina workshop 23 nov. 2023.jpg"
+                target="_blank"><FileEarmarkImage /> Locandina</Button>
+            </div>
+            <p className="small mb-0">Dalle carte degli archivi romani (XVI-XVIII sec.) alla ricostruzione storica del territorio.</p>
+          </Card.Body>
+          <Card.Footer className="bg-light bg-opacity-10 border-0 py-2 px-4">
+            <small className="text-muted">Archivio di Stato, Roma</small>
+          </Card.Footer>
+        </Card>
+      </Col>
+
+      {/* Scheda 5 - Layout semplice */}
+      <Col md={6}>
+        <Card className="h-100 border-0 shadow-sm">
+          <Card.Body className="p-4">
+            <div className="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <h3 className="h5 mb-1">Tecnologie digitali</h3>
+                <p className="small text-muted mb-2">Panel al III Convegno SISMED - Udine, giugno 2024</p>
+              </div>
+              <Button
+                variant="outline-danger" 
+                size="sm" 
+                className="rounded-pill" 
+                href="/images/Proposta di panel - Tecnologie digitali, ricerca scientifica e valorizzazione del territorio.pdf" 
+                target="_blank"><FilePdf /> Dettagli</Button>
+            </div>
+            <p className="small mb-0">L'abbazia di Farfa e le opportunità legate al PNRR - Partenariato Esteso 5, Spoke 1, WP5.</p>
+          </Card.Body>
+          <Card.Footer className="bg-light bg-opacity-10 border-0 py-2 px-4">
+            <small className="text-muted">Sessione speciale - Digital Humanities</small>
+          </Card.Footer>
+        </Card>
+      </Col>
+    </Row>
+  </section>
+</Container>

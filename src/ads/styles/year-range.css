@@ -1,0 +1,5 @@
+.ads-year-range { display: grid; gap: .65rem; width: 100%; }
+.ads-year-range label { display: flex; justify-content: space-between; font-size: .85rem; font-weight: 600; }
+.ads-year-range input { display: block; width: 100%; min-height: 28px; margin: 0; accent-color: #8c1927; cursor: pointer; }
+.ads-year-range input:focus-visible { outline: 2px solid #8c1927; outline-offset: 3px; border-radius: 4px; }
+.ads-year-range input:disabled { cursor: default; opacity: .5; }
